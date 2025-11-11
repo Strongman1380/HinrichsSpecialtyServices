@@ -68,6 +68,17 @@ class SiteFooter extends HTMLElement {
           color: #ccffcc;
         }
 
+        .contact-link {
+          color: #ccffcc;
+          text-decoration: none;
+          transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+          color: #00ff41;
+          text-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
+        }
+
         .footer-section ul {
           list-style: none;
           padding: 0;
@@ -108,21 +119,13 @@ class SiteFooter extends HTMLElement {
         <div class="container">
           <div class="footer-content">
             <div class="footer-section">
-              <h3>Aspire Impact Network</h3>
-              <p>Empowering people, elevating business, creating impact in Geneva, Nebraska and beyond.</p>
+              <h3>Hinrichs Specialty Services and Technology</h3>
+              <p>Practical digital solutions for small businesses, nonprofits, and service organizations.</p>
               <div class="footer-contact">
-                <p>📞 (402) 759-2210</p>
-                <p>✉️ brandon.hinrichs@aspireimpactnetwork.com</p>
+                <p>📞 <a href="tel:+14027592210" class="contact-link">(402) 759-2210</a></p>
+                <p>✉️ <a href="mailto:brandon.hinrichs@hsst.com" class="contact-link">brandon.hinrichs@hsst.com</a></p>
                 <p>📍 Geneva, Nebraska</p>
               </div>
-            </div>
-            <div class="footer-section">
-              <h4>Justice Support</h4>
-              <ul>
-                <li><a href="/justice-support.html">Family Partners</a></li>
-                <li><a href="/justice-support.html">Domestic Violence Classes</a></li>
-                <li><a href="/justice-support.html">Reentry Support</a></li>
-              </ul>
             </div>
             <div class="footer-section">
               <h4>Digital Solutions</h4>
@@ -136,14 +139,14 @@ class SiteFooter extends HTMLElement {
             <div class="footer-section">
               <h4>Community</h4>
               <ul>
-                <li><a href="/membership.html">Membership Plans</a></li>
                 <li><a href="/blog.html">Blog & Resources</a></li>
                 <li><a href="/contact.html">Contact Us</a></li>
+                <li><a href="/contact.html#newsletter">Join Our Newsletter</a></li>
               </ul>
             </div>
           </div>
           <div class="footer-bottom">
-            <p>&copy; ${year} Aspire Impact Network. All rights reserved.</p>
+            <p>&copy; ${year} Hinrichs Specialty Services and Technology. All rights reserved.</p>
           </div>
         </div>
       </footer>

@@ -10,7 +10,7 @@ const config = {
     enabled: false
   },
   plausible: {
-    domain: 'aspireimpactnetwork.com',
+    domain: 'www.hsst.com',
     enabled: false
   },
   sentry: {

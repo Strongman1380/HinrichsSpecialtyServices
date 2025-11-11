@@ -19,7 +19,7 @@ Go to [https://dashboard.stripe.com](https://dashboard.stripe.com) and log in wi
    - **Type**: Recurring
 5. Click **"Add product"**
 6. Under **"After payment"**:
-   - Set success URL: `https://aspireimpactnetwork.com/success.html`
+   - Set success URL: `https://www.hsst.com/success.html`
 7. Click **"Create link"**
 8. **Copy the payment link** (looks like `https://buy.stripe.com/xxxxx`)
 9. Paste it in `js/stripe-checkout.js` at line 10
@@ -33,7 +33,7 @@ Go to [https://dashboard.stripe.com](https://dashboard.stripe.com) and log in wi
    - **Billing period**: Yearly
    - **Type**: Recurring
 4. Click **"Add product"**
-5. Set success URL: `https://aspireimpactnetwork.com/success.html`
+5. Set success URL: `https://www.hsst.com/success.html`
 6. Click **"Create link"**
 7. **Copy the payment link** and paste in `js/stripe-checkout.js` at line 11
 
@@ -46,7 +46,7 @@ Go to [https://dashboard.stripe.com](https://dashboard.stripe.com) and log in wi
    - **Billing period**: Monthly
    - **Type**: Recurring
 4. Click **"Add product"**
-5. Set success URL: `https://aspireimpactnetwork.com/success.html`
+5. Set success URL: `https://www.hsst.com/success.html`
 6. Click **"Create link"**
 7. **Copy the payment link** and paste in `js/stripe-checkout.js` at line 12
 
@@ -59,7 +59,7 @@ Go to [https://dashboard.stripe.com](https://dashboard.stripe.com) and log in wi
    - **Billing period**: Yearly
    - **Type**: Recurring
 4. Click **"Add product"**
-5. Set success URL: `https://aspireimpactnetwork.com/success.html`
+5. Set success URL: `https://www.hsst.com/success.html`
 6. Click **"Create link"**
 7. **Copy the payment link** and paste in `js/stripe-checkout.js` at line 13
 

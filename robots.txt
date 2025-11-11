@@ -4,7 +4,6 @@ Allow: /
 # Allow all pages
 Allow: /index.html
 Allow: /contact.html
-Allow: /justice-support.html
 Allow: /digital-solutions.html
 Allow: /membership.html
 Allow: /submissions.html
@@ -18,7 +17,7 @@ Allow: /images/
 # Disallow: /submissions.html
 
 # Sitemap location
-Sitemap: https://aspireimpactnetwork.com/sitemap.xml
+Sitemap: https://www.hsst.com/sitemap.xml
 
 # Crawl delay (optional - helps prevent overwhelming server)
 Crawl-delay: 1

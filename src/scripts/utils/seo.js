@@ -110,7 +110,7 @@ export function addArticleSchema(article) {
       name: 'Aspire Impact Network',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://aspireimpactnetwork.com/images/logo.png'
+        url: 'https://www.hsst.com/images/logo.png'
       }
     },
     datePublished: article.publishedDate,
@@ -144,9 +144,9 @@ export function addServiceSchema(service) {
 export function addLocalBusinessSchema() {
   addStructuredData('LocalBusiness', {
     name: 'Aspire Impact Network',
-    image: 'https://aspireimpactnetwork.com/images/hero-image.png',
-    '@id': 'https://aspireimpactnetwork.com',
-    url: 'https://aspireimpactnetwork.com',
+    image: 'https://www.hsst.com/images/hero-image.png',
+    '@id': 'https://www.hsst.com',
+    url: 'https://www.hsst.com',
     telephone: '+1-402-759-2210',
     address: {
       '@type': 'PostalAddress',
@@ -204,9 +204,7 @@ export function generateSitemap() {
   const pages = [
     { url: '/', priority: 1.0, changefreq: 'weekly' },
     { url: '/our-story.html', priority: 0.8, changefreq: 'monthly' },
-    { url: '/justice-support.html', priority: 0.9, changefreq: 'weekly' },
     { url: '/digital-solutions.html', priority: 0.9, changefreq: 'weekly' },
-    { url: '/membership.html', priority: 0.9, changefreq: 'weekly' },
     { url: '/blog.html', priority: 0.7, changefreq: 'daily' },
     { url: '/contact.html', priority: 0.6, changefreq: 'monthly' }
   ];
@@ -214,7 +212,7 @@ export function generateSitemap() {
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.map(page => `  <url>
-    <loc>https://aspireimpactnetwork.com${page.url}</loc>
+    <loc>https://www.hsst.com${page.url}</loc>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
     <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>

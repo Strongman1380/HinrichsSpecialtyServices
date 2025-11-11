@@ -125,7 +125,7 @@ For the free Basic membership:
 If you need help with Stripe setup:
 - [Stripe Documentation](https://stripe.com/docs)
 - [Stripe Support](https://support.stripe.com)
-- Email: brandon.hinrichs@aspireimpactnetwork.com
+- Email: brandon.hinrichs@hsst.com
 
 ## Next Steps
 

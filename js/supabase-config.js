@@ -149,38 +149,6 @@ const Database = {
         }
     },
 
-    // Save justice support request
-    async saveJusticeSupportRequest(requestData) {
-        try {
-            const { data, error } = await supabase
-                .from('justice_support_requests')
-                .insert([{
-                    first_name: requestData.firstName,
-                    last_name: requestData.lastName,
-                    email: requestData.email,
-                    phone: requestData.phone,
-                    address: requestData.address || null,
-                    city: requestData.city,
-                    state: requestData.state,
-                    zip: requestData.zip,
-                    service_type: requestData.serviceType,
-                    urgency: requestData.urgency,
-                    referral_source: requestData.referralSource || null,
-                    household_size: requestData.householdSize || null,
-                    children_ages: requestData.childrenAges || null,
-                    situation: requestData.situation,
-                    additional_needs: requestData.additionalNeeds || null,
-                    created_at: new Date().toISOString()
-                }]);
-
-            if (error) throw error;
-            return { success: true, data };
-        } catch (error) {
-            console.error('Error saving justice support request:', error);
-            return { success: false, error: error.message };
-        }
-    },
-
     // Save comprehensive membership signup
     async saveMembershipSignup(signupData) {
         try {

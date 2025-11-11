@@ -198,14 +198,14 @@ ORDER BY weeks_paid ASC;
 
 ### Weekly Payment URL
 ```
-https://aspireimpactnetwork.com/dv-weekly-payment.html
+https://www.hsst.com/dv-weekly-payment.html
 ```
 
 **Text message example:**
 ```
 It's time for your weekly DV class payment!
 Pay your $30 here:
-https://aspireimpactnetwork.com/dv-weekly-payment.html
+https://www.hsst.com/dv-weekly-payment.html
 
 Questions? Call (402) 759-2210
 ```
@@ -219,7 +219,7 @@ Hi [Name],
 Time for your weekly class payment of $30.
 
 Pay securely online:
-https://aspireimpactnetwork.com/dv-weekly-payment.html
+https://www.hsst.com/dv-weekly-payment.html
 
 Or call us at (402) 759-2210 to pay by phone.
 
@@ -281,7 +281,7 @@ After you create the 2 Stripe payment links and update the code:
 **Questions about weekly payments?**
 - 🌐 Visit: `dv-weekly-payment.html`
 - 📞 Call: (402) 759-2210
-- ✉️ Email: brandon.hinrichs@aspireimpactnetwork.com
+- ✉️ Email: brandon.hinrichs@hsst.com
 
 **Payment options:**
 - 💳 Online (credit/debit card via Stripe)

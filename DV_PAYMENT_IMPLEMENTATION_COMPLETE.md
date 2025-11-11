@@ -91,8 +91,8 @@ You need to create **2 payment links** in your Stripe Dashboard:
 3. Name: **DV Program Intake Assessment Fee**
 4. Price: **$35.00** (one-time)
 5. Click **Create payment link**
-6. Set success URL: `https://aspireimpactnetwork.com/success.html?type=dv-intake-payment`
-7. Set cancel URL: `https://aspireimpactnetwork.com/dv-classes-enrollment.html`
+6. Set success URL: `https://www.hsst.com/success.html?type=dv-intake-payment`
+7. Set cancel URL: `https://www.hsst.com/dv-classes-enrollment.html`
 8. **Copy the payment link** (e.g., `https://buy.stripe.com/xxxxx`)
 
 #### B. Weekly Fee Link ($30.96)
@@ -100,8 +100,8 @@ You need to create **2 payment links** in your Stripe Dashboard:
 2. Name: **DV Program Weekly Class Fee**
 3. Price: **$30.96** (one-time)
 4. Click **Create payment link**
-5. Set success URL: `https://aspireimpactnetwork.com/success.html?type=dv-weekly-payment`
-6. Set cancel URL: `https://aspireimpactnetwork.com/dv-weekly-payment.html`
+5. Set success URL: `https://www.hsst.com/success.html?type=dv-weekly-payment`
+6. Set cancel URL: `https://www.hsst.com/dv-weekly-payment.html`
 7. **Copy the payment link**
 
 ### Step 2: Update Payment Links in Code
@@ -411,11 +411,11 @@ Before going live, test:
 
 **Questions about payment:**
 📞 (402) 759-2210
-✉️ brandon.hinrichs@aspireimpactnetwork.com
+✉️ brandon.hinrichs@hsst.com
 
 **Technical issues:**
-🔗 Payment page: [dv-weekly-payment.html](https://aspireimpactnetwork.com/dv-weekly-payment.html)
-🔗 Enrollment: [dv-classes-enrollment.html](https://aspireimpactnetwork.com/dv-classes-enrollment.html)
+🔗 Payment page: [dv-weekly-payment.html](https://www.hsst.com/dv-weekly-payment.html)
+🔗 Enrollment: [dv-classes-enrollment.html](https://www.hsst.com/dv-classes-enrollment.html)
 
 ---
 

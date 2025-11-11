@@ -22,12 +22,7 @@ export default defineConfig({
       input: {
         main: './index.html',
         'our-story': './our-story.html',
-        'justice-support': './justice-support.html',
-        'justice-support-request': './justice-support-request.html',
         'digital-solutions': './digital-solutions.html',
-        'membership': './membership.html',
-        'membership-signup': './membership-signup.html',
-        'dv-classes-enrollment': './dv-classes-enrollment.html',
         'enrollment': './enrollment.html',
         'blog': './blog.html',
         'contact': './contact.html',
@@ -142,17 +137,6 @@ export default defineConfig({
     open: true
   },
   css: {
-    postcss: {
-      plugins: [
-        require('autoprefixer'),
-        require('cssnano')({
-          preset: ['default', {
-            discardComments: {
-              removeAll: true
-            }
-          }]
-        })
-      ]
-    }
+    postcss: './postcss.config.js'
   }
 });

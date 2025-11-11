@@ -38,8 +38,8 @@ Go to: https://dashboard.stripe.com
    - **Collect customer email:** Yes (checked)
    - **Collect customer name:** Yes (checked)
    - **Allow promo codes:** Optional (your choice)
-   - **Success URL:** `https://aspireimpactnetwork.com/success.html?type=dv-intake-payment`
-   - **Cancel URL:** `https://aspireimpactnetwork.com/dv-classes-enrollment.html`
+   - **Success URL:** `https://www.hsst.com/success.html?type=dv-intake-payment`
+   - **Cancel URL:** `https://www.hsst.com/dv-classes-enrollment.html`
 7. Click **"Create link"**
 8. **Copy the payment link** (looks like: `https://buy.stripe.com/xxxxx`)
 
@@ -58,8 +58,8 @@ Go to: https://dashboard.stripe.com
    - **Collect customer email:** Yes
    - **Collect customer name:** Yes
    - **Allow promo codes:** Optional
-   - **Success URL:** `https://aspireimpactnetwork.com/success.html?type=dv-weekly-payment`
-   - **Cancel URL:** `https://aspireimpactnetwork.com/dv-weekly-payment.html`
+   - **Success URL:** `https://www.hsst.com/success.html?type=dv-weekly-payment`
+   - **Cancel URL:** `https://www.hsst.com/dv-weekly-payment.html`
 7. Click **"Create link"**
 8. **Copy the payment link**
 
@@ -176,7 +176,7 @@ To get notified when someone pays:
 
 1. Go to **Settings** → **Email notifications** in Stripe
 2. Enable **"Successful payments"**
-3. Add your email: brandon.hinrichs@aspireimpactnetwork.com
+3. Add your email: brandon.hinrichs@hsst.com
 
 ### Webhook for Advanced Integration (Optional)
 
@@ -184,7 +184,7 @@ To update your database automatically when payments complete:
 
 1. Go to **Developers** → **Webhooks** in Stripe
 2. Click **"Add endpoint"**
-3. Endpoint URL: `https://aspireimpactnetwork.com/api/stripe-webhook`
+3. Endpoint URL: `https://www.hsst.com/api/stripe-webhook`
 4. Select events:
    - `checkout.session.completed`
    - `payment_intent.succeeded`
@@ -234,7 +234,7 @@ To update your database automatically when payments complete:
 If users have payment issues:
 
 1. **Phone:** (402) 759-2210
-2. **Email:** brandon.hinrichs@aspireimpactnetwork.com
+2. **Email:** brandon.hinrichs@hsst.com
 3. **In-person:** Accept payment at your Geneva, Nebraska location
 
 ---

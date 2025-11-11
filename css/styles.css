@@ -126,9 +126,12 @@ body::before {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     font-weight: var(--font-weight-bold);
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     text-shadow: var(--glow-green);
     animation: logoGlow 3s ease-in-out infinite alternate;
+    white-space: nowrap;
+    margin: 0;
+    line-height: 1.2;
 }
 
 @keyframes logoGlow {
@@ -731,11 +734,12 @@ body::before {
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: var(--spacing-md);
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--spacing-xl);
     margin-bottom: var(--spacing-xl);
     position: relative;
     z-index: 1;
+    align-items: start;
 }
 
 .footer-section h4 {
@@ -1551,6 +1555,75 @@ body::before {
     text-align: center;
     color: var(--text-light);
     margin-bottom: var(--spacing-lg);
+}
+
+.billing-toggle {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    background: rgba(10, 15, 10, 0.5);
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-md);
+}
+
+.toggle-option {
+    flex: 1;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    background: transparent;
+    color: var(--text-light);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: var(--font-weight-medium);
+}
+
+.toggle-option:hover {
+    background: rgba(0, 255, 65, 0.1);
+    border-color: var(--primary-green);
+}
+
+.toggle-option.active {
+    background: var(--primary-green);
+    color: var(--dark-bg);
+    border-color: var(--primary-green);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+}
+
+.save-badge {
+    display: inline-block;
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    margin-left: var(--spacing-xs);
+}
+
+.pricing-option {
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+.pricing-option.hidden {
+    display: none;
+}
+
+.billing-note {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.875rem;
+    margin-top: var(--spacing-sm);
+    margin-bottom: 0;
+}
+
+.effective-rate {
+    text-align: center;
+    color: var(--primary-gold);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-semibold);
+    margin-top: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
 }
 
 .plan-benefits,
@@ -2955,6 +3028,108 @@ body::before {
     line-height: 1.5;
 }
 
+/* Newsletter Section */
+.newsletter-section {
+    padding: var(--spacing-xxl) 0;
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(10, 10, 15, 0.95) 100%);
+    border-top: 1px solid rgba(0, 255, 65, 0.2);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+.newsletter-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--spacing-xxl);
+    align-items: start;
+}
+
+.newsletter-content h2 {
+    font-size: 2.5rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+    color: var(--text-bright);
+}
+
+.newsletter-intro {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.6;
+}
+
+.newsletter-benefits h3 {
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-green);
+    margin-bottom: var(--spacing-md);
+}
+
+.newsletter-benefits ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--spacing-lg);
+}
+
+.newsletter-benefits li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.newsletter-benefits li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-gold);
+    font-weight: var(--font-weight-bold);
+}
+
+.newsletter-benefits li strong {
+    color: var(--primary-blue);
+}
+
+.newsletter-frequency {
+    text-align: center;
+    color: var(--primary-green);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-medium);
+    padding: var(--spacing-sm);
+    background: rgba(0, 255, 65, 0.1);
+    border-radius: var(--radius-sm);
+    margin-top: var(--spacing-md);
+}
+
+.newsletter-form-wrapper {
+    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(26, 26, 46, 0.9) 100%);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--glow-green);
+    border: 2px solid var(--primary-green);
+    backdrop-filter: blur(10px);
+}
+
+.newsletter-form h3 {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-bright);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+.newsletter-form .btn-large {
+    width: 100%;
+    background: var(--primary-green);
+    border: none;
+}
+
+.newsletter-form .btn-large:hover {
+    background: var(--primary-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 193, 7, 0.4);
+}
+
 /* Contact FAQ */
 .contact-faq {
     padding: var(--spacing-xxl) 0;
@@ -3098,6 +3273,15 @@ body::before {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    /* Logo adjustment for smaller screens */
+    .nav-logo h2 {
+        font-size: 0.9rem;
+    }
+
+    .nav-container {
+        padding: 0 var(--spacing-sm);
+    }
+
     /* Navigation */
     .nav-menu {
         position: fixed;
@@ -3251,6 +3435,16 @@ body::before {
 
     .perk-grid {
         grid-template-columns: 1fr;
+    }
+
+    /* Newsletter Section */
+    .newsletter-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    .newsletter-content h2 {
+        font-size: 2rem;
     }
 
     /* Stories and Process */
@@ -3456,8 +3650,8 @@ body::before {
 
     /* Footer responsive */
     .footer-content {
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--spacing-md);
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
         text-align: left;
     }
 
@@ -3476,6 +3670,11 @@ body::before {
 }
 
 @media (max-width: 480px) {
+    /* Logo for very small screens */
+    .nav-logo h2 {
+        font-size: 0.75rem;
+    }
+
     .container {
         padding: 0 var(--spacing-sm);
     }
@@ -3615,6 +3814,12 @@ body::before {
 
     .hero-globe {
         min-height: 350px;
+    }
+
+    /* Footer for tablets */
+    .footer-content {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: var(--spacing-lg);
     }
 }
 

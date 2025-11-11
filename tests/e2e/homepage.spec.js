@@ -16,13 +16,13 @@ test.describe('Homepage', () => {
   });
 
   test('should have working navigation', async ({ page }) => {
-    await page.click('a[href="/justice-support.html"]');
-    await expect(page).toHaveURL(/justice-support/);
+    await page.click('a[href="/digital-solutions.html"]');
+    await expect(page).toHaveURL(/digital-solutions/);
   });
 
-  test('should display three main panels', async ({ page }) => {
+  test('should display main panels', async ({ page }) => {
     const panels = page.locator('.panel');
-    await expect(panels).toHaveCount(3);
+    await expect(panels).toHaveCount(2);
   });
 
   test('should have accessible navigation', async ({ page }) => {

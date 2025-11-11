@@ -1,28 +1,21 @@
 # Aspire Impact Network Website
 
-A comprehensive website for Aspire Impact Network, showcasing both justice support programs and digital solutions services. Built with modern HTML5, CSS3, and JavaScript.
+A comprehensive website for Aspire Impact Network, showcasing digital solutions services for businesses and nonprofits. Built with modern HTML5, CSS3, and JavaScript.
 
 ## Overview
 
-This website serves as the digital presence for Aspire Impact Network, a dual-focus organization that provides:
+This website serves as the digital presence for Aspire Impact Network, an organization that provides:
 
-1. **Justice Support Programs**: Family partner services, domestic violence accountability classes, and reentry support
-2. **Digital Solutions**: Complete digital transformation services for nonprofits and small businesses ($150/month)
-3. **Membership Community**: Tiered access (Basic/Premier/Pro) to resources, training, and exclusive content
+1. **Digital Solutions**: Complete digital transformation services for nonprofits and small businesses ($150/month)
+2. **Membership Community**: Tiered access (Basic/Premier/Pro) to resources, training, and exclusive content
 
 ## Features
 
 ### 🏠 Homepage
 - Hero section with clear value proposition
-- Three main service panels
-- Impact statistics and community focus
+- Main service panels
+- Impact statistics and business growth focus
 - Call-to-action sections
-
-### ⚖️ Justice Support Programs
-- Family Partner program details
-- Domestic Violence classes (Duluth Model, 36-week program)
-- Pricing: $35 intake + $30/session
-- Reentry and crisis support services
 
 ### 💻 Digital Solutions
 - Complete package for $150/month
@@ -39,7 +32,7 @@ This website serves as the digital presence for Aspire Impact Network, a dual-fo
 
 ### 📚 Resource Hub
 - Searchable blog with category filtering
-- Categories: Justice Reform, Family Support, Domestic Violence, Digital Marketing, Case Studies
+- Categories: Digital Marketing, Business Growth, Technology Solutions, Case Studies
 - Newsletter signup
 - Featured articles
 
@@ -72,7 +65,6 @@ This website serves as the digital presence for Aspire Impact Network, a dual-fo
 ```
 /
 ├── index.html              # Homepage
-├── justice-support.html    # Justice support programs
 ├── digital-solutions.html  # Digital services
 ├── membership.html         # Membership tiers
 ├── blog.html              # Resource hub
@@ -170,7 +162,7 @@ To run locally for development:
 ### Updating Content
 - Edit HTML files directly for content changes
 - Update contact information in `contact.html` and footer sections
-- Modify pricing in `justice-support.html` and `digital-solutions.html`
+- Modify pricing in `digital-solutions.html`
 
 ### Styling Changes
 - All styles are in `css/styles.css`
@@ -245,7 +237,7 @@ Consider adding:
 ## Support
 
 For questions about this website:
-- Email: brandon.hinrichs@aspireimpactnetwork.com
+- Email: brandon.hinrichs@hsst.com
 - Phone: (402) 759-2210
 
 ## License

@@ -36,8 +36,8 @@ module.exports = async (req, res) => {
                 },
             ],
             mode: 'subscription',
-            success_url: `${req.headers.origin || 'https://aspireimpactnetwork.com'}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${req.headers.origin || 'https://aspireimpactnetwork.com'}/membership.html?canceled=true`,
+            success_url: `${req.headers.origin || 'https://www.hsst.com'}/success.html?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${req.headers.origin || 'https://www.hsst.com'}/membership.html?canceled=true`,
             metadata: {
                 planType: planType,
                 billingPeriod: billingPeriod

@@ -161,14 +161,12 @@ class SiteHeader extends HTMLElement {
         <nav>
           <div class="nav-container">
             <div class="nav-logo">
-              <h2>Aspire Impact Network</h2>
+              <h2>Hinrichs Specialty Services and Technology</h2>
             </div>
             <ul class="nav-menu">
               <li><a href="/index.html" class="nav-link ${currentPage === 'home' ? 'active' : ''}">Home</a></li>
               <li><a href="/our-story.html" class="nav-link ${currentPage === 'our-story' ? 'active' : ''}">Our Story</a></li>
-              <li><a href="/justice-support.html" class="nav-link ${currentPage === 'justice-support' ? 'active' : ''}">Justice Support</a></li>
               <li><a href="/digital-solutions.html" class="nav-link ${currentPage === 'digital-solutions' ? 'active' : ''}">Digital Solutions</a></li>
-              <li><a href="/membership.html" class="nav-link ${currentPage === 'membership' ? 'active' : ''}">Membership</a></li>
               <li><a href="/contact.html" class="nav-link ${currentPage === 'contact' ? 'active' : ''}">Contact</a></li>
             </ul>
             <button class="nav-toggle" aria-label="Toggle navigation menu">

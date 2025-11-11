@@ -574,7 +574,7 @@ createPasswordStrengthIndicator('password-field');
          'Content-Type': 'application/json',
        },
        body: JSON.stringify({
-         from: 'noreply@aspireimpactnetwork.com',
+         from: 'noreply@hsst.com',
          to,
          subject,
          html,
@@ -712,8 +712,8 @@ updateMetaTags({
   title: 'Justice Support Programs - Aspire Impact Network',
   description: 'Comprehensive justice support services...',
   keywords: 'justice support, family partners, domestic violence',
-  ogImage: 'https://aspireimpactnetwork.com/images/og-justice.jpg',
-  canonical: 'https://aspireimpactnetwork.com/justice-support.html'
+  ogImage: 'https://www.hsst.com/images/og-justice.jpg',
+  canonical: 'https://www.hsst.com/justice-support.html'
 });
 ```
 

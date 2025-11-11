@@ -1,7 +1,7 @@
 {
   "name": "Aspire Impact Network",
   "short_name": "Aspire Impact",
-  "description": "Empowering People. Elevating Business. Creating Impact. Justice support and digital innovation for communities.",
+  "description": "Empowering People. Elevating Business. Creating Impact. Digital innovation for businesses.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0f0a",
@@ -44,24 +44,10 @@
   ],
   "shortcuts": [
     {
-      "name": "Justice Support Programs",
-      "short_name": "Justice Support",
-      "description": "Access justice support programs",
-      "url": "/justice-support.html",
-      "icons": [{ "src": "/pwa-192x192.png", "sizes": "192x192" }]
-    },
-    {
       "name": "Digital Solutions",
       "short_name": "Digital",
       "description": "Explore digital transformation services",
       "url": "/digital-solutions.html",
-      "icons": [{ "src": "/pwa-192x192.png", "sizes": "192x192" }]
-    },
-    {
-      "name": "Membership",
-      "short_name": "Join",
-      "description": "Join our membership community",
-      "url": "/membership.html",
       "icons": [{ "src": "/pwa-192x192.png", "sizes": "192x192" }]
     },
     {
