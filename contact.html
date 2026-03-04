@@ -118,7 +118,10 @@
                         <p>Tell us about your needs and we'll connect you with the right solutions. Whether you're interested in our digital services or membership community, we're here to help.</p>
                     </div>
 
-                    <form class="contact-form" id="contactForm">
+                    <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="22ce564a-cfa3-43f4-b763-3131c977c29a">
+                        <input type="hidden" name="subject" value="New Contact Form Submission - HSST Website">
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="firstName">First Name *</label>

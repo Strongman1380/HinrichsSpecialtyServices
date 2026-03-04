@@ -144,25 +144,22 @@ function initContactForm() {
             submitButton.disabled = true;
 
             try {
-                // Collect form data
-                const formData = {
-                    firstName: contactForm.firstName.value,
-                    lastName: contactForm.lastName.value,
-                    email: contactForm.email.value,
-                    phone: contactForm.phone.value,
-                    organization: contactForm.organization.value,
-                    interest: contactForm.interest.value,
-                    budget: contactForm.budget.value,
-                    timeline: contactForm.timeline.value,
-                    message: contactForm.message.value,
-                    newsletter: contactForm.newsletter.checked,
-                    privacy: contactForm.privacy.checked
-                };
+                // Submit to Web3Forms
+                const formData = new FormData(contactForm);
+                const fullName = `${contactForm.firstName.value || ''} ${contactForm.lastName.value || ''}`.trim();
+                formData.set('name', fullName || 'Website Visitor');
 
-                // Save to Supabase
-                const result = await Database.saveContactSubmission(formData);
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        Accept: 'application/json'
+                    }
+                });
 
-                if (result.success) {
+                const result = await response.json();
+
+                if (response.ok && result.success) {
                     showMessage('Thank you for your message! We\'ll respond within 24 hours.', 'success');
 
                     // Reset form
@@ -174,7 +171,7 @@ function initContactForm() {
                         checkbox.checked = false;
                     });
                 } else {
-                    throw new Error(result.error);
+                    throw new Error(result.message || 'Submission failed');
                 }
             } catch (error) {
                 console.error('Error submitting form:', error);
