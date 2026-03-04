@@ -82,7 +82,7 @@ async function createCheckoutSession(priceId, planType, billingPeriod) {
 
     } catch (error) {
         console.error('Error:', error);
-        alert('There was an error processing your request. Please try again or contact support at brandon.hinrichs@hsst.com');
+        alert('There was an error processing your request. Please try again or contact support at bhinrichs1380@gmail.com');
         hideLoadingState();
     }
 }

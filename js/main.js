@@ -170,6 +170,11 @@ function initContactForm() {
                     checkboxes.forEach(checkbox => {
                         checkbox.checked = false;
                     });
+                    
+                    // Redirect to success page automatically
+                    setTimeout(() => {
+                        window.location.href = 'success.html';
+                    }, 1500);
                 } else {
                     throw new Error(result.message || 'Submission failed');
                 }

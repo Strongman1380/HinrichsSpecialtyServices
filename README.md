@@ -237,7 +237,7 @@ Consider adding:
 ## Support
 
 For questions about this website:
-- Email: brandon.hinrichs@hsst.com
+- Email: bhinrichs1380@gmail.com
 - Phone: (402) 759-2210
 
 ## License

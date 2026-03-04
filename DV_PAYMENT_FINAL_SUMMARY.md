@@ -281,7 +281,7 @@ After you create the 2 Stripe payment links and update the code:
 **Questions about weekly payments?**
 - 🌐 Visit: `dv-weekly-payment.html`
 - 📞 Call: (402) 759-2210
-- ✉️ Email: brandon.hinrichs@hsst.com
+- ✉️ Email: bhinrichs1380@gmail.com
 
 **Payment options:**
 - 💳 Online (credit/debit card via Stripe)

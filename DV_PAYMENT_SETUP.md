@@ -176,7 +176,7 @@ To get notified when someone pays:
 
 1. Go to **Settings** → **Email notifications** in Stripe
 2. Enable **"Successful payments"**
-3. Add your email: brandon.hinrichs@hsst.com
+3. Add your email: bhinrichs1380@gmail.com
 
 ### Webhook for Advanced Integration (Optional)
 
@@ -234,7 +234,7 @@ To update your database automatically when payments complete:
 If users have payment issues:
 
 1. **Phone:** (402) 759-2210
-2. **Email:** brandon.hinrichs@hsst.com
+2. **Email:** bhinrichs1380@gmail.com
 3. **In-person:** Accept payment at your Geneva, Nebraska location
 
 ---

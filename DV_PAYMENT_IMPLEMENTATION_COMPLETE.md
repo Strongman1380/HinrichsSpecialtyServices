@@ -411,7 +411,7 @@ Before going live, test:
 
 **Questions about payment:**
 📞 (402) 759-2210
-✉️ brandon.hinrichs@hsst.com
+✉️ bhinrichs1380@gmail.com
 
 **Technical issues:**
 🔗 Payment page: [dv-weekly-payment.html](https://www.hsst.com/dv-weekly-payment.html)

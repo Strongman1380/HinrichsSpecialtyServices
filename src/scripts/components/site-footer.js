@@ -123,7 +123,7 @@ class SiteFooter extends HTMLElement {
               <p>Practical digital solutions for small businesses, nonprofits, and service organizations.</p>
               <div class="footer-contact">
                 <p>📞 <a href="tel:+14027592210" class="contact-link">(402) 759-2210</a></p>
-                <p>✉️ <a href="mailto:brandon.hinrichs@hsst.com" class="contact-link">brandon.hinrichs@hsst.com</a></p>
+                <p>✉️ <a href="mailto:bhinrichs1380@gmail.com" class="contact-link">bhinrichs1380@gmail.com</a></p>
                 <p>📍 Geneva, Nebraska</p>
               </div>
             </div>
