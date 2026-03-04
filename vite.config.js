@@ -3,9 +3,30 @@ import { VitePWA } from 'vite-plugin-pwa';
 import compression from 'vite-plugin-compression';
 import legacy from '@vitejs/plugin-legacy';
 import { createHtmlPlugin } from 'vite-plugin-html';
+import path from 'node:path';
+import { existsSync, cpSync } from 'node:fs';
+
+const repoBase = '/HinrichsSpecialtyServices/';
+
+const copyStaticFoldersPlugin = () => ({
+  name: 'copy-static-folders',
+  closeBundle() {
+    const staticFolders = ['js', 'images'];
+
+    for (const folderName of staticFolders) {
+      const sourcePath = path.resolve(folderName);
+      const targetPath = path.resolve('dist', folderName);
+
+      if (existsSync(sourcePath)) {
+        cpSync(sourcePath, targetPath, { recursive: true });
+      }
+    }
+  }
+});
 
 export default defineConfig({
   root: '.',
+  base: repoBase,
   publicDir: 'public',
   build: {
     outDir: 'dist',
@@ -38,6 +59,7 @@ export default defineConfig({
     }
   },
   plugins: [
+    copyStaticFoldersPlugin(),
     createHtmlPlugin({
       minify: true,
       inject: {
@@ -64,24 +86,25 @@ export default defineConfig({
         name: 'Aspire Impact Network',
         short_name: 'Aspire Impact',
         description: 'Empowering People. Elevating Business. Creating Impact.',
-        theme_color: '#00ff41',
-        background_color: '#0a0f0a',
+        theme_color: '#1f5faa',
+        background_color: '#081a2f',
         display: 'standalone',
         orientation: 'portrait',
-        start_url: '/',
+        start_url: repoBase,
+        scope: repoBase,
         icons: [
           {
-            src: '/pwa-192x192.png',
+            src: `${repoBase}pwa-192x192.png`,
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: '/pwa-512x512.png',
+            src: `${repoBase}pwa-512x512.png`,
             sizes: '512x512',
             type: 'image/png'
           },
           {
-            src: '/pwa-512x512.png',
+            src: `${repoBase}pwa-512x512.png`,
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any maskable'
