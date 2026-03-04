@@ -8,21 +8,22 @@
 }
 
 :root {
-    /* Color Palette - Matrix Green Tech Theme */
-    --primary-green: #00ff41;
-    --neon-green: #39ff14;
-    --dark-green: #00cc33;
-    --electric-teal: #00ffaa;
-    --matrix-green: #00ff00;
-    --dark-bg: #0a0f0a;
-    --darker-bg: #050805;
-    --card-bg: #0f1f0f;
-    --border-glow: #00ff4133;
+    /* Color Palette - Hinrichs Blue/Orange Theme */
+    --primary-green: #1f5faa;
+    --neon-green: #f28a1a;
+    --dark-green: #163f76;
+    --electric-teal: #3b8ed6;
+    --matrix-green: #ff9f2f;
+    --dark-bg: #081a2f;
+    --darker-bg: #050f1d;
+    --card-bg: #102742;
+    --border-glow: rgba(59, 142, 214, 0.35);
     --white: #ffffff;
-    --text-light: #e0ffe0;
-    --text-green: #00ff41;
-    --text-bright: #ccffcc;
-    --accent-teal: #00ffaa;
+    --text-light: #eaf3ff;
+    --text-green: #1f5faa;
+    --text-bright: #ffffff;
+    --accent-teal: #f28a1a;
+    --electric-green: #1f5faa;
 
     /* Typography */
     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -50,9 +51,9 @@
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.6), 0 2px 4px -2px rgb(0 0 0 / 0.5);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.7), 0 4px 6px -4px rgb(0 0 0 / 0.6);
-    --glow-green: 0 0 20px rgba(0, 255, 65, 0.6), 0 0 40px rgba(0, 255, 65, 0.4), 0 0 60px rgba(0, 255, 65, 0.2);
-    --glow-green-intense: 0 0 30px rgba(0, 255, 65, 0.8), 0 0 60px rgba(0, 255, 65, 0.5), 0 0 90px rgba(0, 255, 65, 0.3);
-    --glow-teal: 0 0 20px rgba(0, 255, 170, 0.6), 0 0 40px rgba(0, 255, 170, 0.4);
+    --glow-green: 0 0 16px rgba(31, 95, 170, 0.5), 0 0 28px rgba(31, 95, 170, 0.35), 0 0 42px rgba(31, 95, 170, 0.2);
+    --glow-green-intense: 0 0 24px rgba(31, 95, 170, 0.7), 0 0 42px rgba(31, 95, 170, 0.45), 0 0 66px rgba(31, 95, 170, 0.25);
+    --glow-teal: 0 0 14px rgba(242, 138, 26, 0.45), 0 0 28px rgba(242, 138, 26, 0.3);
     --border-gradient: linear-gradient(45deg, var(--primary-green), var(--electric-teal), var(--neon-green));
 }
 
@@ -4108,4 +4109,158 @@ input:focus, select:focus, textarea:focus {
     height: 80px;
     color: var(--primary-green);
     opacity: 0.3;
+}
+
+/* ===================================================================
+   Logo Theme Overrides (Blue/Orange + Contrast/Visibility)
+   =================================================================== */
+body {
+    color: var(--text-light);
+    background: linear-gradient(135deg, #07182d 0%, #050f1d 60%, #0a2340 100%);
+}
+
+body::before {
+    background:
+        radial-gradient(circle at 20% 50%, rgba(59, 142, 214, 0.18) 0%, transparent 52%),
+        radial-gradient(circle at 80% 20%, rgba(242, 138, 26, 0.14) 0%, transparent 48%),
+        radial-gradient(circle at 40% 80%, rgba(31, 95, 170, 0.16) 0%, transparent 52%);
+}
+
+.header,
+.section-nav,
+.footer {
+    background: linear-gradient(135deg, rgba(8, 26, 47, 0.96) 0%, rgba(5, 15, 29, 0.96) 100%);
+    border-color: rgba(59, 142, 214, 0.35);
+}
+
+.nav-logo h2 {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-bright);
+    background: none;
+    -webkit-text-fill-color: initial;
+    text-shadow: 0 1px 2px rgba(5, 15, 29, 0.5);
+    font-size: 0.95rem;
+}
+
+.nav-logo h2::before {
+    content: '';
+    width: 46px;
+    height: 46px;
+    border-radius: 8px;
+    flex: 0 0 auto;
+    background: #ffffff url('../hinrichs-specialty-services-logo.png') center / contain no-repeat;
+    box-shadow: 0 0 0 1px rgba(59, 142, 214, 0.35), 0 8px 18px rgba(5, 15, 29, 0.45);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--text-bright);
+    background: rgba(59, 142, 214, 0.22);
+    border-color: rgba(242, 138, 26, 0.35);
+    text-shadow: none;
+}
+
+.nav-link.active::after {
+    background-color: var(--neon-green);
+    box-shadow: 0 0 12px rgba(242, 138, 26, 0.6);
+}
+
+.hero::before {
+    background:
+        radial-gradient(circle at 30% 30%, rgba(59, 142, 214, 0.18) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(242, 138, 26, 0.14) 0%, transparent 50%);
+}
+
+.hero-title,
+.panel-title,
+.section-title,
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-bright);
+}
+
+p,
+li,
+.hero-subtitle,
+.panel-description,
+.form-description,
+label {
+    color: var(--text-light);
+}
+
+a {
+    color: var(--electric-teal);
+}
+
+a:hover {
+    color: var(--neon-green);
+    text-shadow: none;
+}
+
+svg {
+    filter: drop-shadow(0 0 5px rgba(59, 142, 214, 0.3));
+}
+
+input,
+select,
+textarea {
+    background: rgba(16, 39, 66, 0.78);
+    border: 1px solid rgba(59, 142, 214, 0.4);
+    color: var(--text-bright);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(234, 243, 255, 0.72);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--neon-green);
+    box-shadow: 0 0 0 3px rgba(242, 138, 26, 0.14), inset 0 0 0 1px rgba(242, 138, 26, 0.25);
+}
+
+.btn,
+.btn-primary,
+button[type='submit'] {
+    color: #ffffff;
+}
+
+.btn-primary,
+button[type='submit'] {
+    background: linear-gradient(45deg, var(--primary-green), var(--electric-teal));
+    border-color: rgba(59, 142, 214, 0.55);
+}
+
+.btn-primary:hover,
+button[type='submit']:hover {
+    background: linear-gradient(45deg, var(--electric-teal), var(--neon-green));
+}
+
+.btn-outline {
+    border-color: rgba(242, 138, 26, 0.65);
+    color: var(--text-bright);
+}
+
+.btn-outline:hover {
+    background: rgba(242, 138, 26, 0.2);
+}
+
+.panel,
+.service-card,
+.feature-card,
+.contact-card,
+.story-card,
+.blog-card,
+.solution-card {
+    background: linear-gradient(135deg, rgba(16, 39, 66, 0.94) 0%, rgba(10, 28, 50, 0.92) 100%);
+    border-color: rgba(59, 142, 214, 0.35);
+}
+
+::selection,
+::-moz-selection {
+    background: var(--neon-green);
+    color: #04101f;
 }
