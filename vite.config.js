@@ -6,7 +6,7 @@ import { createHtmlPlugin } from 'vite-plugin-html';
 import path from 'node:path';
 import { existsSync, cpSync } from 'node:fs';
 
-const repoBase = '/HinrichsSpecialtyServices/';
+const repoBase = '/';
 
 const copyStaticFoldersPlugin = () => ({
   name: 'copy-static-folders',
