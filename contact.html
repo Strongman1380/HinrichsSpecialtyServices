@@ -342,17 +342,8 @@
                         </div>
                     </div>
 
-                    <div class="map-placeholder">
-                        <div class="map-embed">
-                            <div class="map-icon">
-                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                </svg>
-                            </div>
-                            <p>Interactive Map</p>
-                            <span>Geneva, Nebraska</span>
-                        </div>
+                    <div class="map-embed" style="width: 100%; height: 350px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97359.88283595563!2d-97.67499424888804!3d40.526274474320956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8797f267c7e63b65%3A0x6b772c72b25ed8a1!2sGeneva%2C%20NE%2068361!5e0!3m2!1sen!2sus!4v1711200000000!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
@@ -395,6 +386,7 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
     <script src="js/supabase-config.js"></script>
     <script src="js/main.js"></script>
 </body>

@@ -2,28 +2,16 @@
 const SUPABASE_URL = 'https://knamphazdfkktxovttic.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtuYW1waGF6ZGZra3R4b3Z0dGljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkxOTYxNDUsImV4cCI6MjA3NDc3MjE0NX0.NnzZ0Ur1vNHt11nTS6a2C4ODuLhWDKezX_sYkxqC6Bg';
 
-// Initialize Supabase client
-let supabase;
+// Supabase client instance (set during initialization)
+let supabaseClient = null;
 
-// Load Supabase library and initialize client
-async function initializeSupabase() {
+// Initialize Supabase client — CDN script must be loaded before this runs
+function initializeSupabase() {
     try {
-        // Load Supabase from CDN
-        if (!window.supabase) {
-            const script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
-            document.head.appendChild(script);
-
-            await new Promise((resolve, reject) => {
-                script.onload = resolve;
-                script.onerror = reject;
-            });
-        }
-
-        // Initialize Supabase client
-        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const { createClient } = window.supabase;
+        supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         console.log('Supabase initialized successfully');
-        return supabase;
+        return supabaseClient;
     } catch (error) {
         console.error('Failed to initialize Supabase:', error);
         return null;
@@ -35,7 +23,7 @@ const Database = {
     // Save contact form submission
     async saveContactSubmission(formData) {
         try {
-            const { data, error } = await supabase
+            const { data, error } = await supabaseClient
                 .from('contact_submissions')
                 .insert([{
                     first_name: formData.firstName,
@@ -63,7 +51,7 @@ const Database = {
     // Save newsletter subscription
     async saveNewsletterSubscription(email) {
         try {
-            const { data, error } = await supabase
+            const { data, error } = await supabaseClient
                 .from('newsletter_subscriptions')
                 .insert([{
                     email: email,
@@ -82,7 +70,7 @@ const Database = {
     // Save membership enrollment
     async saveMembershipEnrollment(membershipData) {
         try {
-            const { data, error } = await supabase
+            const { data, error } = await supabaseClient
                 .from('membership_enrollments')
                 .insert([{
                     first_name: membershipData.firstName,
@@ -106,7 +94,7 @@ const Database = {
     // Save domestic violence class enrollment
     async saveDVEnrollment(enrollmentData) {
         try {
-            const { data, error } = await supabase
+            const { data, error } = await supabaseClient
                 .from('dv_enrollments')
                 .insert([{
                     first_name: enrollmentData.firstName,
@@ -152,7 +140,7 @@ const Database = {
     // Save comprehensive membership signup
     async saveMembershipSignup(signupData) {
         try {
-            const { data, error } = await supabase
+            const { data, error } = await supabaseClient
                 .from('membership_signups')
                 .insert([{
                     membership_tier: signupData.membershipTier,
@@ -187,7 +175,7 @@ const Database = {
     // Save digital services signup
     async saveDigitalServicesSignup(signupData) {
         try {
-            const { data, error } = await supabase
+            const { data, error } = await supabaseClient
                 .from('digital_services_signups')
                 .insert([{
                     first_name: signupData.firstName,
