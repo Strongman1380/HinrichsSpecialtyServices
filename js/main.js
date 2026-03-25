@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Mobile Navigation Toggle
     initMobileNavigation();
 
+    // Scroll Reveal Animations
+    initScrollReveal();
+
     // Blog Search and Filter Functionality
     initBlogSearch();
 
@@ -37,6 +40,71 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Digital Services Signup
     initDigitalServicesSignup();
 });
+
+// Scroll Reveal Animations
+function initScrollReveal() {
+    if (!('IntersectionObserver' in window)) return;
+
+    // Auto-tag elements for reveal on first load
+    const autoRevealSelectors = [
+        '.panel',
+        '.impact-stats .stat',
+        '.service-card',
+        '.method-card',
+        '.action-card',
+        '.package-card',
+        '.story-card',
+        '.testimonial-card',
+        '.step',
+        '.faq-item',
+        '.article-card',
+        '.benefit-item',
+        '.category-card',
+        '.feature-item',
+        '.plan-card',
+        '.referral-item',
+        '.form-container',
+    ];
+
+    // Apply reveal class to matching elements not already tagged
+    autoRevealSelectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach((el, i) => {
+            if (!el.classList.contains('reveal') &&
+                !el.classList.contains('reveal-left') &&
+                !el.classList.contains('reveal-right') &&
+                !el.classList.contains('reveal-stagger')) {
+                el.classList.add('reveal');
+                // Stagger sibling cards
+                el.style.transitionDelay = `${Math.min(i * 0.07, 0.42)}s`;
+            }
+        });
+    });
+
+    // Also handle explicit section headers
+    document.querySelectorAll(
+        '.program-header, .plan-header, .impact-content, .cta-content, .form-header, .page-header-content'
+    ).forEach(el => {
+        if (!el.classList.contains('reveal')) {
+            el.classList.add('reveal');
+        }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-stagger').forEach(el => {
+        observer.observe(el);
+    });
+}
 
 // Mobile Navigation
 function initMobileNavigation() {
