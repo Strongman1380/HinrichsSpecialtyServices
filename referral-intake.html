@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probation Referral Intake | Hinrichs Specialty Services and Technology</title>
+    <meta name="description" content="Secure referral intake form for Comprehensive Supervision Probation (CSP) and youth services.">
+    <link rel="stylesheet" href="/src/styles/main.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .intake-container {
+            padding: 8rem 0 4rem;
+            min-height: 100vh;
+        }
+
+        .intake-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg), var(--glow-green);
+            border: 1px solid rgba(26, 120, 230, 0.2);
+            overflow: hidden;
+        }
+
+        .intake-header {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--electric-teal) 100%);
+            padding: 3rem;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .intake-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .intake-header p {
+            opacity: 0.9;
+            font-size: 1.125rem;
+        }
+
+        .progress-bar-container {
+            padding: 1.5rem 3rem 0;
+            background: white;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .progress-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: var(--electric-teal);
+            border-radius: 3px;
+            transition: width 0.4s ease;
+            width: 20%;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: -1.25rem;
+        }
+
+        .step-indicator {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #64748b;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .step-indicator.active {
+            border-color: var(--electric-teal);
+            color: var(--electric-teal);
+            box-shadow: 0 0 10px rgba(26, 120, 230, 0.2);
+            transform: scale(1.1);
+        }
+
+        .step-indicator.completed {
+            background: var(--electric-teal);
+            border-color: var(--electric-teal);
+            color: white;
+        }
+
+        .intake-form-body {
+            padding: 2rem 3rem 3rem;
+        }
+
+        .form-step {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(26, 120, 230, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .step-title i {
+            color: var(--neon-green);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            color: var(--text-bright);
+            margin-bottom: 0.5rem;
+            font-size: 0.9375rem;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--electric-teal);
+            box-shadow: 0 0 0 4px rgba(26, 120, 230, 0.1);
+            outline: none;
+        }
+
+        .checkbox-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-card:hover {
+            border-color: var(--electric-teal);
+            background: rgba(26, 120, 230, 0.02);
+        }
+
+        .checkbox-card input {
+            width: 1.25rem;
+            height: 1.25rem;
+            accent-color: var(--electric-teal);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .btn-prev {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-prev:hover {
+            background: #e2e8f0;
+        }
+
+        .btn-next {
+            background: var(--electric-teal);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(26, 120, 230, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-next:hover {
+            background: #1152a8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(26, 120, 230, 0.3);
+        }
+
+        .btn-submit {
+            background: var(--neon-green);
+            color: white;
+            border: none;
+            padding: 0.75rem 2.5rem;
+            border-radius: 2rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(245, 130, 32, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background: #e08c10;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(245, 130, 32, 0.3);
+        }
+
+        .required {
+            color: #ef4444;
+            margin-left: 0.25rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            .intake-header, .intake-form-body {
+                padding: 1.5rem;
+            }
+            .progress-bar-container {
+                padding: 1rem 1.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html" class="nav-logo-link"><h2 class="nav-logo-abbr">HSST</h2><p class="nav-logo-tagline">Hinrichs Specialty Services &amp; Technology</p></a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="digital-solutions.html" class="nav-link">Digital Solutions</a></li>
+                    <li><a href="contact.html" class="nav-link">Community</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="intake-container">
+        <div class="container">
+            <div class="intake-card">
+                <div class="intake-header">
+                    <h1>Probation Referral Intake</h1>
+                    <p>Secure Submission Form for Youth Referrals & CSP Identification</p>
+                </div>
+
+                <div class="progress-bar-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="step-indicator active" data-step="1">1</div>
+                        <div class="step-indicator" data-step="2">2</div>
+                        <div class="step-indicator" data-step="3">3</div>
+                        <div class="step-indicator" data-step="4">4</div>
+                        <div class="step-indicator" data-step="5">5</div>
+                    </div>
+                </div>
+
+                <div class="intake-form-body">
+                    <form id="referral-intake-form">
+                        <!-- Step 1: Youth Information -->
+                        <div class="form-step active" id="step-1">
+                            <h2 class="step-title">Youth Information</h2>
+                            <div class="form-grid">
+                                <div class="form-group full-width">
+                                    <label class="checkbox-card">
+                                        <input type="checkbox" name="csp_identified" id="csp_identified">
+                                        <span>Youth has been identified as Comprehensive Supervision Probation (CSP) through a Court order and prioritized for services.</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="youth_name">Full Name <span class="required">*</span></label>
+                                    <input type="text" id="youth_name" name="youth_name" required placeholder="e.g. Walter Primes">
+                                </div>
+                                <div class="form-group">
+                                    <label for="youth_gender">Gender</label>
+                                    <select id="youth_gender" name="youth_gender">
+                                        <option value="">Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                        <option value="Prefer not to say">Prefer not to say</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="youth_age">Age</label>
+                                    <input type="number" id="youth_age" name="youth_age" placeholder="e.g. 16">
+                                </div>
+                                <div class="form-group">
+                                    <label for="youth_dob">Date of Birth</label>
+                                    <input type="date" id="youth_dob" name="youth_dob">
+                                </div>
+                                <div class="form-group">
+                                    <label for="current_placement">Current Placement</label>
+                                    <input type="text" id="current_placement" name="current_placement" placeholder="e.g. Home, Center, Group Home">
+                                </div>
+                                <div class="form-group">
+                                    <label for="length_of_stay">Length of Stay</label>
+                                    <input type="text" id="length_of_stay" name="length_of_stay" placeholder="e.g. N/A or 6 months">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="placement_reason">Reason for Seeking Out-of-Home Placement</label>
+                                    <textarea id="placement_reason" name="placement_reason" rows="3" placeholder="Describe behavioral history, court orders, etc."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Parent & Crossover -->
+                        <div class="form-step" id="step-2">
+                            <h2 class="step-title">Parent/Guardian & Crossover</h2>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="parent_name">Parent/Guardian Name</label>
+                                    <input type="text" id="parent_name" name="parent_name" placeholder="Full name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="parent_phone">Phone Number</label>
+                                    <input type="tel" id="parent_phone" name="parent_phone" placeholder="402-xxx-xxxx">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="parent_address">Address</label>
+                                    <input type="text" id="parent_address" name="parent_address" placeholder="Full address">
+                                </div>
+                                <div class="form-group">
+                                    <label for="crossover_status">Crossover Status</label>
+                                    <select id="crossover_status" name="crossover_status">
+                                        <option value="N/A">N/A</option>
+                                        <option value="State Ward">State Ward</option>
+                                        <option value="Voluntary">Voluntary</option>
+                                        <option value="Intake/Pending Filing">Intake/Pending Filing</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="caseworker_name">Caseworker (if applicable)</label>
+                                    <input type="text" id="caseworker_name" name="caseworker_name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="caseworker_phone">Caseworker Phone</label>
+                                    <input type="tel" id="caseworker_phone" name="caseworker_phone">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Professional Team -->
+                        <div class="form-step" id="step-3">
+                            <h2 class="step-title">Professional Team</h2>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="probation_officer">Probation Officer</label>
+                                    <input type="text" id="probation_officer" name="probation_officer">
+                                </div>
+                                <div class="form-group">
+                                    <label for="probation_district">Probation District</label>
+                                    <input type="text" id="probation_district" name="probation_district" placeholder="e.g. District 4J">
+                                </div>
+                                <div class="form-group">
+                                    <label for="probation_phone">P.O. Phone</label>
+                                    <input type="tel" id="probation_phone" name="probation_phone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="probation_email">P.O. Email</label>
+                                    <input type="email" id="probation_email" name="probation_email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="judge_name">Judge</label>
+                                    <input type="text" id="judge_name" name="judge_name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="county">County</label>
+                                    <input type="text" id="county" name="county" placeholder="e.g. Douglas">
+                                </div>
+                                <div class="form-group">
+                                    <label for="attorney_name">Attorney</label>
+                                    <input type="text" id="attorney_name" name="attorney_name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="gal_name">GAL</label>
+                                    <input type="text" id="gal_name" name="gal_name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Level of Service -->
+                        <div class="form-step" id="step-4">
+                            <h2 class="step-title">Level of Service Requested</h2>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="service_type">Service Type</label>
+                                    <select id="service_type" name="service_type">
+                                        <option value="Non-Treatment">Non-Treatment</option>
+                                        <option value="Treatment">Treatment</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="service_duration">Duration</label>
+                                    <select id="service_duration" name="service_duration">
+                                        <option value="Long Term">Long Term</option>
+                                        <option value="Short Term">Short Term</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="primary_placement">Primary Choice</label>
+                                    <input type="text" id="primary_placement" name="primary_placement" placeholder="e.g. Group Home A">
+                                </div>
+                                <div class="form-group">
+                                    <label for="secondary_placement">Secondary Choice</label>
+                                    <input type="text" id="secondary_placement" name="secondary_placement" placeholder="e.g. Group Home B">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="special_accommodations">Special Accommodations</label>
+                                    <input type="text" id="special_accommodations" name="special_accommodations" placeholder="NA">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="service_comments">Comments</label>
+                                    <textarea id="service_comments" name="service_comments" rows="2"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 5: Assessment -->
+                        <div class="form-step" id="step-5">
+                            <h2 class="step-title">Assessment of Strengths & Needs</h2>
+                            <div class="form-grid">
+                                <div class="form-group full-width">
+                                    <label for="strengths">Strengths & Needs</label>
+                                    <textarea id="strengths" name="strengths" rows="3" placeholder="Describe behavioral progress, therapy attendance, etc."></textarea>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="interests">Interests</label>
+                                    <textarea id="interests" name="interests" rows="2" placeholder="Hobbies, activities, likes..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pro_social_activities">Pro-social Activities</label>
+                                    <input type="text" id="pro_social_activities" name="pro_social_activities" placeholder="e.g. None">
+                                </div>
+                                <div class="form-group">
+                                    <label for="positive_supports">Positive Supports</label>
+                                    <input type="text" id="positive_supports" name="positive_supports" placeholder="e.g. Family, Coach, Therapist">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Buttons -->
+                        <div class="button-group">
+                            <button type="button" class="btn-prev" id="btn-prev" style="visibility: hidden;">Previous</button>
+                            <button type="button" class="btn-next" id="btn-next">Next Step</button>
+                            <button type="submit" class="btn-submit" id="btn-submit" style="display: none;">Submit Referral</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Hinrichs Specialty Services and Technology. All rights reserved. | <a href="privacy.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Privacy Policy</a> | <a href="data-deletion.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Data Deletion Policy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/referral-intake.js"></script>
+</body>
+</html>

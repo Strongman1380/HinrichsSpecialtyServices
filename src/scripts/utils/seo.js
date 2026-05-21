@@ -110,7 +110,7 @@ export function addArticleSchema(article) {
       name: 'Aspire Impact Network',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.hsst.com/images/logo.png'
+        url: 'https://hinrichs-specialty-services.vercel.app/images/logo.png'
       }
     },
     datePublished: article.publishedDate,
@@ -144,9 +144,9 @@ export function addServiceSchema(service) {
 export function addLocalBusinessSchema() {
   addStructuredData('LocalBusiness', {
     name: 'Aspire Impact Network',
-    image: 'https://www.hsst.com/images/hero-image.png',
-    '@id': 'https://www.hsst.com',
-    url: 'https://www.hsst.com',
+    image: 'https://hinrichs-specialty-services.vercel.app/images/hero-image.png',
+    '@id': 'https://hinrichs-specialty-services.vercel.app',
+    url: 'https://hinrichs-specialty-services.vercel.app',
     telephone: '+1-402-759-2210',
     address: {
       '@type': 'PostalAddress',
@@ -212,7 +212,7 @@ export function generateSitemap() {
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.map(page => `  <url>
-    <loc>https://www.hsst.com${page.url}</loc>
+    <loc>https://hinrichs-specialty-services.vercel.app${page.url}</loc>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
     <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>

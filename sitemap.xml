@@ -3,44 +3,69 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-    
-    <!-- Homepage -->
+
+    <!-- Homepage — Technology Consultation & Digital Solutions | Geneva, NE -->
     <url>
-        <loc>https://www.hsst.com/</loc>
-        <lastmod>2025-01-27</lastmod>
+        <loc>https://hinrichs-specialty-services.vercel.app/</loc>
+        <lastmod>2026-03-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
-    
-    <!-- Main Pages -->
+
+    <!-- Services & Pricing — Website Design, SEO, AI Automation Nebraska -->
     <url>
-        <loc>https://www.hsst.com/our-story.html</loc>
-        <lastmod>2025-01-27</lastmod>
+        <loc>https://hinrichs-specialty-services.vercel.app/digital-solutions.html</loc>
+        <lastmod>2026-03-25</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.95</priority>
     </url>
 
+    <!-- Our Story — About Brandon Hinrichs, Technology Consultant Nebraska -->
     <url>
-        <loc>https://www.hsst.com/contact.html</loc>
-        <lastmod>2025-01-27</lastmod>
+        <loc>https://hinrichs-specialty-services.vercel.app/our-story.html</loc>
+        <lastmod>2026-03-25</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.85</priority>
     </url>
 
+    <!-- Contact — Hire a Technology Consultant in Geneva, Nebraska -->
     <url>
-        <loc>https://www.hsst.com/digital-solutions.html</loc>
-        <lastmod>2025-01-27</lastmod>
+        <loc>https://hinrichs-specialty-services.vercel.app/contact.html</loc>
+        <lastmod>2026-03-25</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <priority>0.85</priority>
     </url>
 
-    <!-- Additional Pages -->
+    <!-- Resource Hub — Digital Solutions Insights & Guides -->
     <url>
-        <loc>https://www.hsst.com/blog.html</loc>
-        <lastmod>2025-01-27</lastmod>
+        <loc>https://hinrichs-specialty-services.vercel.app/blog.html</loc>
+        <lastmod>2026-03-25</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
+        <priority>0.75</priority>
     </url>
 
+    <!-- Membership — Community Plans -->
+    <url>
+        <loc>https://hinrichs-specialty-services.vercel.app/membership.html</loc>
+        <lastmod>2026-03-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.65</priority>
+    </url>
+
+    <!-- Privacy Policy -->
+    <url>
+        <loc>https://hinrichs-specialty-services.vercel.app/privacy.html</loc>
+        <lastmod>2026-05-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.30</priority>
+    </url>
+
+    <!-- Data Deletion Policy -->
+    <url>
+        <loc>https://hinrichs-specialty-services.vercel.app/data-deletion.html</loc>
+        <lastmod>2026-05-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.30</priority>
+    </url>
 
 </urlset>

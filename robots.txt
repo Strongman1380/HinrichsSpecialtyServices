@@ -1,23 +1,25 @@
 User-agent: *
 Allow: /
 
-# Allow all pages
+# Public pages
 Allow: /index.html
-Allow: /contact.html
+Allow: /our-story.html
 Allow: /digital-solutions.html
+Allow: /contact.html
+Allow: /blog.html
 Allow: /membership.html
-Allow: /submissions.html
+Allow: /success.html
 
-# Allow CSS and JS files
+# Static assets
 Allow: /css/
 Allow: /js/
 Allow: /images/
+Allow: /favicon.svg
 
-# Block admin areas if needed (uncomment if you want to protect submissions page)
-# Disallow: /submissions.html
+# Admin / internal — block from indexing
+Disallow: /submissions.html
+Disallow: /api/
+Disallow: /node_modules/
 
-# Sitemap location
-Sitemap: https://www.hsst.com/sitemap.xml
-
-# Crawl delay (optional - helps prevent overwhelming server)
-Crawl-delay: 1
+# Sitemap
+Sitemap: https://hinrichs-specialty-services.vercel.app/sitemap.xml

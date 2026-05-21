@@ -1,14 +1,20 @@
 // Submissions Admin Dashboard JavaScript
-// This handles loading and displaying all submission data from Supabase
+// Updated for Firebase Firestore
 
 let currentTab = 'contact';
+let db = null;
 
 // Initialize the dashboard when page loads
 document.addEventListener('DOMContentLoaded', async function() {
     console.log('Submissions dashboard initializing...');
     
-    // Initialize Supabase
-    await initializeSupabase();
+    // Initialize Firebase
+    if (typeof window.initializeFirebase === 'function') {
+        const success = window.initializeFirebase();
+        if (success) {
+            db = window.getFirebaseDB();
+        }
+    }
     
     // Setup tab functionality
     setupTabs();
@@ -41,10 +47,20 @@ function setupTabs() {
     });
 }
 
+// Map tab names to collection names
+const collectionMap = {
+    'contact': 'contact_submissions',
+    'newsletter': 'newsletter_subscriptions',
+    'membership': 'membership_enrollments',
+    'digital': 'digital_services_signups',
+    'dv': 'dv_enrollments',
+    'referrals': 'referrals'
+};
+
 // Load submissions for a specific type
 async function loadSubmissions(type) {
-    if (!supabase) {
-        console.error('Supabase not initialized');
+    if (!db) {
+        console.error('Firebase not initialized');
         showError(type, 'Database connection not available');
         return;
     }
@@ -53,44 +69,27 @@ async function loadSubmissions(type) {
     hideError(type);
 
     try {
-        let data;
-        let tableName;
-
-        switch(type) {
-            case 'contact':
-                tableName = 'contact_submissions';
-                break;
-            case 'newsletter':
-                tableName = 'newsletter_subscriptions';
-                break;
-            case 'membership':
-                tableName = 'membership_enrollments';
-                break;
-            case 'digital':
-                tableName = 'digital_services_signups';
-                break;
-            case 'dv':
-                tableName = 'dv_enrollments';
-                break;
-            default:
-                throw new Error(`Unknown submission type: ${type}`);
+        const collectionName = collectionMap[type];
+        if (!collectionName) {
+            throw new Error(`Unknown submission type: ${type}`);
         }
 
-        console.log(`Loading ${type} submissions from ${tableName}...`);
+        console.log(`Loading ${type} submissions from ${collectionName}...`);
 
-        const { data: submissions, error } = await supabase
-            .from(tableName)
-            .select('*')
-            .order('created_at', { ascending: false });
-
-        if (error) {
-            throw error;
-        }
-
-        console.log(`Loaded ${submissions?.length || 0} ${type} submissions`);
+        const snapshot = await db.collection(collectionName)
+            .orderBy('createdAt', 'desc')
+            .limit(100)
+            .get();
         
-        displaySubmissions(type, submissions || []);
-        updateCount(type, submissions?.length || 0);
+        const submissions = [];
+        snapshot.forEach(doc => {
+            submissions.push({ id: doc.id, ...doc.data() });
+        });
+
+        console.log(`Loaded ${submissions.length} ${type} submissions`);
+        
+        displaySubmissions(type, submissions);
+        updateCount(type, submissions.length);
 
     } catch (error) {
         console.error(`Error loading ${type} submissions:`, error);
@@ -126,6 +125,8 @@ function displaySubmissions(type, submissions) {
                 return renderDigitalSubmission(submission);
             case 'dv':
                 return renderDVSubmission(submission);
+            case 'referrals':
+                return renderReferralSubmission(submission);
             default:
                 return '';
         }
@@ -137,130 +138,48 @@ function renderContactSubmission(submission) {
     return `
         <div class="submission-card">
             <div class="submission-header">
-                <div class="submission-name">${submission.first_name} ${submission.last_name}</div>
-                <div class="submission-date">${formatDate(submission.created_at)}</div>
+                <div class="submission-name">${submission.firstName || ''} ${submission.lastName || ''}</div>
+                <div class="submission-date">${formatDate(submission.createdAt)}</div>
             </div>
             <div class="submission-details">
-                <div class="detail-row">
-                    <div class="detail-label">Email:</div>
-                    <div class="detail-value">${submission.email}</div>
-                </div>
-                ${submission.phone ? `
-                <div class="detail-row">
-                    <div class="detail-label">Phone:</div>
-                    <div class="detail-value">${submission.phone}</div>
-                </div>
-                ` : ''}
-                ${submission.organization ? `
-                <div class="detail-row">
-                    <div class="detail-label">Organization:</div>
-                    <div class="detail-value">${submission.organization}</div>
-                </div>
-                ` : ''}
-                <div class="detail-row">
-                    <div class="detail-label">Interest:</div>
-                    <div class="detail-value">${submission.interest}</div>
-                </div>
-                ${submission.budget ? `
-                <div class="detail-row">
-                    <div class="detail-label">Budget:</div>
-                    <div class="detail-value">${submission.budget}</div>
-                </div>
-                ` : ''}
-                ${submission.timeline ? `
-                <div class="detail-row">
-                    <div class="detail-label">Timeline:</div>
-                    <div class="detail-value">${submission.timeline}</div>
-                </div>
-                ` : ''}
-                <div class="detail-row">
-                    <div class="detail-label">Newsletter:</div>
-                    <div class="detail-value">${submission.newsletter_signup ? 'Yes' : 'No'}</div>
-                </div>
-                <div class="detail-row">
-                    <div class="detail-label">Privacy Consent:</div>
-                    <div class="detail-value">${submission.privacy_consent ? 'Yes' : 'No'}</div>
-                </div>
-                <div class="detail-row">
-                    <div class="detail-label">Message:</div>
-                    <div class="detail-value">
-                        <div class="message-text">${submission.message}</div>
-                    </div>
-                </div>
+                <div class="detail-row"><div class="detail-label">Email:</div><div class="detail-value">${submission.email || ''}</div></div>
+                ${submission.phone ? `<div class="detail-row"><div class="detail-label">Phone:</div><div class="detail-value">${submission.phone}</div></div>` : ''}
+                ${submission.organization ? `<div class="detail-row"><div class="detail-label">Organization:</div><div class="detail-value">${submission.organization}</div></div>` : ''}
+                <div class="detail-row"><div class="detail-label">Interest:</div><div class="detail-value">${submission.interest || ''}</div></div>
+                <div class="detail-row"><div class="detail-label">Message:</div><div class="detail-value"><div class="message-text">${submission.message || ''}</div></div></div>
             </div>
         </div>
     `;
 }
 
 // Render newsletter subscription
-function renderNewsletterSubmission(subscription) {
+function renderNewsletterSubmission(signup) {
     return `
         <div class="submission-card">
             <div class="submission-header">
-                <div class="submission-name">${subscription.email}</div>
-                <div class="submission-date">${formatDate(subscription.subscribed_at)}</div>
+                <div class="submission-name">${signup.email || ''}</div>
+                <div class="submission-date">${formatDate(signup.subscribedAt)}</div>
             </div>
             <div class="submission-details">
-                <div class="detail-row">
-                    <div class="detail-label">Status:</div>
-                    <div class="detail-value">
-                        <span class="status-badge ${subscription.is_active ? 'status-active' : 'status-cancelled'}">
-                            ${subscription.is_active ? 'Active' : 'Unsubscribed'}
-                        </span>
-                    </div>
-                </div>
-                ${subscription.unsubscribed_at ? `
-                <div class="detail-row">
-                    <div class="detail-label">Unsubscribed:</div>
-                    <div class="detail-value">${formatDate(subscription.unsubscribed_at)}</div>
-                </div>
-                ` : ''}
+                <div class="detail-row"><div class="detail-label">Email:</div><div class="detail-value">${signup.email || ''}</div></div>
+                <div class="detail-row"><div class="detail-label">Active:</div><div class="detail-value">${signup.isActive ? 'Yes' : 'No'}</div></div>
             </div>
         </div>
     `;
 }
 
 // Render membership enrollment
-function renderMembershipSubmission(enrollment) {
+function renderMembershipSubmission(signup) {
     return `
         <div class="submission-card">
             <div class="submission-header">
-                <div class="submission-name">${enrollment.first_name} ${enrollment.last_name}</div>
-                <div class="submission-date">${formatDate(enrollment.created_at)}</div>
+                <div class="submission-name">${signup.firstName || ''} ${signup.lastName || ''}</div>
+                <div class="submission-date">${formatDate(signup.createdAt)}</div>
             </div>
             <div class="submission-details">
-                <div class="detail-row">
-                    <div class="detail-label">Email:</div>
-                    <div class="detail-value">${enrollment.email}</div>
-                </div>
-                ${enrollment.phone ? `
-                <div class="detail-row">
-                    <div class="detail-label">Phone:</div>
-                    <div class="detail-value">${enrollment.phone}</div>
-                </div>
-                ` : ''}
-                ${enrollment.organization ? `
-                <div class="detail-row">
-                    <div class="detail-label">Organization:</div>
-                    <div class="detail-value">${enrollment.organization}</div>
-                </div>
-                ` : ''}
-                <div class="detail-row">
-                    <div class="detail-label">Membership Type:</div>
-                    <div class="detail-value">${enrollment.membership_type.charAt(0).toUpperCase() + enrollment.membership_type.slice(1)}</div>
-                </div>
-                <div class="detail-row">
-                    <div class="detail-label">Billing:</div>
-                    <div class="detail-value">${enrollment.billing_frequency.charAt(0).toUpperCase() + enrollment.billing_frequency.slice(1)}</div>
-                </div>
-                <div class="detail-row">
-                    <div class="detail-label">Status:</div>
-                    <div class="detail-value">
-                        <span class="status-badge status-${enrollment.status}">
-                            ${enrollment.status.charAt(0).toUpperCase() + enrollment.status.slice(1)}
-                        </span>
-                    </div>
-                </div>
+                <div class="detail-row"><div class="detail-label">Email:</div><div class="detail-value">${signup.email || ''}</div></div>
+                <div class="detail-row"><div class="detail-label">Type:</div><div class="detail-value">${signup.membershipType || 'N/A'}</div></div>
+                ${signup.organization ? `<div class="detail-row"><div class="detail-label">Organization:</div><div class="detail-value">${signup.organization}</div></div>` : ''}
             </div>
         </div>
     `;
@@ -271,62 +190,14 @@ function renderDigitalSubmission(signup) {
     return `
         <div class="submission-card">
             <div class="submission-header">
-                <div class="submission-name">${signup.first_name} ${signup.last_name}</div>
-                <div class="submission-date">${formatDate(signup.created_at)}</div>
+                <div class="submission-name">${signup.firstName || ''} ${signup.lastName || ''}</div>
+                <div class="submission-date">${formatDate(signup.createdAt)}</div>
             </div>
             <div class="submission-details">
-                <div class="detail-row">
-                    <div class="detail-label">Email:</div>
-                    <div class="detail-value">${signup.email}</div>
-                </div>
-                ${signup.phone ? `
-                <div class="detail-row">
-                    <div class="detail-label">Phone:</div>
-                    <div class="detail-value">${signup.phone}</div>
-                </div>
-                ` : ''}
-                ${signup.organization ? `
-                <div class="detail-row">
-                    <div class="detail-label">Organization:</div>
-                    <div class="detail-value">${signup.organization}</div>
-                </div>
-                ` : ''}
-                ${signup.website_url ? `
-                <div class="detail-row">
-                    <div class="detail-label">Website:</div>
-                    <div class="detail-value"><a href="${signup.website_url}" target="_blank">${signup.website_url}</a></div>
-                </div>
-                ` : ''}
-                ${signup.business_type ? `
-                <div class="detail-row">
-                    <div class="detail-label">Business Type:</div>
-                    <div class="detail-value">${signup.business_type}</div>
-                </div>
-                ` : ''}
-                <div class="detail-row">
-                    <div class="detail-label">Status:</div>
-                    <div class="detail-value">
-                        <span class="status-badge status-${signup.status}">
-                            ${signup.status.charAt(0).toUpperCase() + signup.status.slice(1)}
-                        </span>
-                    </div>
-                </div>
-                ${signup.goals ? `
-                <div class="detail-row">
-                    <div class="detail-label">Goals:</div>
-                    <div class="detail-value">
-                        <div class="message-text">${signup.goals}</div>
-                    </div>
-                </div>
-                ` : ''}
-                ${signup.current_challenges ? `
-                <div class="detail-row">
-                    <div class="detail-label">Challenges:</div>
-                    <div class="detail-value">
-                        <div class="message-text">${signup.current_challenges}</div>
-                    </div>
-                </div>
-                ` : ''}
+                <div class="detail-row"><div class="detail-label">Email:</div><div class="detail-value">${signup.email || ''}</div></div>
+                ${signup.organization ? `<div class="detail-row"><div class="detail-label">Organization:</div><div class="detail-value">${signup.organization}</div></div>` : ''}
+                ${signup.websiteUrl ? `<div class="detail-row"><div class="detail-label">Website:</div><div class="detail-value">${signup.websiteUrl}</div></div>` : ''}
+                ${signup.goals ? `<div class="detail-row"><div class="detail-label">Goals:</div><div class="detail-value"><div class="message-text">${signup.goals}</div></div></div>` : ''}
             </div>
         </div>
     `;
@@ -334,114 +205,102 @@ function renderDigitalSubmission(signup) {
 
 // Render DV class enrollment
 function renderDVSubmission(enrollment) {
+    const status = enrollment.status || 'pending';
     return `
         <div class="submission-card">
             <div class="submission-header">
-                <div class="submission-name">${enrollment.first_name} ${enrollment.last_name}</div>
-                <div class="submission-date">${formatDate(enrollment.created_at)}</div>
+                <div class="submission-name">${enrollment.firstName || ''} ${enrollment.lastName || ''}</div>
+                <div class="submission-date">${formatDate(enrollment.createdAt)}</div>
             </div>
             <div class="submission-details">
-                <div class="detail-row">
-                    <div class="detail-label">Email:</div>
-                    <div class="detail-value">${enrollment.email}</div>
-                </div>
-                <div class="detail-row">
-                    <div class="detail-label">Phone:</div>
-                    <div class="detail-value">${enrollment.phone}</div>
-                </div>
-                ${enrollment.date_of_birth ? `
-                <div class="detail-row">
-                    <div class="detail-label">Date of Birth:</div>
-                    <div class="detail-value">${formatDate(enrollment.date_of_birth)}</div>
-                </div>
-                ` : ''}
-                ${enrollment.address ? `
-                <div class="detail-row">
-                    <div class="detail-label">Address:</div>
-                    <div class="detail-value">${enrollment.address}</div>
-                </div>
-                ` : ''}
-                ${enrollment.emergency_contact ? `
-                <div class="detail-row">
-                    <div class="detail-label">Emergency Contact:</div>
-                    <div class="detail-value">${enrollment.emergency_contact}</div>
-                </div>
-                ` : ''}
-                ${enrollment.referral_source ? `
-                <div class="detail-row">
-                    <div class="detail-label">Referral Source:</div>
-                    <div class="detail-value">${enrollment.referral_source}</div>
-                </div>
-                ` : ''}
-                <div class="detail-row">
-                    <div class="detail-label">Court Ordered:</div>
-                    <div class="detail-value">${enrollment.court_ordered ? 'Yes' : 'No'}</div>
-                </div>
-                ${enrollment.case_number ? `
-                <div class="detail-row">
-                    <div class="detail-label">Case Number:</div>
-                    <div class="detail-value">${enrollment.case_number}</div>
-                </div>
-                ` : ''}
-                ${enrollment.probation_officer ? `
-                <div class="detail-row">
-                    <div class="detail-label">Probation Officer:</div>
-                    <div class="detail-value">${enrollment.probation_officer}</div>
-                </div>
-                ` : ''}
-                <div class="detail-row">
-                    <div class="detail-label">Status:</div>
-                    <div class="detail-value">
-                        <span class="status-badge status-${enrollment.status}">
-                            ${enrollment.status.charAt(0).toUpperCase() + enrollment.status.slice(1)}
-                        </span>
-                    </div>
-                </div>
-                ${enrollment.enrollment_date ? `
-                <div class="detail-row">
-                    <div class="detail-label">Enrollment Date:</div>
-                    <div class="detail-value">${formatDate(enrollment.enrollment_date)}</div>
-                </div>
-                ` : ''}
-                ${enrollment.completion_date ? `
-                <div class="detail-row">
-                    <div class="detail-label">Completion Date:</div>
-                    <div class="detail-value">${formatDate(enrollment.completion_date)}</div>
-                </div>
-                ` : ''}
+                <div class="detail-row"><div class="detail-label">Email:</div><div class="detail-value">${enrollment.email || ''}</div></div>
+                <div class="detail-row"><div class="detail-label">Phone:</div><div class="detail-value">${enrollment.phone || ''}</div></div>
+                <div class="detail-row"><div class="detail-label">Enrollment Type:</div><div class="detail-value">${enrollment.enrollmentType || ''}</div></div>
+                <div class="detail-row"><div class="detail-label">Status:</div><div class="detail-value"><span class="status-badge status-${status}">${status}</span></div></div>
             </div>
         </div>
     `;
 }
 
+// Render Referral submission
+function renderReferralSubmission(referral) {
+    const status = referral.status || 'pending';
+    return `
+        <div class="submission-card">
+            <div class="submission-header">
+                <div class="submission-name">
+                    ${referral.youthName || ''} 
+                    ${referral.cspIdentified ? '<span class="csp-badge">CSP</span>' : ''}
+                </div>
+                <div class="submission-date">${formatDate(referral.createdAt)}</div>
+            </div>
+            <div class="submission-details">
+                <div class="detail-row">
+                    <div class="detail-label">Youth Info:</div>
+                    <div class="detail-value">${referral.youthGender || 'N/A'}, ${referral.youthAge || 'N/A'} yrs (DOB: ${referral.youthDob || 'N/A'})</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">P.O. Name:</div>
+                    <div class="detail-value">${referral.probationOfficer || 'N/A'} (${referral.probationDistrict || 'N/A'})</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Service:</div>
+                    <div class="detail-value">${referral.serviceType || 'N/A'} (${referral.serviceDuration || 'N/A'})</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Status:</div>
+                    <div class="detail-value">
+                        <span class="status-badge status-${status}">${status}</span>
+                        <select onchange="updateReferralStatus('${referral.id}', this.value)" style="margin-left: 10px; padding: 2px;">
+                            <option value="pending" ${status === 'pending' ? 'selected' : ''}>Pending</option>
+                            <option value="reviewed" ${status === 'reviewed' ? 'selected' : ''}>Reviewed</option>
+                            <option value="accepted" ${status === 'accepted' ? 'selected' : ''}>Accepted</option>
+                            <option value="rejected" ${status === 'rejected' ? 'selected' : ''}>Rejected</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Update Referral Status
+async function updateReferralStatus(id, newStatus) {
+    try {
+        await db.collection('referrals').doc(id).update({
+            status: newStatus,
+            updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        
+        // Refresh the current tab
+        if (currentTab) loadSubmissions(currentTab);
+    } catch (error) {
+        console.error('Error updating status:', error);
+        alert('Failed to update status: ' + error.message);
+    }
+}
+window.updateReferralStatus = updateReferralStatus;
+
 // Utility functions
-function formatDate(dateString) {
-    if (!dateString) return 'N/A';
+function formatDate(timestamp) {
+    if (!timestamp) return 'N/A';
     
-    const date = new Date(dateString);
-    const options = { 
-        year: 'numeric', 
-        month: 'short', 
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    };
-    
-    return date.toLocaleDateString('en-US', options);
+    // Handle Firestore Timestamp
+    const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+    return date.toLocaleDateString('en-US', { 
+        year: 'numeric', month: 'short', day: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+    });
 }
 
 function showLoading(type, show) {
     const loading = document.getElementById(`${type}-loading`);
-    if (loading) {
-        loading.style.display = show ? 'block' : 'none';
-    }
+    if (loading) loading.style.display = show ? 'block' : 'none';
 }
 
 function hideError(type) {
     const error = document.getElementById(`${type}-error`);
-    if (error) {
-        error.style.display = 'none';
-    }
+    if (error) error.style.display = 'none';
 }
 
 function showError(type, message) {
@@ -455,20 +314,13 @@ function showError(type, message) {
 function updateCount(type, count) {
     const countElement = document.getElementById(`${type}-count`);
     if (countElement) {
-        const label = type === 'newsletter' ? 'subscriptions' : 
-                     type === 'membership' ? 'enrollments' : 
-                     type === 'digital' ? 'signups' : 
-                     type === 'dv' ? 'enrollments' : 'submissions';
-        
-        countElement.textContent = `${count} ${label}`;
+        countElement.textContent = `${count} submission${count !== 1 ? 's' : ''}`;
     }
 }
 
-// Auto-refresh every 30 seconds for the current tab
+// Auto-refresh every 60 seconds
 setInterval(() => {
-    if (currentTab) {
-        loadSubmissions(currentTab);
-    }
-}, 30000);
+    if (currentTab) loadSubmissions(currentTab);
+}, 60000);
 
-console.log('Submissions admin dashboard loaded');
+window.loadSubmissions = loadSubmissions;

@@ -146,7 +146,7 @@ class SiteFooter extends HTMLElement {
             </div>
           </div>
           <div class="footer-bottom">
-            <p>&copy; ${year} Hinrichs Specialty Services and Technology. All rights reserved.</p>
+            <p>&copy; ${year} Hinrichs Specialty Services and Technology. All rights reserved. | <a href="/privacy.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Privacy Policy</a> | <a href="/data-deletion.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Data Deletion Policy</a></p>
           </div>
         </div>
       </footer>

@@ -2,7 +2,18 @@
 
 document.addEventListener('DOMContentLoaded', async function() {
     // Initialize Supabase
-    await initializeSupabase();
+    await initializeFirebase();
+
+    // Setup error handling
+    if (typeof setupGlobalErrorHandler === 'function') setupGlobalErrorHandler();
+    
+    // Lazy load chatbot
+    if (typeof loadChatbot === 'function') loadChatbot();
+
+    // Setup error handling and utilities
+    setupGlobalErrorHandler();
+    // Lazy load chatbot if container exists
+    loadChatbot();
 
     // Mobile Navigation Toggle
     initMobileNavigation();
@@ -39,6 +50,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Digital Services Signup
     initDigitalServicesSignup();
+
+    // Startup Inquiry Modal
+    initStartupInquiryModal();
 });
 
 // Scroll Reveal Animations
@@ -580,6 +594,93 @@ function addErrorStyles() {
     }
 }
 
+// Startup Inquiry Modal Initialization
+function initStartupInquiryModal() {
+    // Only run on digital-solutions.html
+    if (!window.location.pathname.includes('digital-solutions.html')) return;
+
+    // Show modal immediately
+    setTimeout(() => {
+        showStartupInquiryModal();
+    }, 0);
+}
+
+// Show Startup Inquiry Modal
+function showStartupInquiryModal() {
+    const modalHtml = `
+        <div class="modal-overlay premium-modal-overlay" id="startupInquiryModal">
+            <div class="modal-content inquiry-modal-content">
+                <div class="modal-premium-bg"></div>
+                <div class="modal-inner">
+                    <button class="modal-close">&times;</button>
+                    <div class="modal-header">
+                        <h2>Startup & Growth Inquiry</h2>
+                        <div class="header-line"></div>
+                    </div>
+                    <div class="modal-body">
+                        <p class="body-text">
+                            Starting a new venture? If you are not an established business and need tailored digital services to get your business seen, we're here to help you scale.
+                        </p>
+                        
+                        <div class="highlight-box">
+                            <p class="highlight-text">
+                                <strong>Budget Flexibility:</strong> If our standard package pricing doesn't fit your current budget, please contact us. We are happy to discuss tailored options and find a solution that works for you. Your initial consultation is free; further consultation will be invoiced separately.
+                            </p>
+                        </div>
+                        
+                        <div class="contact-cards">
+                            <div class="contact-card">
+                                <div class="card-icon">📞</div>
+                                <div class="card-info">
+                                    <span class="card-label">Direct Line</span>
+                                    <a href="tel:4027592210" class="card-value">(402) 759-2210</a>
+                                </div>
+                                <a href="tel:4027592210" class="card-action-btn">Call Now</a>
+                            </div>
+                            
+                            <div class="contact-card">
+                                <div class="card-icon">✉️</div>
+                                <div class="card-info">
+                                    <span class="card-label">Email Inquiry</span>
+                                    <a href="mailto:bhinrichs1380@gmail.com" class="card-value">bhinrichs1380@gmail.com</a>
+                                </div>
+                                <a href="mailto:bhinrichs1380@gmail.com" class="card-action-btn">Send Email</a>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary modal-close-btn">Proceed to Services</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+    
+    // Add styles if not already there
+    addModalStyles();
+
+    // Handlers
+    const modal = document.getElementById('startupInquiryModal');
+    const closeBtns = modal.querySelectorAll('.modal-close, .modal-close-btn');
+    
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modal.classList.add('fade-out');
+            setTimeout(() => closeModal('startupInquiryModal'), 300);
+        });
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.add('fade-out');
+            setTimeout(() => closeModal('startupInquiryModal'), 300);
+        }
+    });
+}
+
 // Initialize error styles
 addErrorStyles();
 
@@ -905,7 +1006,10 @@ async function handleDigitalServicesSignup(event) {
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
-        modal.remove();
+        modal.classList.add('fade-out');
+        modal.addEventListener('animationend', () => {
+            modal.remove();
+        }, { once: true });
     }
 }
 
@@ -929,52 +1033,238 @@ function addModalStyles() {
                 align-items: center;
                 z-index: 10000;
                 padding: 20px;
+                backdrop-filter: blur(4px);
+                animation: modalFadeIn 0.3s ease-out;
+            }
+
+            .modal-overlay.fade-out {
+                animation: modalFadeOut 0.3s ease-in forwards;
+            }
+
+            @keyframes modalFadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+
+            @keyframes modalFadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
             }
 
             .modal-content {
                 background: white;
-                border-radius: 8px;
+                border-radius: 12px;
                 width: 100%;
                 max-width: 600px;
                 max-height: 90vh;
                 overflow-y: auto;
                 position: relative;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+                transform: scale(1);
+                animation: modalScaleIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
             }
 
-            .modal-header {
-                padding: 20px 20px 0;
-                border-bottom: 1px solid #e5e7eb;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+            @keyframes modalScaleIn {
+                from { transform: scale(0.9); opacity: 0; }
+                to { transform: scale(1); opacity: 1; }
+            }
+
+            /* Inquiry Specific Premium Styles */
+            .inquiry-modal-content {
+                background: #0a1f3a;
+                color: white;
+                overflow: hidden;
+                border: 1px solid rgba(255, 153, 0, 0.2);
+            }
+
+            .modal-premium-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 160px;
+                background-image: url('images/premium-popup-bg.png');
+                background-size: cover;
+                background-position: center;
+                opacity: 0.6;
+                mask-image: linear-gradient(to bottom, black 60%, transparent);
+                -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent);
+            }
+
+            .modal-inner {
+                position: relative;
+                z-index: 1;
+                padding: 40px 30px 30px;
+            }
+
+            .inquiry-modal-content .modal-header {
+                border-bottom: none;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0;
+                margin-bottom: 25px;
+            }
+
+            .inquiry-modal-content .modal-header h2 {
+                color: white;
+                font-size: 1.85rem;
+                font-weight: 700;
+                letter-spacing: -0.02em;
+                margin-bottom: 10px;
+            }
+
+            .header-line {
+                width: 60px;
+                height: 4px;
+                background: #f58220;
+                border-radius: 2px;
+                box-shadow: 0 0 10px rgba(245, 130, 32, 0.4);
+            }
+
+            .body-text {
+                font-size: 1.1rem;
+                line-height: 1.6;
+                color: rgba(255, 255, 255, 0.85);
                 margin-bottom: 20px;
             }
 
-            .modal-header h2 {
-                margin: 0;
-                color: #1f2937;
+            .highlight-box {
+                background: rgba(245, 130, 32, 0.1);
+                border-left: 4px solid #f58220;
+                padding: 15px;
+                border-radius: 4px 8px 8px 4px;
+                margin-bottom: 25px;
+                animation: pulseGlow 3s infinite;
             }
 
-            .modal-close {
-                background: none;
-                border: none;
-                font-size: 24px;
-                cursor: pointer;
-                color: #6b7280;
-                padding: 0;
-                width: 30px;
-                height: 30px;
+            @keyframes pulseGlow {
+                0% { box-shadow: 0 0 0px rgba(245, 130, 32, 0); }
+                50% { box-shadow: 0 0 15px rgba(245, 130, 32, 0.2); }
+                100% { box-shadow: 0 0 0px rgba(245, 130, 32, 0); }
+            }
+
+            .highlight-text {
+                font-size: 0.95rem;
+                line-height: 1.5;
+                color: rgba(255, 255, 255, 0.95);
+                margin: 0;
+            }
+
+            .highlight-text strong {
+                color: #f58220;
+                display: block;
+                margin-bottom: 5px;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                font-size: 0.85rem;
+            }
+
+            .contact-cards {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                margin-bottom: 30px;
+            }
+
+            .contact-card {
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
+                padding: 15px 20px;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                transition: all 0.3s ease;
+            }
+
+            .contact-card:hover {
+                background: rgba(255, 255, 255, 0.08);
+                border-color: rgba(245, 130, 32, 0.4);
+                transform: translateY(-2px);
+            }
+
+            .card-icon {
+                font-size: 1.5rem;
+                width: 45px;
+                height: 45px;
+                background: rgba(245, 130, 32, 0.1);
+                border-radius: 10px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
             }
 
-            .modal-close:hover {
-                color: #1f2937;
+            .card-info {
+                flex: 1;
+            }
+
+            .card-label {
+                display: block;
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: rgba(255, 255, 255, 0.5);
+                margin-bottom: 2px;
+            }
+
+            .card-value {
+                color: white;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 1.05rem;
+            }
+
+            .card-action-btn {
+                padding: 8px 15px;
+                background: transparent;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 6px;
+                color: white;
+                text-decoration: none;
+                font-size: 0.85rem;
+                font-weight: 500;
+                transition: all 0.2s ease;
+            }
+
+            .card-action-btn:hover {
+                background: white;
+                color: #0a1f3a;
+                border-color: white;
+            }
+
+            .inquiry-modal-content .modal-close {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 28px;
+            }
+
+            .modal-footer {
+                display: flex;
+                justify-content: center;
+            }
+
+            .modal-close-btn {
+                background: #f58220;
+                border: none;
+                color: white;
+                padding: 12px 40px;
+                border-radius: 8px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 14px rgba(245, 130, 32, 0.3);
+            }
+
+            .modal-close-btn:hover {
+                background: #ff9900;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(245, 130, 32, 0.4);
             }
 
             .enrollment-form {
-                padding: 0 20px 20px;
+                padding: 20px;
             }
 
             .enrollment-form .form-row {
@@ -1015,6 +1305,14 @@ function addModalStyles() {
             }
 
             @media (max-width: 640px) {
+                .modal-inner {
+                    padding: 30px 20px 20px;
+                }
+                
+                .card-action-btn {
+                    display: none; /* Hide on small screens to save space */
+                }
+
                 .enrollment-form .form-row {
                     grid-template-columns: 1fr;
                 }

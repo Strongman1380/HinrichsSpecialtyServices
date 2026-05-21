@@ -3,44 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resource Hub - Aspire Impact Network</title>
-    <meta name="description" content="Resources, articles, and insights on justice reform, family support, domestic violence prevention, and digital marketing. Searchable knowledge base for community impact.">
-    <meta name="keywords" content="resources, articles, justice reform, family support, domestic violence prevention, digital marketing, knowledge base, community impact, blog, insights">
-    <meta name="author" content="Aspire Impact Network">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.hsst.com/blog.html">
-    
+    <title>Resource Hub | Technology &amp; Digital Solutions Insights | Hinrichs Specialty Services and Technology</title>
+    <meta name="description" content="Expert articles, guides, and resources on digital marketing, SEO, AI automation, website design, and technology consultation for Nebraska small businesses, nonprofits, and service organizations. Published by Hinrichs Specialty Services and Technology.">
+    <meta name="keywords" content="technology blog Nebraska, digital solutions insights, SEO tips Nebraska, AI automation guide, website design tips small business, technology consultation resources, Brandon Hinrichs blog, HSST resource hub, digital marketing nonprofit Nebraska, justice reform technology, family services digital tools">
+    <meta name="author" content="Brandon Hinrichs, Hinrichs Specialty Services and Technology">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://hinrichs-specialty-services.vercel.app/blog.html">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.hsst.com/blog.html">
-    <meta property="og:title" content="Resource Hub - Aspire Impact Network">
-    <meta property="og:description" content="Resources, articles, and insights on justice reform, family support, domestic violence prevention, and digital marketing. Searchable knowledge base for community impact.">
-    <meta property="og:site_name" content="Aspire Impact Network">
-    
-    <!-- Twitter -->
+    <meta property="og:url" content="https://hinrichs-specialty-services.vercel.app/blog.html">
+    <meta property="og:title" content="Resource Hub | Technology &amp; Digital Solutions Insights | Hinrichs Specialty Services and Technology">
+    <meta property="og:description" content="Expert articles and guides on digital marketing, SEO, AI automation, and technology consultation for Nebraska small businesses and nonprofits.">
+    <meta property="og:image" content="https://hinrichs-specialty-services.vercel.app/images/hero-banner.png">
+    <meta property="og:site_name" content="Hinrichs Specialty Services and Technology">
+
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://www.hsst.com/blog.html">
-    <meta name="twitter:title" content="Resource Hub - Aspire Impact Network">
-    <meta name="twitter:description" content="Resources, articles, and insights on justice reform, family support, domestic violence prevention, and digital marketing. Searchable knowledge base for community impact.">
+    <meta name="twitter:url" content="https://hinrichs-specialty-services.vercel.app/blog.html">
+    <meta name="twitter:title" content="Resource Hub | Technology &amp; Digital Solutions Insights | HSST">
+    <meta name="twitter:description" content="Expert articles on digital marketing, SEO, AI automation, and technology consultation for Nebraska small businesses and nonprofits.">
+    <meta name="twitter:image" content="https://hinrichs-specialty-services.vercel.app/images/hero-banner.png">
     
     <!-- Geo Tags -->
     <meta name="geo.region" content="US-NE">
     <meta name="geo.placename" content="Geneva, Nebraska">
     
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD: Blog / CollectionPage -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Resource Hub — Hinrichs Specialty Services and Technology",
+        "description": "Expert articles and guides on digital marketing, SEO, AI automation, website design, and technology consultation published by Hinrichs Specialty Services and Technology.",
+        "url": "https://hinrichs-specialty-services.vercel.app/blog.html",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Hinrichs Specialty Services and Technology",
+            "url": "https://hinrichs-specialty-services.vercel.app",
+            "logo": "https://hinrichs-specialty-services.vercel.app/favicon.svg"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "Brandon Hinrichs",
+            "url": "https://www.linkedin.com/in/brandon-hinrichs-3841bb78/"
+        }
+    }
+    </script>
+
+    <!-- JSON-LD: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hinrichs-specialty-services.vercel.app/" },
+            { "@type": "ListItem", "position": 2, "name": "Resource Hub", "item": "https://hinrichs-specialty-services.vercel.app/blog.html" }
+        ]
+    }
+    </script>
 </head>
 <body>
     <header class="header">
         <nav class="nav">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <h2>Hinrichs Specialty Services and Technology</h2>
+                    <a href="index.html" class="nav-logo-link"><h2 class="nav-logo-abbr">HSST</h2><p class="nav-logo-tagline">Hinrichs Specialty Services &amp; Technology</p></a>
                 </div>
                 <ul class="nav-menu">
                     <li><a href="index.html" class="nav-link">Home</a></li>
                     <li><a href="digital-solutions.html" class="nav-link">Digital Solutions</a></li>
-                    <li><a href="membership.html" class="nav-link">Membership</a></li>
+                    <li><a href="contact.html" class="nav-link">Community</a></li>
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
                 <div class="nav-toggle">
@@ -104,10 +141,24 @@
                         <a href="#" class="btn btn-primary">Read Full Article</a>
                     </div>
                     <div class="featured-image">
-                        <div class="image-placeholder featured">
-                            <div class="placeholder-icon">
+                        <div class="image-placeholder featured" style="background:linear-gradient(135deg,#1e3a8a 0%,#1a78e6 45%,#06b6d4 100%);border:none;position:relative;overflow:hidden;">
+                            <!-- decorative circuit lines -->
+                            <svg viewBox="0 0 400 300" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.18;" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <line x1="0" y1="80" x2="400" y2="80" stroke="white" stroke-width="1"/>
+                                <line x1="0" y1="160" x2="400" y2="160" stroke="white" stroke-width="1"/>
+                                <line x1="0" y1="240" x2="400" y2="240" stroke="white" stroke-width="1"/>
+                                <line x1="80" y1="0" x2="80" y2="300" stroke="white" stroke-width="1"/>
+                                <line x1="200" y1="0" x2="200" y2="300" stroke="white" stroke-width="1"/>
+                                <line x1="320" y1="0" x2="320" y2="300" stroke="white" stroke-width="1"/>
+                                <circle cx="80" cy="80" r="5" fill="white"/>
+                                <circle cx="200" cy="160" r="5" fill="white"/>
+                                <circle cx="320" cy="80" r="5" fill="white"/>
+                                <circle cx="80" cy="240" r="5" fill="white"/>
+                                <circle cx="320" cy="240" r="5" fill="white"/>
+                            </svg>
+                            <div class="placeholder-icon" style="color:white;opacity:0.9;position:relative;z-index:1;">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/>
+                                    <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" stroke="currentColor" stroke-width="1.5"/>
                                 </svg>
                             </div>
                         </div>
@@ -399,6 +450,14 @@
                         <p>✉️ bhinrichs1380@gmail.com</p>
                         <p>📍 Geneva, Nebraska</p>
                     </div>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/brandon-hinrichs-3841bb78/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="https://www.facebook.com/hinrichsspecialtyservicestechnologyconsultation" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h4>Digital Solutions</h4>
@@ -412,20 +471,25 @@
                 <div class="footer-section">
                     <h4>Community</h4>
                     <ul>
-                        <li><a href="membership.html">Membership Plans</a></li>
+                        <li><a href="contact.html">Join the Community</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Hinrichs Specialty Services and Technology. All rights reserved.</p>
+                <p>&copy; 2025 Hinrichs Specialty Services and Technology. All rights reserved. | <a href="privacy.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Privacy Policy</a> | <a href="data-deletion.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Data Deletion Policy</a></p>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-    <script src="js/supabase-config.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/validation.js"></script>
     <script src="js/main.js"></script>
     <script src="js/chatbot.js"></script>
+
 </body>
 </html>
