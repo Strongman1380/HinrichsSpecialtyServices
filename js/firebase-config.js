@@ -27,7 +27,7 @@ function initializeFirebase() {
         // Initialize Firebase app
         app = firebase.initializeApp(firebaseConfig);
         db = firebase.firestore();
-        auth = firebase.auth();
+        auth = (typeof firebase.auth === 'function') ? firebase.auth() : null;
 
         console.log('Firebase initialized successfully');
         return true;

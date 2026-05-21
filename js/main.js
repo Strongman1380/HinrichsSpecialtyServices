@@ -6,14 +6,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Setup error handling
     if (typeof setupGlobalErrorHandler === 'function') setupGlobalErrorHandler();
-    
+
     // Lazy load chatbot
     if (typeof loadChatbot === 'function') loadChatbot();
-
-    // Setup error handling and utilities
-    setupGlobalErrorHandler();
-    // Lazy load chatbot if container exists
-    loadChatbot();
 
     // Mobile Navigation Toggle
     initMobileNavigation();
@@ -111,13 +106,23 @@ function initScrollReveal() {
             }
         });
     }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -40px 0px'
+        threshold: 0.05,
+        rootMargin: '0px 0px 80px 0px'
     });
 
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-stagger').forEach(el => {
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-stagger');
+    revealEls.forEach(el => {
         observer.observe(el);
     });
+
+    // Safety net: reveal all after 2.5s in case observer never fires (e.g. print, bots)
+    setTimeout(() => {
+        revealEls.forEach(el => {
+            if (!el.classList.contains('visible')) {
+                el.classList.add('visible');
+            }
+        });
+    }, 2500);
 }
 
 // Mobile Navigation
@@ -599,10 +604,8 @@ function initStartupInquiryModal() {
     // Only run on digital-solutions.html
     if (!window.location.pathname.includes('digital-solutions.html')) return;
 
-    // Show modal immediately
-    setTimeout(() => {
-        showStartupInquiryModal();
-    }, 0);
+    // Modal removed from auto-show — was blocking page content on load.
+    // The startup inquiry info is available in the services section instead.
 }
 
 // Show Startup Inquiry Modal

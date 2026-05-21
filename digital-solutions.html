@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Design, SEO &amp; AI Automation Services | Hinrichs Specialty Services and Technology | Nebraska</title>
-    <meta name="description" content="Flat-rate website design, SEO optimization, AI automation, and technology consultation for Nebraska small businesses and nonprofits. No subscriptions — pay per project. Brandon Hinrichs, Geneva, NE. Call (402) 759-2210.">
-    <meta name="keywords" content="website design Nebraska, SEO services Nebraska, AI automation Nebraska, technology consultation Geneva NE, website development small business Nebraska, nonprofit website design Nebraska, AI chatbot integration, database development Nebraska, digital marketing Nebraska, Brandon Hinrichs web design, HSST services, affordable website design rural Nebraska, SEO optimization nonprofit">
+    <title>Our Services | Hinrichs Specialty Services and Technology | Nebraska</title>
+    <meta name="description" content="Website design, SEO, AI automation, database development, CRM builds, social media management, and technology consultation for Nebraska small businesses and nonprofits. Request a free bid today.">
+    <meta name="keywords" content="website design Nebraska, SEO services Nebraska, AI automation Nebraska, technology consultation Geneva NE, website development small business Nebraska, nonprofit website design Nebraska, AI chatbot integration, database development Nebraska, digital marketing Nebraska, Brandon Hinrichs web design, HSST services, CRM development Nebraska">
     <meta name="author" content="Brandon Hinrichs, Hinrichs Specialty Services and Technology">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <link rel="canonical" href="https://hinrichs-specialty-services.vercel.app/digital-solutions.html">
@@ -13,16 +13,16 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://hinrichs-specialty-services.vercel.app/digital-solutions.html">
-    <meta property="og:title" content="Website Design, SEO &amp; AI Automation Services | Hinrichs Specialty Services and Technology">
-    <meta property="og:description" content="Flat-rate website design, SEO, AI automation, and technology consultation for Nebraska small businesses and nonprofits. No subscriptions — pay per project.">
+    <meta property="og:title" content="Our Services | Hinrichs Specialty Services and Technology">
+    <meta property="og:description" content="Website design, SEO, AI automation, database development, and technology consultation for Nebraska small businesses and nonprofits. Request a free bid.">
     <meta property="og:image" content="https://hinrichs-specialty-services.vercel.app/images/hero-banner.png">
     <meta property="og:site_name" content="Hinrichs Specialty Services and Technology">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://hinrichs-specialty-services.vercel.app/digital-solutions.html">
-    <meta name="twitter:title" content="Website Design, SEO &amp; AI Automation Services | HSST Nebraska">
-    <meta name="twitter:description" content="Flat-rate website design, SEO, AI automation, and technology consultation for Nebraska small businesses and nonprofits.">
+    <meta name="twitter:title" content="Our Services | HSST Nebraska">
+    <meta name="twitter:description" content="Website design, SEO, AI automation, database development, and technology consultation for Nebraska small businesses and nonprofits.">
     <meta name="twitter:image" content="https://hinrichs-specialty-services.vercel.app/images/hero-banner.png">
 
     <!-- Geo / Local SEO -->
@@ -33,418 +33,303 @@
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
-        /* ── Pricing Page Styles ── */
+        /* ── Services Page — Light Theme Modern ── */
 
-        /* Invoice notice banner */
-        .invoice-notice {
-            background: linear-gradient(135deg, rgba(242,138,26,0.15) 0%, rgba(242,138,26,0.05) 100%);
-            border: 1px solid rgba(242,138,26,0.4);
-            border-left: 4px solid var(--neon-green);
-            border-radius: var(--radius-md);
-            padding: 1rem 1.5rem;
-            margin-bottom: 2.5rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-        .invoice-notice-icon {
-            font-size: 1.5rem;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-        .invoice-notice-text h4 {
-            color: var(--neon-green);
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 0.25rem;
-        }
-        .invoice-notice-text p {
-            color: var(--text-light);
-            font-size: 0.88rem;
-            opacity: 0.85;
-            line-height: 1.5;
-        }
-        .invoice-notice-text strong {
-            color: var(--neon-green);
-        }
-
-        /* Section headers */
-        .pricing-section {
-            padding: 3rem 0 2rem;
-        }
-        .pricing-section-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-bright);
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        .pricing-section-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(59,142,214,0.5), transparent);
-        }
-        .pricing-section-subtitle {
-            color: var(--electric-teal);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
-        }
-
-        /* Hourly rate table */
-        .rate-table-wrap {
-            background: var(--card-bg);
-            border: 1px solid var(--border-glow);
-            border-radius: var(--radius-lg);
+        /* Hero — dark section for contrast */
+        .services-hero {
+            position: relative;
+            padding: 6rem 0 4rem;
+            margin-top: 4rem;
             overflow: hidden;
+            background: linear-gradient(160deg, #0a0f1a 0%, #0d1b2a 40%, #132e54 100%);
         }
-        .rate-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
+        .services-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(26,120,230,0.12) 0%, transparent 70%);
+            pointer-events: none;
         }
-        .rate-table thead tr {
-            background: linear-gradient(135deg, var(--dark-green), rgba(59,142,214,0.3));
+        .services-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 60%;
+            height: 150%;
+            background: radial-gradient(ellipse at center, rgba(245,130,32,0.08) 0%, transparent 70%);
+            pointer-events: none;
         }
-        .rate-table thead th {
-            padding: 0.85rem 1.25rem;
-            text-align: left;
-            font-weight: 600;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--electric-teal);
+        .hero-inner { position: relative; z-index: 1; max-width: 800px; }
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(245,130,32,0.12); border: 1px solid rgba(245,130,32,0.3);
+            padding: 0.35rem 1rem; border-radius: 100px;
+            font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; color: #f58220; margin-bottom: 1.25rem;
         }
-        .rate-table thead th:last-child { text-align: right; }
-        .rate-table tbody tr {
-            border-top: 1px solid rgba(59,142,214,0.12);
-            transition: background 0.2s;
+        .hero-eyebrow .dot {
+            width: 6px; height: 6px; border-radius: 50%; background: #f58220;
+            animation: pulse-dot 2s infinite;
         }
-        .rate-table tbody tr:hover { background: rgba(59,142,214,0.06); }
-        .rate-table td { padding: 0.9rem 1.25rem; vertical-align: top; }
-        .rate-table td:last-child { text-align: right; white-space: nowrap; }
-        .tier-name {
-            font-weight: 600;
-            color: var(--text-bright);
-            font-size: 0.95rem;
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.4); }
         }
-        .tier-sub {
-            font-size: 0.78rem;
-            color: var(--electric-teal);
-            margin-top: 2px;
+        .services-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900;
+            line-height: 1.05; letter-spacing: -0.03em; color: #fff; margin-bottom: 1.25rem;
         }
-        .tier-desc {
-            font-size: 0.83rem;
-            color: var(--text-light);
-            line-height: 1.5;
+        .services-hero h1 .gradient-text {
+            background: linear-gradient(135deg, #3ba6ff, #60bfff, #f58220);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .rate-price {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--neon-green);
+        .services-hero p { font-size: 1.15rem; line-height: 1.7; color: rgba(255,255,255,0.7); max-width: 600px; }
+        .hero-cta-row { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+        .btn-hero {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.85rem 1.75rem; border-radius: 10px; font-weight: 700;
+            font-size: 0.92rem; text-decoration: none;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .btn-hero-primary {
+            background: linear-gradient(135deg, #f58220, #e06b10); color: #fff;
+            box-shadow: 0 4px 20px rgba(245,130,32,0.3);
+        }
+        .btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,130,32,0.4); }
+        .btn-hero-outline {
+            background: transparent; color: rgba(255,255,255,0.85);
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+        .btn-hero-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); transform: translateY(-2px); }
+
+        /* ── Section helpers (light) ── */
+        .services-section { padding: 5rem 0; }
+        .section-label {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase; color: #1a78e6; margin-bottom: 0.75rem;
+        }
+        .section-label::before { content: ''; width: 24px; height: 2px; background: #1a78e6; }
+        .section-title {
+            font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 800;
+            color: #0f172a; letter-spacing: -0.02em; margin-bottom: 0.5rem;
+        }
+        .section-subtitle { font-size: 1.05rem; color: #475569; max-width: 550px; line-height: 1.6; margin-bottom: 3rem; }
+
+        /* ── Service cards (light) ── */
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+        .service-card {
+            position: relative; background: #fff;
+            border: 1px solid #e2e8f0; border-radius: 16px; padding: 2rem;
+            overflow: hidden; transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex; flex-direction: column;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .service-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--accent-start, #1a78e6), var(--accent-end, #3ba6ff));
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-6px); border-color: #cbd5e1;
+            box-shadow: 0 20px 50px -12px rgba(0,0,0,0.12), 0 0 0 1px rgba(26,120,230,0.08);
+        }
+        .service-card:hover::before { opacity: 1; }
+
+        .service-card[data-accent="blue"]    { --accent-start: #1a78e6; --accent-end: #3ba6ff; }
+        .service-card[data-accent="green"]   { --accent-start: #10b981; --accent-end: #34d399; }
+        .service-card[data-accent="orange"]  { --accent-start: #f58220; --accent-end: #fbbf24; }
+        .service-card[data-accent="purple"]  { --accent-start: #8b5cf6; --accent-end: #a78bfa; }
+        .service-card[data-accent="teal"]    { --accent-start: #06b6d4; --accent-end: #22d3ee; }
+        .service-card[data-accent="pink"]    { --accent-start: #ec4899; --accent-end: #f472b6; }
+        .service-card[data-accent="red"]     { --accent-start: #ef4444; --accent-end: #f87171; }
+        .service-card[data-accent="cyan"]    { --accent-start: #0ea5e9; --accent-end: #38bdf8; }
+        .service-card[data-accent="amber"]   { --accent-start: #d97706; --accent-end: #fbbf24; }
+
+        .service-card.wide { grid-column: span 2; }
+
+        .card-icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; margin-bottom: 1.25rem; flex-shrink: 0;
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+        }
+        .service-card h3 { font-size: 1.15rem; font-weight: 700; color: #0f172a; margin-bottom: 0.6rem; }
+        .service-card .card-desc { font-size: 0.88rem; color: #475569; line-height: 1.65; margin-bottom: 1rem; flex: 1; }
+        .card-features { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .card-tag {
+            background: #f1f5f9; border: 1px solid #e2e8f0; color: #64748b;
+            font-size: 0.72rem; font-weight: 500; padding: 3px 10px; border-radius: 100px; white-space: nowrap;
+        }
+        .service-card:hover .card-tag { background: #e2e8f0; color: #334155; }
+
+        /* ── Process (light) ── */
+        .process-section { padding: 5rem 0; background: linear-gradient(180deg, transparent, rgba(26,120,230,0.03), transparent); }
+        .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+        .process-step { text-align: center; position: relative; }
+        .process-step::after {
+            content: ''; position: absolute; top: 28px; right: -0.75rem;
+            width: calc(100% - 56px); height: 2px;
+            background: linear-gradient(90deg, rgba(26,120,230,0.3), rgba(26,120,230,0.05));
+            transform: translateX(100%);
+        }
+        .process-step:last-child::after { display: none; }
+        .step-num {
+            width: 56px; height: 56px; border-radius: 16px;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 1.25rem; font-weight: 800; margin: 0 auto 1rem;
+            background: linear-gradient(135deg, rgba(26,120,230,0.1), rgba(26,120,230,0.04));
+            border: 1px solid rgba(26,120,230,0.2); color: #1a78e6;
+        }
+        .process-step h3 { font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.4rem; }
+        .process-step p { font-size: 0.83rem; color: #475569; line-height: 1.5; }
+
+        /* ── Request Form (light) ── */
+        .request-section { padding: 5rem 0; position: relative; }
+        .request-section::before {
+            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 1px; height: 80px;
+            background: linear-gradient(180deg, transparent, rgba(245,130,32,0.3), transparent);
+        }
+        .request-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 3rem; align-items: start; }
+        .request-info { position: sticky; top: 6rem; }
+        .request-info h2 {
+            font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 800;
+            color: #0f172a; letter-spacing: -0.02em; margin-bottom: 1rem;
+        }
+        .request-info h2 .accent { color: #f58220; }
+        .request-info > p { font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 2rem; }
+        .info-perks { display: flex; flex-direction: column; gap: 1rem; }
+        .perk-item { display: flex; align-items: flex-start; gap: 0.75rem; }
+        .perk-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; flex-shrink: 0;
+            background: rgba(245,130,32,0.08); border: 1px solid rgba(245,130,32,0.15);
+        }
+        .perk-text { font-size: 0.88rem; color: #475569; line-height: 1.5; }
+        .perk-text strong { color: #0f172a; display: block; margin-bottom: 1px; }
+
+        /* Payment badges */
+        .payment-section { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e2e8f0; }
+        .payment-label {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+            text-transform: uppercase; color: #94a3b8; margin-bottom: 0.6rem;
+        }
+        .payment-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .pay-badge {
+            background: #f1f5f9; border: 1px solid #e2e8f0; color: #64748b;
+            font-size: 0.7rem; font-weight: 500; padding: 4px 10px; border-radius: 100px;
         }
 
-        /* Package cards */
-        .package-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.25rem;
+        /* Form card */
+        .request-form-card {
+            background: #fff; border: 1px solid #e2e8f0; border-radius: 20px;
+            padding: 2.5rem; position: relative; overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
         }
-        .package-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-glow);
-            border-top: 3px solid var(--electric-teal);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .package-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--glow-green);
-        }
-        .package-card.featured {
-            border-top-color: var(--neon-green);
-            background: linear-gradient(160deg, rgba(242,138,26,0.08) 0%, var(--card-bg) 60%);
-        }
-        .package-card.featured .pkg-badge {
-            display: inline-block;
-            background: var(--neon-green);
-            color: var(--dark-bg);
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            padding: 2px 8px;
-            border-radius: 20px;
-            margin-bottom: 4px;
-            text-transform: uppercase;
-        }
-        .pkg-badge { display: none; }
-        .pkg-name {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text-bright);
-        }
-        .pkg-desc {
-            font-size: 0.83rem;
-            color: var(--text-light);
-            line-height: 1.5;
-            flex: 1;
-        }
-        .pkg-price {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--neon-green);
-            line-height: 1.1;
-        }
-        .pkg-price span {
-            font-size: 0.85rem;
-            font-weight: 400;
-            color: var(--text-light);
-            display: block;
-            margin-top: 2px;
-        }
-        .pkg-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-        .btn-pay-online {
-            display: block;
-            text-align: center;
-            padding: 0.6rem 1rem;
-            background: linear-gradient(135deg, var(--primary-green), var(--electric-teal));
-            color: var(--white);
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-decoration: none;
-            transition: opacity 0.2s, transform 0.1s;
-            border: none;
-            cursor: pointer;
-        }
-        .btn-pay-online:hover { opacity: 0.88; transform: translateY(-1px); }
-        .btn-pay-online.accent {
-            background: linear-gradient(135deg, #c46f10, var(--neon-green));
-        }
-        .btn-inquire {
-            display: block;
-            text-align: center;
-            padding: 0.55rem 1rem;
-            background: transparent;
-            color: var(--electric-teal);
-            border: 1px solid rgba(59,142,214,0.4);
-            border-radius: var(--radius-md);
-            font-weight: 500;
-            font-size: 0.82rem;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-        .btn-inquire:hover {
-            background: rgba(59,142,214,0.1);
-            border-color: var(--electric-teal);
-        }
-        .invoice-tag {
-            font-size: 0.74rem;
-            color: var(--text-light);
-            text-align: center;
-            margin-top: 2px;
-        }
-        .invoice-tag strong { color: var(--neon-green); font-weight: 600; }
-
-        /* Consultation card (wide single) */
-        .consult-card {
-            background: linear-gradient(135deg, rgba(59,142,214,0.12) 0%, var(--card-bg) 100%);
-            border: 1px solid rgba(59,142,214,0.3);
-            border-left: 4px solid var(--electric-teal);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem 2rem;
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        .consult-card-info { flex: 1; min-width: 200px; }
-        .consult-card-info h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--text-bright);
-            margin-bottom: 0.4rem;
-        }
-        .consult-card-info p {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            line-height: 1.5;
-        }
-        .consult-card-info .consult-topics {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-top: 0.75rem;
-        }
-        .topic-tag {
-            background: rgba(59,142,214,0.18);
-            border: 1px solid rgba(59,142,214,0.3);
-            color: var(--electric-teal);
-            font-size: 0.75rem;
-            padding: 3px 10px;
-            border-radius: 20px;
-        }
-        .consult-card-price { text-align: center; flex-shrink: 0; }
-        .consult-card-price .rate { font-size: 2.2rem; font-weight: 700; color: var(--neon-green); }
-        .consult-card-price .rate-sub { font-size: 0.8rem; color: var(--text-light); }
-        .consult-credit-note {
-            background: rgba(242,138,26,0.08);
-            border: 1px solid rgba(242,138,26,0.2);
-            border-radius: var(--radius-sm);
-            padding: 0.6rem 1rem;
-            font-size: 0.8rem;
-            color: var(--text-light);
-            margin-top: 1rem;
-        }
-        .consult-credit-note strong { color: var(--neon-green); }
-
-        /* Chatbot grid */
-        .chatbot-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.25rem;
-        }
-        .chatbot-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-glow);
-            border-top: 3px solid var(--electric-teal);
-            border-radius: var(--radius-lg);
-            padding: 1.25rem;
-        }
-        .chatbot-card-name {
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: var(--text-bright);
-            margin-bottom: 0.4rem;
-        }
-        .chatbot-card-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--neon-green);
-            line-height: 1.1;
-        }
-        .chatbot-card-desc {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            line-height: 1.4;
-            margin: 0.5rem 0 0.75rem;
+        .request-form-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 3px; background: linear-gradient(90deg, #1a78e6, #f58220);
         }
 
-        /* Add-on list */
-        .addon-section {
-            background: rgba(59,142,214,0.06);
-            border: 1px solid rgba(59,142,214,0.2);
-            border-radius: var(--radius-lg);
-            padding: 1.25rem 1.5rem;
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+        .form-group.full { grid-column: 1 / -1; }
+        .form-group label { font-size: 0.8rem; font-weight: 600; color: #334155; letter-spacing: 0.02em; }
+        .form-group input,
+        .form-group textarea {
+            background: #f8fafc; border: 1px solid #d1d5db; border-radius: 10px;
+            padding: 0.75rem 1rem; color: #0f172a; font-size: 0.9rem;
+            font-family: 'Inter', sans-serif; transition: all 0.2s;
         }
-        .addon-section h4 {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--electric-teal);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 0.75rem;
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none; border-color: #1a78e6; background: #fff;
+            box-shadow: 0 0 0 3px rgba(26,120,230,0.1);
         }
-        .addon-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 0.4rem 2rem;
-        }
-        .addon-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.4rem 0;
-            border-bottom: 1px dotted rgba(59,142,214,0.2);
-            font-size: 0.85rem;
-        }
-        .addon-item span:first-child { color: var(--text-light); }
-        .addon-item span:last-child {
-            font-weight: 700;
-            color: var(--neon-green);
-            white-space: nowrap;
-            margin-left: 0.5rem;
-        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: #94a3b8; }
+        .form-group textarea { min-height: 120px; resize: vertical; }
 
-        /* Database tier cards */
-        .db-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.25rem;
+        /* Checkbox grid */
+        .services-check-label { font-size: 0.8rem; font-weight: 600; color: #334155; letter-spacing: 0.02em; margin-bottom: 0.6rem; }
+        .services-check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 1.5rem; }
+        .check-item { position: relative; }
+        .check-item input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0; }
+        .check-item label {
+            display: flex; align-items: center; gap: 0.65rem;
+            padding: 0.7rem 1rem; background: #f8fafc;
+            border: 1px solid #e2e8f0; border-radius: 10px; cursor: pointer;
+            transition: all 0.2s; font-size: 0.84rem; color: #475569; font-weight: 500;
         }
-        .db-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-glow);
-            border-top: 4px solid var(--dark-green);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+        .check-item label:hover { background: #f1f5f9; border-color: #cbd5e1; color: #1e293b; }
+        .check-item input:checked + label {
+            background: rgba(26,120,230,0.06); border-color: #1a78e6; color: #0f172a;
+            box-shadow: 0 0 0 1px rgba(26,120,230,0.15);
         }
-        .db-card.mid { border-top-color: var(--electric-teal); }
-        .db-card.adv { border-top-color: var(--neon-green); }
-        .db-tier {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--electric-teal);
+        .check-box {
+            width: 18px; height: 18px; border-radius: 5px;
+            border: 2px solid #cbd5e1; display: flex; align-items: center;
+            justify-content: center; flex-shrink: 0; transition: all 0.2s;
         }
-        .db-price {
-            font-size: 1.65rem;
-            font-weight: 700;
-            color: var(--neon-green);
-            line-height: 1.1;
-        }
-        .db-desc {
-            font-size: 0.83rem;
-            color: var(--text-light);
-            line-height: 1.5;
-            flex: 1;
-        }
+        .check-box svg { width: 10px; height: 10px; opacity: 0; transform: scale(0.5); transition: all 0.2s; }
+        .check-item input:checked + label .check-box { background: #1a78e6; border-color: #1a78e6; }
+        .check-item input:checked + label .check-box svg { opacity: 1; transform: scale(1); }
+        .check-emoji { font-size: 1rem; }
 
-        /* Note box */
-        .note-box {
-            background: rgba(59,142,214,0.08);
-            border: 1px solid rgba(59,142,214,0.25);
-            border-radius: var(--radius-md);
-            padding: 0.9rem 1.25rem;
-            font-size: 0.83rem;
-            color: var(--text-light);
-            line-height: 1.55;
-            margin-top: 1rem;
+        /* Submit */
+        .btn-submit {
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            width: 100%; padding: 1rem 2rem;
+            background: linear-gradient(135deg, #f58220, #e06b10); color: #fff; border: none;
+            border-radius: 12px; font-weight: 700; font-size: 1rem;
+            font-family: 'Inter', sans-serif; cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 20px rgba(245,130,32,0.25);
         }
-        .note-box strong { color: var(--electric-teal); }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,130,32,0.35); }
+        .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+        .form-note { text-align: center; font-size: 0.78rem; color: #94a3b8; margin-top: 0.75rem; }
 
-        /* Page header override */
-        .page-header .header-pricing { display: none; }
-
-        /* Responsive tweaks */
-        @media (max-width: 700px) {
-            .consult-card { flex-direction: column; gap: 1rem; }
-            .chatbot-grid { grid-template-columns: 1fr 1fr; }
+        /* Success */
+        .form-success { display: none; text-align: center; padding: 3rem 2rem; }
+        .form-success .success-icon {
+            width: 64px; height: 64px; border-radius: 50%;
+            background: rgba(16,185,129,0.1); border: 2px solid rgba(16,185,129,0.25);
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 1.75rem; margin-bottom: 1.25rem;
         }
-        @media (max-width: 480px) {
-            .chatbot-grid { grid-template-columns: 1fr; }
-            .package-grid { grid-template-columns: 1fr; }
-            .db-grid { grid-template-columns: 1fr; }
+        .form-success h3 { font-size: 1.35rem; font-weight: 700; color: #10b981; margin-bottom: 0.5rem; }
+        .form-success p { color: #475569; font-size: 0.95rem; line-height: 1.6; }
+
+        /* FAQ */
+        .faq-section { padding: 4rem 0; }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .service-card.wide { grid-column: span 1; }
+            .request-layout { grid-template-columns: 1fr; }
+            .request-info { position: static; }
+            .process-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-step::after { display: none; }
+        }
+        @media (max-width: 640px) {
+            .services-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .services-check-grid { grid-template-columns: 1fr; }
+            .process-grid { grid-template-columns: 1fr; }
+            .request-form-card { padding: 1.5rem; }
+            .hero-cta-row { flex-direction: column; }
+            .hero-cta-row .btn-hero { text-align: center; justify-content: center; }
         }
     </style>
 
@@ -454,145 +339,37 @@
         "@context": "https://schema.org",
         "@type": "ItemList",
         "name": "Technology & Digital Services — Hinrichs Specialty Services and Technology",
-        "description": "Flat-rate technology consultation and digital services for Nebraska small businesses, nonprofits, and service organizations.",
+        "description": "Technology consultation and digital services for Nebraska small businesses, nonprofits, and service organizations.",
         "url": "https://hinrichs-specialty-services.vercel.app/digital-solutions.html",
         "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "item": {
-                    "@type": "Service",
-                    "name": "Website Design & Development",
-                    "description": "Custom, mobile-responsive websites built for Nebraska small businesses, nonprofits, and service organizations. Includes SEO foundation, fast load times, contact forms, and optional CMS.",
-                    "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" },
-                    "areaServed": "Nebraska",
-                    "serviceType": "Website Design and Development"
-                }
-            },
-            {
-                "@type": "ListItem",
-                "position": 2,
-                "item": {
-                    "@type": "Service",
-                    "name": "SEO & AEO Optimization",
-                    "description": "On-page SEO, technical SEO, keyword strategy, and Answer Engine Optimization (AEO) to improve Google rankings and AI-powered search visibility for Nebraska businesses.",
-                    "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" },
-                    "areaServed": "Nebraska",
-                    "serviceType": "Search Engine Optimization"
-                }
-            },
-            {
-                "@type": "ListItem",
-                "position": 3,
-                "item": {
-                    "@type": "Service",
-                    "name": "AI Automation & Chatbot Integration",
-                    "description": "Intelligent AI chatbots and workflow automation powered by Claude AI — answering customer questions 24/7, capturing leads, and reducing manual workload for small businesses.",
-                    "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" },
-                    "areaServed": "United States",
-                    "serviceType": "AI Automation"
-                }
-            },
-            {
-                "@type": "ListItem",
-                "position": 4,
-                "item": {
-                    "@type": "Service",
-                    "name": "Technology Consultation",
-                    "description": "Strategic technology planning, digital roadmapping, and systems design consultation for organizations modernizing their operations. Specializing in behavioral health, case management, and nonprofit technology.",
-                    "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" },
-                    "areaServed": "United States",
-                    "serviceType": "Technology Consultation"
-                }
-            },
-            {
-                "@type": "ListItem",
-                "position": 5,
-                "item": {
-                    "@type": "Service",
-                    "name": "Social Media Management",
-                    "description": "Strategic social media content, scheduling, and community management for Nebraska businesses and nonprofits. Grow your audience and drive engagement across Facebook, LinkedIn, and more.",
-                    "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" },
-                    "areaServed": "United States",
-                    "serviceType": "Social Media Management"
-                }
-            },
-            {
-                "@type": "ListItem",
-                "position": 6,
-                "item": {
-                    "@type": "Service",
-                    "name": "Database & Analytics Development",
-                    "description": "Custom database solutions, data dashboards, and analytics integrations to help organizations track performance, manage records, and make data-driven decisions.",
-                    "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" },
-                    "areaServed": "United States",
-                    "serviceType": "Database Development"
-                }
-            }
+            { "@type": "ListItem", "position": 1, "item": { "@type": "Service", "name": "Website Design & Development", "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" }, "areaServed": "Nebraska" } },
+            { "@type": "ListItem", "position": 2, "item": { "@type": "Service", "name": "SEO & AEO Optimization", "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" }, "areaServed": "Nebraska" } },
+            { "@type": "ListItem", "position": 3, "item": { "@type": "Service", "name": "AI Automation & Chatbot Integration", "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" }, "areaServed": "United States" } },
+            { "@type": "ListItem", "position": 4, "item": { "@type": "Service", "name": "Technology Consultation", "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" }, "areaServed": "United States" } },
+            { "@type": "ListItem", "position": 5, "item": { "@type": "Service", "name": "Social Media Management", "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" }, "areaServed": "United States" } },
+            { "@type": "ListItem", "position": 6, "item": { "@type": "Service", "name": "Database & Analytics Development", "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" }, "areaServed": "United States" } },
+            { "@type": "ListItem", "position": 7, "item": { "@type": "Service", "name": "Custom CRM Development", "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" }, "areaServed": "United States" } },
+            { "@type": "ListItem", "position": 8, "item": { "@type": "Service", "name": "Digital Marketing", "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" }, "areaServed": "United States" } }
         ]
     }
     </script>
 
-    <!-- JSON-LD: FAQ (AEO) -->
+    <!-- JSON-LD: FAQ -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "How much does a website cost at Hinrichs Specialty Services and Technology?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "HSST uses transparent, flat-rate per-project pricing — no surprise fees or forced subscriptions. Pricing depends on project scope and complexity. Optional maintenance plans are available for ongoing support. Contact (402) 759-2210 for a free consultation and quote."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Does HSST build websites for nonprofits?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. Hinrichs Specialty Services and Technology specializes in affordable website design for nonprofits, social service organizations, and mission-driven businesses. Brandon Hinrichs has direct experience in behavioral health and community services, making HSST uniquely suited to serve these organizations."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What is included in HSST's SEO service?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "HSST's SEO services include keyword research, on-page optimization, technical SEO (speed, mobile, structured data), local SEO for Nebraska businesses, and Answer Engine Optimization (AEO) to improve visibility in AI-powered search results like Google AI Overviews and ChatGPT."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Can HSST integrate an AI chatbot into my existing website?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. HSST builds and integrates custom AI chatbots powered by Claude AI that can answer customer questions, collect lead information, and handle common inquiries 24/7. The chatbot can be added to any existing website regardless of platform."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Does Hinrichs Specialty Services and Technology offer website maintenance?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. HSST offers optional monthly maintenance plans that include content updates, security monitoring, performance optimization, and ongoing SEO improvements. Maintenance is not required — clients can choose pay-per-project or ongoing support."
-                }
-            }
+            { "@type": "Question", "name": "How much do services cost at HSST?", "acceptedAnswer": { "@type": "Answer", "text": "Every project is different. HSST provides free consultations and custom bids tailored to your needs and budget. Contact (402) 759-2210 or submit a service request." } },
+            { "@type": "Question", "name": "What payment methods does HSST accept?", "acceptedAnswer": { "@type": "Answer", "text": "HSST accepts credit/debit cards, ACH bank transfers, checks, cash, Venmo, CashApp, PayPal, and Zelle. Payment plans are available for larger projects." } },
+            { "@type": "Question", "name": "Does HSST work outside Nebraska?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. While based in Geneva, Nebraska, HSST serves clients nationwide through a fully remote, digital-first approach." } }
         ]
     }
     </script>
 
     <!-- JSON-LD: BreadcrumbList -->
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hinrichs-specialty-services.vercel.app/" },
-            { "@type": "ListItem", "position": 2, "name": "Services & Pricing", "item": "https://hinrichs-specialty-services.vercel.app/digital-solutions.html" }
-        ]
-    }
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hinrichs-specialty-services.vercel.app/" }, { "@type": "ListItem", "position": 2, "name": "Our Services", "item": "https://hinrichs-specialty-services.vercel.app/digital-solutions.html" } ] }
     </script>
 </head>
 <body>
@@ -605,7 +382,7 @@
                 <ul class="nav-menu">
                     <li><a href="index.html" class="nav-link">Home</a></li>
                     <li><a href="our-story.html" class="nav-link">Our Story</a></li>
-                    <li><a href="digital-solutions.html" class="nav-link active">Services & Pricing</a></li>
+                    <li><a href="digital-solutions.html" class="nav-link active">Our Services</a></li>
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
                 <div class="nav-toggle">
@@ -618,389 +395,338 @@
     </header>
 
     <main>
-        <!-- Page Header -->
-        <section class="page-header">
+        <!-- ── Hero ── -->
+        <section class="services-hero">
             <div class="container">
-                <div class="page-header-content">
-                    <h1>Services &amp; Pricing</h1>
-                    <p>Transparent, per-project rates for small businesses, nonprofits, and rural organizations. No long-term contracts. You own everything.</p>
+                <div class="hero-inner">
+                    <div class="hero-eyebrow"><span class="dot"></span> Digital Services &amp; Technology</div>
+                    <h1>Technology that <span class="gradient-text">works for you.</span></h1>
+                    <p>From websites and SEO to AI chatbots and custom databases — we build the digital tools your business needs. No fluff. No subscriptions. Just results that fit your budget.</p>
+                    <div class="hero-cta-row">
+                        <a href="#request" class="btn-hero btn-hero-primary">Request a Free Bid &darr;</a>
+                        <a href="tel:4027592210" class="btn-hero btn-hero-outline">Call (402) 759-2210</a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section style="padding: 2rem 0 0;">
+        <!-- ── Services Grid ── -->
+        <section class="services-section">
             <div class="container">
+                <div class="section-label">What We Do</div>
+                <h2 class="section-title">Services built for real businesses.</h2>
+                <p class="section-subtitle">Every service is scoped to your needs and budget. Pick one, pick a few, or tell us your problem and we'll figure it out together.</p>
 
-                <!-- Invoice Notice -->
-                <div class="invoice-notice">
-                    <div class="invoice-notice-icon">📋</div>
-                    <div class="invoice-notice-text">
-                        <h4>How Payment Works</h4>
-                        <p>All services are <strong>invoiced separately</strong> by project or task. After we agree on scope, you'll receive a clear itemized invoice — payable securely online via your invoice link. Fixed-price packages may also be initiated with a deposit paid directly below. Hourly work is invoiced upon completion with an itemized summary. <strong>Payment plans available on projects over $1,500</strong> (50% at start / 50% at delivery).</p>
+                <div class="services-grid">
+                    <div class="service-card wide" data-accent="blue" id="website">
+                        <div class="card-icon">🌐</div>
+                        <h3>Website Design &amp; Development</h3>
+                        <p class="card-desc">Custom, mobile-responsive websites built from scratch. No templates, no page builders — real code, real design, built for your brand. You own everything when we're done.</p>
+                        <div class="card-features">
+                            <span class="card-tag">Custom design</span>
+                            <span class="card-tag">Mobile-first</span>
+                            <span class="card-tag">SEO built-in</span>
+                            <span class="card-tag">Contact forms</span>
+                            <span class="card-tag">Fast load times</span>
+                            <span class="card-tag">No lock-in</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- ── Hourly Labor Rates ── -->
-                <div class="pricing-section">
-                    <h2 class="pricing-section-title">Hourly Labor Rates</h2>
-                    <p class="pricing-section-subtitle">Ongoing updates and maintenance are invoiced at the tier matching the work performed.</p>
-                    <div class="rate-table-wrap">
-                        <table class="rate-table">
-                            <thead>
-                                <tr>
-                                    <th style="width:140px;">Tier</th>
-                                    <th>Applies To</th>
-                                    <th>Rate</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="tier-name">Basic</div>
-                                        <div class="tier-sub">Simple tasks</div>
-                                    </td>
-                                    <td><div class="tier-desc">Content updates, text edits, image swaps, minor layout changes, plugin updates</div></td>
-                                    <td><div class="rate-price">$30/hr</div></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="tier-name">Standard</div>
-                                        <div class="tier-sub">Mid-level work</div>
-                                    </td>
-                                    <td><div class="tier-desc">Page additions, form changes, plugin config, SEO content updates, performance tuning</div></td>
-                                    <td><div class="rate-price">$45/hr</div></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="tier-name">Advanced</div>
-                                        <div class="tier-sub">Custom / technical</div>
-                                    </td>
-                                    <td><div class="tier-desc">Custom development, API integrations, automation builds, database modifications, advanced SEO</div></td>
-                                    <td><div class="rate-price">$65/hr</div></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="service-card" data-accent="green" id="seo">
+                        <div class="card-icon">📈</div>
+                        <h3>SEO &amp; Digital Visibility</h3>
+                        <p class="card-desc">Get found on Google and in AI-powered search. We optimize your presence so customers find you first.</p>
+                        <div class="card-features">
+                            <span class="card-tag">On-page SEO</span>
+                            <span class="card-tag">Technical audit</span>
+                            <span class="card-tag">Google Business</span>
+                            <span class="card-tag">AEO / AI search</span>
+                        </div>
                     </div>
-                    <div class="note-box">
-                        <strong>Monthly work:</strong> All updates invoiced at the tier matching the task. Itemized summary provided with every invoice.
-                    </div>
-                </div>
 
-                <!-- ── Ongoing Maintenance Plan ── -->
-                <div class="pricing-section">
-                    <h2 class="pricing-section-title">Ongoing Maintenance &amp; Support Plan</h2>
-                    <p class="pricing-section-subtitle">An optional monthly plan for clients who need regular updates, monitoring, and ongoing support without managing it themselves.</p>
-                    <div class="consult-card" style="border-left-color: var(--neon-green);">
-                        <div class="consult-card-info">
-                            <h3>Optional Monthly Maintenance Enrollment</h3>
-                            <p>For clients who require recurring updates, content changes, performance monitoring, or other ongoing site maintenance, a monthly maintenance plan is available. Enrollment in the plan allows work to be prioritized and keeps your ongoing costs lower than ad-hoc hourly billing.</p>
-                            <p style="margin-top:0.75rem; font-size:0.85rem; color:var(--text-light);">The monthly rate is based on the scope and frequency of services rendered — it may go up or down from the base rate depending on what your site needs. Contact us to discuss what level of support fits your situation.</p>
-                            <div class="consult-topics" style="margin-top:0.75rem;">
-                                <span class="topic-tag">Regular content updates</span>
-                                <span class="topic-tag">Performance monitoring</span>
-                                <span class="topic-tag">Security &amp; plugin updates</span>
-                                <span class="topic-tag">SEO maintenance</span>
-                                <span class="topic-tag">Minor layout changes</span>
-                                <span class="topic-tag">Priority response</span>
-                            </div>
-                        </div>
-                        <div class="consult-card-price">
-                            <div class="rate" style="font-size:1.8rem;">From $150<span style="font-size:0.8rem; font-weight:400; color:var(--text-light); display:block;">/month</span></div>
-                            <div class="rate-sub" style="margin-top:0.25rem;">Varies by services rendered</div>
-                            <a href="contact.html?service=maintenance-plan" class="btn-inquire" style="margin-top:0.75rem; display:block;">Contact for Details</a>
+                    <div class="service-card wide" data-accent="purple" id="chatbot">
+                        <div class="card-icon">🤖</div>
+                        <h3>AI Automation &amp; Chatbots</h3>
+                        <p class="card-desc">Custom AI chatbots that answer questions, capture leads, and handle conversations 24/7. Workflow automation that saves you hours every week. Works on any website.</p>
+                        <div class="card-features">
+                            <span class="card-tag">AI-powered chat</span>
+                            <span class="card-tag">Lead capture</span>
+                            <span class="card-tag">Workflow automation</span>
+                            <span class="card-tag">Multi-language</span>
+                            <span class="card-tag">Scheduling</span>
+                            <span class="card-tag">CRM integration</span>
                         </div>
                     </div>
-                    <div class="note-box">
-                        <strong>Note:</strong> Enrollment in a maintenance plan is optional. Clients who do not enroll can still request updates at any time — those are billed at the hourly rates above. The maintenance plan is best suited for businesses that anticipate regular, ongoing needs.
-                    </div>
-                </div>
 
-                <!-- ── Website Development Packages ── -->
-                <div class="pricing-section">
-                    <h2 class="pricing-section-title">Website Development Packages</h2>
-                    <p class="pricing-section-subtitle">All packages include domain connection, launch setup, mobile optimization, and 30-day post-launch support. Hosting and domain billed directly to client.</p>
-                    <div class="package-grid">
-                        <div class="package-card">
-                            <div class="pkg-name">Static Site Build</div>
-                            <div class="pkg-desc">Up to 5 pages. Mobile responsive. Basic on-page SEO. No dynamic features.</div>
-                            <div class="pkg-price">$800<span>One-time project fee</span></div>
-                            <div class="pkg-actions">
-                                <a href="https://buy.stripe.com/9B64gs2fv3ZS4Mb7fPdjO00" class="btn-pay-online" target="_blank" rel="noopener">Pay $400 Deposit Online</a>
-                                <a href="contact.html?service=static-site" class="btn-inquire">Inquire First</a>
-                            </div>
-                            <div class="invoice-tag">Balance due at delivery &bull; <strong>Invoiced separately</strong></div>
+                    <div class="service-card" data-accent="teal" id="database">
+                        <div class="card-icon">🗄️</div>
+                        <h3>Database &amp; Backend</h3>
+                        <p class="card-desc">Custom databases to organize records, track data, and power your operations behind the scenes.</p>
+                        <div class="card-features">
+                            <span class="card-tag">Relational DBs</span>
+                            <span class="card-tag">Dashboards</span>
+                            <span class="card-tag">User roles</span>
+                            <span class="card-tag">API integrations</span>
                         </div>
-                        <div class="package-card featured">
-                            <div class="pkg-badge">Most Popular</div>
-                            <div class="pkg-name">Standard Site with Features</div>
-                            <div class="pkg-desc">Up to 8 pages. Contact forms, email notifications, maps, photo gallery, social links, call-to-action elements.</div>
-                            <div class="pkg-price">$1,500<span>One-time project fee</span></div>
-                            <div class="pkg-actions">
-                                <a href="https://buy.stripe.com/fZucMY07n53WdiH1VvdjO01" class="btn-pay-online accent" target="_blank" rel="noopener">Pay $750 Deposit Online</a>
-                                <a href="contact.html?service=standard-site" class="btn-inquire">Inquire First</a>
-                            </div>
-                            <div class="invoice-tag">Balance due at delivery &bull; <strong>Invoiced separately</strong></div>
+                    </div>
+
+                    <div class="service-card" data-accent="orange" id="crm">
+                        <div class="card-icon">📋</div>
+                        <h3>Custom CRM Development</h3>
+                        <p class="card-desc">A CRM built around the way you work — not a bloated platform with features you'll never touch.</p>
+                        <div class="card-features">
+                            <span class="card-tag">Contact management</span>
+                            <span class="card-tag">Automations</span>
+                            <span class="card-tag">Reporting</span>
+                            <span class="card-tag">Integrations</span>
                         </div>
-                        <div class="package-card">
-                            <div class="pkg-name">Expanded Business Site</div>
-                            <div class="pkg-desc">Up to 12 pages. Staff pages, service details, downloadable resources, newsletter signup, inquiry workflow.</div>
-                            <div class="pkg-price">$2,200<span>One-time project fee</span></div>
-                            <div class="pkg-actions">
-                                <a href="https://buy.stripe.com/dRm14gcU99kc2E37fPdjO02" class="btn-pay-online" target="_blank" rel="noopener">Pay $1,100 Deposit Online</a>
-                                <a href="contact.html?service=expanded-site" class="btn-inquire">Inquire First</a>
-                            </div>
-                            <div class="invoice-tag">Balance due at delivery &bull; <strong>Invoiced separately</strong></div>
+                    </div>
+
+                    <div class="service-card" data-accent="pink" id="social">
+                        <div class="card-icon">📱</div>
+                        <h3>Social Media Management</h3>
+                        <p class="card-desc">Content, scheduling, and engagement that keeps your brand active and growing on the platforms that matter.</p>
+                        <div class="card-features">
+                            <span class="card-tag">Content creation</span>
+                            <span class="card-tag">Scheduling</span>
+                            <span class="card-tag">Analytics</span>
+                            <span class="card-tag">Community mgmt</span>
                         </div>
-                        <div class="package-card">
-                            <div class="pkg-name">Program / Nonprofit Site</div>
-                            <div class="pkg-desc">Up to 15 pages. Program listings, intake forms, resource directories, event section, partner acknowledgment.</div>
-                            <div class="pkg-price">$2,500<span>One-time project fee</span></div>
-                            <div class="pkg-actions">
-                                <a href="https://buy.stripe.com/eVq4gs4nD9kc5QfcA9djO03" class="btn-pay-online" target="_blank" rel="noopener">Pay $1,250 Deposit Online</a>
-                                <a href="contact.html?service=nonprofit-site" class="btn-inquire">Inquire First</a>
-                            </div>
-                            <div class="invoice-tag">Balance due at delivery &bull; <strong>Invoiced separately</strong></div>
+                    </div>
+
+                    <div class="service-card" data-accent="red" id="marketing">
+                        <div class="card-icon">📣</div>
+                        <h3>Digital Marketing</h3>
+                        <p class="card-desc">Targeted campaigns, content strategy, and lead generation to reach more people and convert them into customers.</p>
+                        <div class="card-features">
+                            <span class="card-tag">Content strategy</span>
+                            <span class="card-tag">Email campaigns</span>
+                            <span class="card-tag">Paid ads</span>
+                            <span class="card-tag">Lead gen</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card" data-accent="cyan" id="consultation">
+                        <div class="card-icon">💡</div>
+                        <h3>Technology Consultation</h3>
+                        <p class="card-desc">Not sure what you need? We'll help you figure it out — digital strategy, platform recommendations, and roadmaps.</p>
+                        <div class="card-features">
+                            <span class="card-tag">Strategy</span>
+                            <span class="card-tag">Platform recs</span>
+                            <span class="card-tag">Cost breakdown</span>
+                            <span class="card-tag">Nonprofits</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card" data-accent="amber" id="maintenance">
+                        <div class="card-icon">🔧</div>
+                        <h3>Ongoing Maintenance &amp; Support</h3>
+                        <p class="card-desc">Regular updates, monitoring, and support to keep your site fast, secure, and up to date — without managing it yourself.</p>
+                        <div class="card-features">
+                            <span class="card-tag">Updates</span>
+                            <span class="card-tag">Monitoring</span>
+                            <span class="card-tag">Security</span>
+                            <span class="card-tag">Priority support</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- ── Consultation ── -->
-                <div class="pricing-section">
-                    <h2 class="pricing-section-title">Consultation Services</h2>
-                    <div class="consult-card">
-                        <div class="consult-card-info">
-                            <h3>Flat Rate — All Consultation</h3>
-                            <p>Whether you need a brand review, a platform recommendation, or a full digital strategy session — all consultation is billed at one transparent rate.</p>
-                            <div class="consult-topics">
-                                <span class="topic-tag">Brand identity review</span>
-                                <span class="topic-tag">Digital strategy</span>
-                                <span class="topic-tag">SEO audit &amp; action plan</span>
-                                <span class="topic-tag">AEO positioning</span>
-                                <span class="topic-tag">Platform recommendations</span>
-                                <span class="topic-tag">Tool &amp; cost breakdowns</span>
-                                <span class="topic-tag">Online presence assessment</span>
-                                <span class="topic-tag">Content strategy outline</span>
-                            </div>
-                        </div>
-                        <div class="consult-card-price">
-                            <div class="rate">$40/hr</div>
-                            <div class="rate-sub">Invoiced after session</div>
-                            <a href="contact.html?service=consultation" class="btn-inquire" style="margin-top:0.75rem; display:block;">Schedule a Session</a>
-                        </div>
-                    </div>
-                    <div class="consult-credit-note">
-                        <strong>Credit toward your project:</strong> Consultation fees are credited in full toward any project of $1,500 or more when the client proceeds to contract within 30 days.
-                    </div>
-                </div>
-
-                <!-- ── SEO & Digital Visibility ── -->
-                <div class="pricing-section">
-                    <h2 class="pricing-section-title">SEO &amp; Digital Visibility</h2>
-                    <p class="pricing-section-subtitle">One-time fixed-fee services — invoiced separately, payable online.</p>
-                    <div class="package-grid">
-                        <div class="package-card">
-                            <div class="pkg-name">SEO Audit &amp; Written Action Plan</div>
-                            <div class="pkg-desc">Full on-page, technical, and local review with a prioritized recommendations report.</div>
-                            <div class="pkg-price">$350<span>One-time flat fee</span></div>
-                            <div class="pkg-actions">
-                                <a href="https://buy.stripe.com/dRm6oA8DT9kc6Uj9nXdjO04" class="btn-pay-online" target="_blank" rel="noopener">Pay $350 Online</a>
-                                <a href="contact.html?service=seo-audit" class="btn-inquire">Learn More</a>
-                            </div>
-                            <div class="invoice-tag"><strong>Invoiced separately</strong> upon agreement</div>
-                        </div>
-                        <div class="package-card">
-                            <div class="pkg-name">Google Business Profile Setup</div>
-                            <div class="pkg-desc">Full profile build or optimization. Categories, descriptions, photos, Q&amp;A, and more.</div>
-                            <div class="pkg-price">$150<span>One-time flat fee</span></div>
-                            <div class="pkg-actions">
-                                <a href="https://buy.stripe.com/bJeeV64nDcwo2E39nXdjO05" class="btn-pay-online" target="_blank" rel="noopener">Pay $150 Online</a>
-                                <a href="contact.html?service=gbp-setup" class="btn-inquire">Learn More</a>
-                            </div>
-                            <div class="invoice-tag"><strong>Invoiced separately</strong> upon agreement</div>
-                        </div>
-                        <div class="package-card">
-                            <div class="pkg-name">Local Directory &amp; Citation Cleanup</div>
-                            <div class="pkg-desc">Corrects inconsistent name, address, and phone listings across major directories.</div>
-                            <div class="pkg-price">$200<span>One-time flat fee</span></div>
-                            <div class="pkg-actions">
-                                <a href="https://buy.stripe.com/4gM6oA1br0NGfqP1VvdjO06" class="btn-pay-online" target="_blank" rel="noopener">Pay $200 Online</a>
-                                <a href="contact.html?service=citation-cleanup" class="btn-inquire">Learn More</a>
-                            </div>
-                            <div class="invoice-tag"><strong>Invoiced separately</strong> upon agreement</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ── AI Chatbot Services ── -->
-                <div class="pricing-section">
-                    <h2 class="pricing-section-title">AI Integration &amp; Chatbot Services</h2>
-                    <p class="pricing-section-subtitle">One-time build fees. All chatbots are custom-configured for your organization.</p>
-                    <div class="chatbot-grid">
-                        <div class="chatbot-card">
-                            <div class="chatbot-card-name">Basic Chatbot</div>
-                            <div class="chatbot-card-price">$100</div>
-                            <div class="chatbot-card-desc">FAQ-style answers, hours, links to pages, routes to contact form.</div>
-                            <a href="https://buy.stripe.com/dRm28k8DTcwo92r7fPdjO07" class="btn-pay-online" target="_blank" rel="noopener">Pay $100 Online</a>
-                            <div class="invoice-tag" style="margin-top:6px;"><strong>Invoiced separately</strong></div>
-                        </div>
-                        <div class="chatbot-card">
-                            <div class="chatbot-card-name">Guided Navigation Bot</div>
-                            <div class="chatbot-card-price">$250</div>
-                            <div class="chatbot-card-desc">Directs users to specific pages based on their responses. Decision tree logic.</div>
-                            <a href="https://buy.stripe.com/fZu5kwbQ5fIA6UjeIhdjO08" class="btn-pay-online" target="_blank" rel="noopener">Pay $250 Online</a>
-                            <div class="invoice-tag" style="margin-top:6px;"><strong>Invoiced separately</strong></div>
-                        </div>
-                        <div class="chatbot-card">
-                            <div class="chatbot-card-name">Form-Filling Assistant</div>
-                            <div class="chatbot-card-price">$350</div>
-                            <div class="chatbot-card-desc">Walks users through intake or inquiry forms step by step in-chat.</div>
-                            <a href="https://buy.stripe.com/28E4gs1brfIAemLgQpdjO09" class="btn-pay-online" target="_blank" rel="noopener">Pay $350 Online</a>
-                            <div class="invoice-tag" style="margin-top:6px;"><strong>Invoiced separately</strong></div>
-                        </div>
-                        <div class="chatbot-card">
-                            <div class="chatbot-card-name">AI-Powered Conversational</div>
-                            <div class="chatbot-card-price">$500–$800</div>
-                            <div class="chatbot-card-desc">Live AI processing. Handles open-ended questions and nuanced conversations.</div>
-                            <a href="contact.html?service=chatbot-ai" class="btn-inquire" style="display:block; text-align:center; margin-top:6px;">Get a Quote</a>
-                            <div class="invoice-tag" style="margin-top:6px;"><strong>Scoped &amp; invoiced per project</strong></div>
-                        </div>
-                    </div>
-
-                    <div class="addon-section">
-                        <h4>Chatbot Add-On Features</h4>
-                        <div class="addon-grid">
-                            <div class="addon-item"><span>Multi-language support</span><span>+$75</span></div>
-                            <div class="addon-item"><span>CRM / email integration</span><span>+$100</span></div>
-                            <div class="addon-item"><span>Appointment scheduling</span><span>+$100</span></div>
-                            <div class="addon-item"><span>Live staff handoff / escalation</span><span>+$75</span></div>
-                            <div class="addon-item"><span>Analytics &amp; conversation tracking</span><span>+$50</span></div>
-                            <div class="addon-item"><span>Full custom build</span><span>Quoted</span></div>
-                        </div>
-                        <div class="note-box" style="margin-top:0.75rem;">
-                            Add-ons are scoped at time of project and <strong>invoiced separately</strong> on the same invoice as the base chatbot build.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ── Database & Backend ── -->
-                <div class="pricing-section" style="padding-bottom: 3rem;">
-                    <h2 class="pricing-section-title">Database &amp; Backend Development</h2>
-                    <p class="pricing-section-subtitle">All database projects are scoped before work begins and invoiced separately. Payment plans available.</p>
-                    <div class="db-grid">
-                        <div class="db-card">
-                            <div class="db-tier">Basic Database</div>
-                            <div class="db-price">Starting at $3,000</div>
-                            <div class="db-desc">Single or simple relational structure. Client lists, rosters, intake records, inventory. Basic data entry interface and export.</div>
-                            <a href="contact.html?service=database-basic" class="btn-inquire" style="display:block; text-align:center; margin-top:auto;">Request Scope &amp; Quote</a>
-                            <div class="invoice-tag" style="margin-top:6px;"><strong>50% deposit / 50% at delivery</strong></div>
-                        </div>
-                        <div class="db-card mid">
-                            <div class="db-tier">Standard Database</div>
-                            <div class="db-price">$4,500–$6,500</div>
-                            <div class="db-desc">Multi-table relational structure. User roles, search/filter, automated notifications, basic reporting dashboard.</div>
-                            <a href="contact.html?service=database-standard" class="btn-inquire" style="display:block; text-align:center; margin-top:auto;">Request Scope &amp; Quote</a>
-                            <div class="invoice-tag" style="margin-top:6px;"><strong>50% deposit / 50% at delivery</strong></div>
-                        </div>
-                        <div class="db-card adv">
-                            <div class="db-tier">Advanced / Custom</div>
-                            <div class="db-price">$7,500+</div>
-                            <div class="db-desc">Complex structure, multiple user types, automated workflows, external integrations, custom reporting. Scoped per project.</div>
-                            <a href="contact.html?service=database-advanced" class="btn-inquire" style="display:block; text-align:center; margin-top:auto;">Request Scope &amp; Quote</a>
-                            <div class="invoice-tag" style="margin-top:6px;"><strong>Milestone-based invoicing available</strong></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ── Custom CRM Build ── -->
-                <div class="pricing-section" style="padding-bottom: 3rem;">
-                    <h2 class="pricing-section-title">Custom CRM Build</h2>
-                    <p class="pricing-section-subtitle">Rural nonprofit and small business pricing</p>
-                    <div class="package-grid">
-                        <div class="package-card">
-                            <div class="pkg-name">Basic CRM</div>
-                            <div class="pkg-desc">
-                                <p style="margin-bottom: 0.5rem;">Simple structure, core features</p>
-                                <ul style="padding-left: 1.25rem; margin-bottom: 0;">
-                                    <li>3–5 core data tables</li>
-                                    <li>User login &amp; basic roles</li>
-                                    <li>Search &amp; filter</li>
-                                    <li>Basic reporting</li>
-                                    <li>One automation</li>
-                                </ul>
-                            </div>
-                            <div class="pkg-price">$5,000<span>Starting price</span></div>
-                            <div class="pkg-actions">
-                                <a href="contact.html?service=crm-basic" class="btn-inquire">Learn more</a>
-                            </div>
-                        </div>
-                        <div class="package-card featured">
-                            <div class="pkg-badge">Recommended</div>
-                            <div class="pkg-name">Standard CRM</div>
-                            <div class="pkg-desc">
-                                <p style="margin-bottom: 0.5rem;">Multi-table, workflows, integrations</p>
-                                <ul style="padding-left: 1.25rem; margin-bottom: 0;">
-                                    <li>Complex relational structure</li>
-                                    <li>Multiple user roles</li>
-                                    <li>Automated workflows</li>
-                                    <li>Basic integrations</li>
-                                    <li>Custom reporting dashboard</li>
-                                </ul>
-                            </div>
-                            <div class="pkg-price">$7,500–$10,000<span>Based on scope</span></div>
-                            <div class="pkg-actions">
-                                <a href="contact.html?service=crm-standard" class="btn-pay-online accent">Start scoping</a>
-                            </div>
-                        </div>
-                        <div class="package-card">
-                            <div class="pkg-name">Advanced CRM</div>
-                            <div class="pkg-desc">
-                                <p style="margin-bottom: 0.5rem;">Complex workflows, multi-systems</p>
-                                <ul style="padding-left: 1.25rem; margin-bottom: 0;">
-                                    <li>Enterprise-level structure</li>
-                                    <li>Advanced automations</li>
-                                    <li>Multi-system integrations</li>
-                                    <li>Real-time analytics</li>
-                                    <li>White-glove support</li>
-                                </ul>
-                            </div>
-                            <div class="pkg-price">$10,000+<span>Custom quoted</span></div>
-                            <div class="pkg-actions">
-                                <a href="contact.html?service=crm-advanced" class="btn-inquire">Consult</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="note-box">
-                        <strong>How we work with rural budgets:</strong> All CRM projects begin with a paid scoping consultation ($40/hr). Phased builds available. Integration add-ons priced separately. Monthly retainers start at $300/mo post-launch.
-                    </div>
-                </div>
-
             </div>
         </section>
 
-        <!-- Process Overview -->
-        <section class="process-overview">
+        <!-- ── How It Works ── -->
+        <section class="process-section">
             <div class="container">
-                <h2>How We Work Together</h2>
-                <div class="process-steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h3>Discovery &amp; Quote</h3>
-                        <p>We talk through your goals, scope the project, and provide a clear written quote — no surprises.</p>
+                <div class="section-label">How It Works</div>
+                <h2 class="section-title">Four steps to your solution.</h2>
+
+                <div class="process-grid">
+                    <div class="process-step">
+                        <div class="step-num">1</div>
+                        <h3>Free Consultation</h3>
+                        <p>Tell us what you need. We'll talk through your goals and figure out the best approach together.</p>
                     </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h3>Agreement &amp; Deposit</h3>
-                        <p>You approve the scope and pay your deposit online via a secure invoice or payment link.</p>
+                    <div class="process-step">
+                        <div class="step-num">2</div>
+                        <h3>Custom Bid</h3>
+                        <p>You get a clear, written bid tailored to your project and budget. No hidden fees, no surprises.</p>
                     </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
+                    <div class="process-step">
+                        <div class="step-num">3</div>
                         <h3>Build &amp; Review</h3>
-                        <p>We build, you review. Revisions are included. You stay in the loop at every stage.</p>
+                        <p>We build, you review. Revisions included. You stay in the loop at every stage.</p>
                     </div>
-                    <div class="step">
-                        <div class="step-number">4</div>
+                    <div class="process-step">
+                        <div class="step-num">4</div>
                         <h3>Deliver &amp; Hand Off</h3>
-                        <p>Final invoice issued at delivery. You receive all files, credentials, and access. No lock-in.</p>
+                        <p>You receive all files, credentials, and access. No vendor lock-in — you own everything.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Request Form ── -->
+        <section class="request-section" id="request">
+            <div class="container">
+                <div class="request-layout">
+                    <div class="request-info">
+                        <div class="section-label">Get Started</div>
+                        <h2>Request a <span class="accent">free bid.</span></h2>
+                        <p>Tell us about your project and we'll put together a custom quote that fits your budget. No obligation — just a straight answer on what it'll take.</p>
+
+                        <div class="info-perks">
+                            <div class="perk-item">
+                                <div class="perk-icon">🎯</div>
+                                <div class="perk-text"><strong>Custom-scoped to you</strong>Every bid is built around your specific goals and budget.</div>
+                            </div>
+                            <div class="perk-item">
+                                <div class="perk-icon">⚡</div>
+                                <div class="perk-text"><strong>Fast turnaround</strong>Most bids delivered within 1–2 business days.</div>
+                            </div>
+                            <div class="perk-item">
+                                <div class="perk-icon">💳</div>
+                                <div class="perk-text"><strong>Flexible payment</strong>Payment plans available. Multiple payment methods accepted.</div>
+                            </div>
+                            <div class="perk-item">
+                                <div class="perk-icon">🤝</div>
+                                <div class="perk-text"><strong>No lock-in</strong>You own all files, code, and content. Always.</div>
+                            </div>
+                        </div>
+
+                        <div class="payment-section">
+                            <div class="payment-label">Accepted Payment Methods</div>
+                            <div class="payment-row">
+                                <span class="pay-badge">Credit / Debit</span>
+                                <span class="pay-badge">ACH Transfer</span>
+                                <span class="pay-badge">Check</span>
+                                <span class="pay-badge">Cash</span>
+                                <span class="pay-badge">Venmo</span>
+                                <span class="pay-badge">CashApp</span>
+                                <span class="pay-badge">PayPal</span>
+                                <span class="pay-badge">Zelle</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="request-form-card">
+                        <form id="serviceRequestForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="req-first-name">First Name *</label>
+                                    <input type="text" id="req-first-name" name="firstName" required placeholder="Jane">
+                                </div>
+                                <div class="form-group">
+                                    <label for="req-last-name">Last Name *</label>
+                                    <input type="text" id="req-last-name" name="lastName" required placeholder="Smith">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="req-email">Email *</label>
+                                    <input type="email" id="req-email" name="email" required placeholder="jane@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="req-phone">Phone</label>
+                                    <input type="tel" id="req-phone" name="phone" placeholder="(555) 123-4567">
+                                </div>
+                            </div>
+
+                            <div class="form-group full" style="margin-bottom: 1.25rem;">
+                                <label for="req-organization">Business / Organization Name</label>
+                                <input type="text" id="req-organization" name="organization" placeholder="Your company or org name">
+                            </div>
+
+                            <div class="services-check-label">Services You're Interested In *</div>
+                            <div class="services-check-grid">
+                                <div class="check-item">
+                                    <input type="checkbox" id="svc-website" name="services" value="Website Design & Development">
+                                    <label for="svc-website">
+                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                        <span class="check-emoji">🌐</span> Website Design &amp; Development
+                                    </label>
+                                </div>
+                                <div class="check-item">
+                                    <input type="checkbox" id="svc-seo" name="services" value="SEO & Digital Visibility">
+                                    <label for="svc-seo">
+                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                        <span class="check-emoji">📈</span> SEO &amp; Digital Visibility
+                                    </label>
+                                </div>
+                                <div class="check-item">
+                                    <input type="checkbox" id="svc-ai" name="services" value="AI Automation & Chatbots">
+                                    <label for="svc-ai">
+                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                        <span class="check-emoji">🤖</span> AI Automation &amp; Chatbots
+                                    </label>
+                                </div>
+                                <div class="check-item">
+                                    <input type="checkbox" id="svc-db" name="services" value="Database & Backend Development">
+                                    <label for="svc-db">
+                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                        <span class="check-emoji">🗄️</span> Database &amp; Backend
+                                    </label>
+                                </div>
+                                <div class="check-item">
+                                    <input type="checkbox" id="svc-crm" name="services" value="Custom CRM Development">
+                                    <label for="svc-crm">
+                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                        <span class="check-emoji">📋</span> Custom CRM Development
+                                    </label>
+                                </div>
+                                <div class="check-item">
+                                    <input type="checkbox" id="svc-social" name="services" value="Social Media Management">
+                                    <label for="svc-social">
+                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                        <span class="check-emoji">📱</span> Social Media Management
+                                    </label>
+                                </div>
+                                <div class="check-item">
+                                    <input type="checkbox" id="svc-marketing" name="services" value="Digital Marketing">
+                                    <label for="svc-marketing">
+                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                        <span class="check-emoji">📣</span> Digital Marketing
+                                    </label>
+                                </div>
+                                <div class="check-item">
+                                    <input type="checkbox" id="svc-consult" name="services" value="Technology Consultation">
+                                    <label for="svc-consult">
+                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                        <span class="check-emoji">💡</span> Technology Consultation
+                                    </label>
+                                </div>
+                                <div class="check-item">
+                                    <input type="checkbox" id="svc-maintenance" name="services" value="Ongoing Maintenance & Support">
+                                    <label for="svc-maintenance">
+                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                        <span class="check-emoji">🔧</span> Maintenance &amp; Support
+                                    </label>
+                                </div>
+                                <div class="check-item">
+                                    <input type="checkbox" id="svc-other" name="services" value="Other / Not Sure">
+                                    <label for="svc-other">
+                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                        <span class="check-emoji">❓</span> Other / Not Sure
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group full" style="margin-bottom: 1.5rem;">
+                                <label for="req-details">Tell us about your project *</label>
+                                <textarea id="req-details" name="details" required placeholder="What are you looking for? What problem are you trying to solve? Any details help us put together an accurate bid."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-submit" id="submitRequestBtn">
+                                Request Free Bid &amp; Consultation
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </button>
+                            <p class="form-note">No spam. No obligation. We'll respond within 1–2 business days.</p>
+                        </form>
+
+                        <div class="form-success" id="requestSuccess">
+                            <div class="success-icon">✓</div>
+                            <h3>Request Received!</h3>
+                            <p>Thanks for reaching out. We'll review your request and get back to you with a custom bid — usually within 1–2 business days.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1012,24 +738,24 @@
                 <h2>Frequently Asked Questions</h2>
                 <div class="faq-grid">
                     <div class="faq-item">
-                        <h3>How do I pay for a project?</h3>
-                        <p>You'll receive a secure invoice link via email. Fixed-price packages can also be initiated with a deposit paid directly from the pricing page above. All payments are processed online.</p>
+                        <h3>How much does a project cost?</h3>
+                        <p>Every project is different. Submit a service request above and we'll put together a free, no-obligation bid based on your specific needs and budget.</p>
                     </div>
                     <div class="faq-item">
-                        <h3>Are services invoiced separately?</h3>
-                        <p>Yes. Each service or project gets its own itemized invoice. Hourly work is invoiced upon completion with a full task breakdown. No bundled subscriptions — you pay only for what you use.</p>
+                        <h3>What payment methods do you accept?</h3>
+                        <p>We accept credit/debit cards, ACH bank transfers, checks, cash, Venmo, CashApp, PayPal, and Zelle. Payment plans are available for larger projects.</p>
                     </div>
                     <div class="faq-item">
                         <h3>Do you offer payment plans?</h3>
-                        <p>Yes. Projects over $1,500 can be split 50% at start and 50% at delivery. For larger database or custom projects, milestone-based invoicing is available.</p>
+                        <p>Yes. For larger projects we can work out a payment plan that fits your budget — typically split across project milestones.</p>
                     </div>
                     <div class="faq-item">
                         <h3>How quickly can you get started?</h3>
-                        <p>Typically within 5 business days of deposit receipt. Smaller tasks (Basic/Standard hourly work) are often started within 1–2 days.</p>
+                        <p>Most projects start within a few business days of agreement. Smaller tasks can often begin within 1–2 days.</p>
                     </div>
                     <div class="faq-item">
                         <h3>Do I own the files when we're done?</h3>
-                        <p>Absolutely. Upon final payment, you receive all files, code, credentials, and content. No vendor lock-in, ever.</p>
+                        <p>Absolutely. You receive all files, code, credentials, and content. No vendor lock-in, ever.</p>
                     </div>
                     <div class="faq-item">
                         <h3>Do you work outside Nebraska?</h3>
@@ -1044,7 +770,7 @@
             <div class="container">
                 <div class="cta-content">
                     <h2>Ready to Get Started?</h2>
-                    <p>Contact us to discuss your project, get a quote, or schedule a free 15-minute discovery call.</p>
+                    <p>Contact us to discuss your project or schedule a free consultation. We'll find the right solution for your budget.</p>
                     <div class="contact-options">
                         <div class="contact-method">
                             <h3>Call Us</h3>
@@ -1055,11 +781,11 @@
                             <p>bhinrichs1380@gmail.com</p>
                         </div>
                         <div class="contact-method">
-                            <h3>Free Discovery Call</h3>
-                            <p>15 minutes, no obligation</p>
+                            <h3>Free Consultation</h3>
+                            <p>No obligation, no pressure</p>
                         </div>
                     </div>
-                    <a href="contact.html" class="btn btn-primary">Contact &amp; Get a Quote</a>
+                    <a href="contact.html" class="btn btn-primary">Contact Us</a>
                 </div>
             </div>
         </section>
@@ -1090,8 +816,10 @@
                     <ul>
                         <li><a href="digital-solutions.html#website">Website Development</a></li>
                         <li><a href="digital-solutions.html#seo">SEO &amp; Visibility</a></li>
-                        <li><a href="digital-solutions.html#chatbot">AI &amp; Chatbot</a></li>
+                        <li><a href="digital-solutions.html#chatbot">AI &amp; Chatbots</a></li>
                         <li><a href="digital-solutions.html#database">Database &amp; Backend</a></li>
+                        <li><a href="digital-solutions.html#crm">Custom CRM</a></li>
+                        <li><a href="digital-solutions.html#social">Social Media</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -1116,6 +844,63 @@
     <script src="js/validation.js"></script>
     <script src="js/main.js"></script>
     <script src="js/chatbot.js"></script>
+
+    <script>
+    // Service Request Form Handler
+    (function() {
+        var form = document.getElementById('serviceRequestForm');
+        var submitBtn = document.getElementById('submitRequestBtn');
+        var successMsg = document.getElementById('requestSuccess');
+
+        if (!form) return;
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Collect checked services
+            var checked = form.querySelectorAll('input[name="services"]:checked');
+            if (checked.length === 0) {
+                if (typeof showToast === 'function') {
+                    showToast('Please select at least one service.', 'error');
+                }
+                return;
+            }
+
+            var services = Array.from(checked).map(function(cb) { return cb.value; });
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Submitting&hellip;';
+
+            var formData = {
+                firstName: form.querySelector('[name="firstName"]').value.trim(),
+                lastName: form.querySelector('[name="lastName"]').value.trim(),
+                email: form.querySelector('[name="email"]').value.trim(),
+                phone: form.querySelector('[name="phone"]').value.trim() || null,
+                organization: form.querySelector('[name="organization"]').value.trim() || null,
+                services: services,
+                details: form.querySelector('[name="details"]').value.trim(),
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                type: 'service_request'
+            };
+
+            try {
+                var db = getFirebaseDB();
+                await db.collection('service_requests').add(formData);
+                form.style.display = 'none';
+                successMsg.style.display = 'block';
+                if (typeof showToast === 'function') {
+                    showToast('Request submitted! We\'ll be in touch soon.', 'success');
+                }
+            } catch (err) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Request Free Bid &amp; Consultation <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+                if (typeof showToast === 'function') {
+                    showToast('Something went wrong. Please try again or call us at (402) 759-2210.', 'error');
+                }
+            }
+        });
+    })();
+    </script>
 
 </body>
 </html>
