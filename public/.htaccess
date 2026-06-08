@@ -1,0 +1,21 @@
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Rewrite extensionless URLs to .html files (e.g. /terms -> /terms.html)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+  # Block access to internal directories
+  RewriteRule "^(HSP CRM|api|css|dist|node_modules|playwright-report|public|scripts|src|test-results|tests)(/|$)" - [F,L]
+</IfModule>
+
+<IfModule mod_negotiation.c>
+  Options -MultiViews
+</IfModule>
+
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
