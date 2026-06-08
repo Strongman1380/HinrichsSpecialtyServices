@@ -22,4 +22,4 @@ Disallow: /api/
 Disallow: /node_modules/
 
 # Sitemap
-Sitemap: https://hinrichs-specialty-services.vercel.app/sitemap.xml
+Sitemap: https://www.hinrichsspecialtyservices.com/sitemap.xml

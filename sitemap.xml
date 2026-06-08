@@ -6,7 +6,7 @@
 
     <!-- Homepage — Technology Consultation & Digital Solutions | Geneva, NE -->
     <url>
-        <loc>https://hinrichs-specialty-services.vercel.app/</loc>
+        <loc>https://www.hinrichsspecialtyservices.com/</loc>
         <lastmod>2026-03-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
@@ -14,7 +14,7 @@
 
     <!-- Services & Pricing — Website Design, SEO, AI Automation Nebraska -->
     <url>
-        <loc>https://hinrichs-specialty-services.vercel.app/digital-solutions.html</loc>
+        <loc>https://www.hinrichsspecialtyservices.com/digital-solutions.html</loc>
         <lastmod>2026-03-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.95</priority>
@@ -22,7 +22,7 @@
 
     <!-- Our Story — About Brandon Hinrichs, Technology Consultant Nebraska -->
     <url>
-        <loc>https://hinrichs-specialty-services.vercel.app/our-story.html</loc>
+        <loc>https://www.hinrichsspecialtyservices.com/our-story.html</loc>
         <lastmod>2026-03-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.85</priority>
@@ -30,7 +30,7 @@
 
     <!-- Contact — Hire a Technology Consultant in Geneva, Nebraska -->
     <url>
-        <loc>https://hinrichs-specialty-services.vercel.app/contact.html</loc>
+        <loc>https://www.hinrichsspecialtyservices.com/contact.html</loc>
         <lastmod>2026-03-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.85</priority>
@@ -38,7 +38,7 @@
 
     <!-- Resource Hub — Digital Solutions Insights & Guides -->
     <url>
-        <loc>https://hinrichs-specialty-services.vercel.app/blog.html</loc>
+        <loc>https://www.hinrichsspecialtyservices.com/blog.html</loc>
         <lastmod>2026-03-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.75</priority>
@@ -46,15 +46,23 @@
 
     <!-- Membership — Community Plans -->
     <url>
-        <loc>https://hinrichs-specialty-services.vercel.app/membership.html</loc>
+        <loc>https://www.hinrichsspecialtyservices.com/membership.html</loc>
         <lastmod>2026-03-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.65</priority>
     </url>
 
+    <!-- Creative Services — AI Art &amp; Digital Prints -->
+    <url>
+        <loc>https://www.hinrichsspecialtyservices.com/ai-art.html</loc>
+        <lastmod>2026-04-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
     <!-- Privacy Policy -->
     <url>
-        <loc>https://hinrichs-specialty-services.vercel.app/privacy.html</loc>
+        <loc>https://www.hinrichsspecialtyservices.com/privacy.html</loc>
         <lastmod>2026-05-20</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.30</priority>
@@ -62,7 +70,7 @@
 
     <!-- Data Deletion Policy -->
     <url>
-        <loc>https://hinrichs-specialty-services.vercel.app/data-deletion.html</loc>
+        <loc>https://www.hinrichsspecialtyservices.com/data-deletion.html</loc>
         <lastmod>2026-05-20</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.30</priority>
