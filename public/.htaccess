@@ -30,6 +30,11 @@ RewriteEngine On
 </IfModule>
 
 <IfModule mod_headers.c>
+  # Images are already optimized during the build. Preserve their checked bytes.
+  <FilesMatch "\.(png|jpe?g|webp|avif)$">
+    Header always set Cache-Control "public, max-age=3600, no-transform"
+  </FilesMatch>
+
   # Crawlers must be able to read noindex on CRM routes, including SPA deep links.
   Header always set X-Robots-Tag "noindex, nofollow" "expr=%{REQUEST_URI} =~ m#^/crm(?:/|$)#"
 
