@@ -2587,6 +2587,7 @@ body .nav-logo-tagline { align-self: start; color: #9db5d2; }
   @keyframes hsst-enter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 }
 @media (max-width: 899px) {
+  body .nav-container { height: auto; min-height: 72px; padding: 12px 20px; gap: 12px; }
   body .nav-logo-link { grid-template-columns: 48px auto; grid-template-rows: auto; }
   body .nav-logo-abbr { align-self: center; } body .nav-logo-tagline { display: none; }
   .workflow-step { grid-template-columns: 1fr; gap: 12px; min-height: 0; }
@@ -2619,7 +2620,7 @@ body .workflow-step { grid-template-columns: 100px minmax(0, 1fr); }
 .portfolio-shell { width: min(1200px, calc(100% - 80px)); margin-inline: auto; }
 .portfolio-intro { padding-top: 152px; padding-bottom: 64px; }
 .portfolio-kicker { color: #f7ad69; font-size: .75rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 24px; }
-.portfolio-intro h1 { font-size: clamp(2.4rem, 5.5vw, 5rem); line-height: 1.08; letter-spacing: -.045em; font-weight: 600; margin: 0 0 32px; }
+.portfolio-intro h1 { font-size: clamp(2.4rem, 5.5vw, 5rem); line-height: 1.08; letter-spacing: -.045em; font-weight: 600; margin: 0 0 32px; overflow-wrap: anywhere; }
 .portfolio-intro h1 span { display: block; color: #9fc5ff; }
 .portfolio-intro-bottom { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
 .portfolio-intro-bottom > p { max-width: 58ch; color: #b5c5d9; line-height: 1.8; margin: 0; }
@@ -2641,7 +2642,7 @@ body .workflow-step { grid-template-columns: 100px minmax(0, 1fr); }
 .portfolio-project-link:hover { color: #9fc5ff; }
 .portfolio-project-link span { color: #f7ad69; }
 .portfolio-closing { border-top: 1px solid #324765; padding-block: 64px 80px; margin-top: 72px; }
-.portfolio-closing h2, .portfolio-teaser h2 { font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -.035em; line-height: 1.15; margin: 0 0 20px; }
+.portfolio-closing h2, .portfolio-teaser h2 { font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -.035em; line-height: 1.15; margin: 0 0 20px; overflow-wrap: anywhere; }
 .portfolio-closing > p:not(.portfolio-kicker), .portfolio-teaser p:not(.portfolio-kicker) { color: #b5c5d9; line-height: 1.8; margin-bottom: 28px; }
 .portfolio-teaser { padding-block: 72px; border-top: 1px solid #324765; }
 .portfolio-teaser-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px; align-items: center; }
