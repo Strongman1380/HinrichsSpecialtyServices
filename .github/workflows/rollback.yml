@@ -23,7 +23,7 @@ jobs:
       HOSTINGER_FTP_CONNECT_IP: ${{ secrets.HOSTINGER_FTP_CONNECT_IP }}
       HOSTINGER_FTP_USER: ${{ secrets.HOSTINGER_FTP_USER }}
       HOSTINGER_FTP_PASSWORD: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
-      HSST_BACKUP_DIR: ${{ runner.temp }}/before-rollback
+      HSST_BACKUP_DIR: /tmp/hsst-before-rollback
       HSST_BACKUP_KEY: ${{ secrets.HSST_BACKUP_KEY }}
     steps:
       - uses: actions/checkout@v4
