@@ -2665,6 +2665,12 @@ body .workflow-step { grid-template-columns: 100px minmax(0, 1fr); }
   .portfolio-intro-bottom { align-items: flex-start; flex-direction: column; gap: 24px; }
 }
 @media (max-width: 700px) {
+  body main > .marcelo-frame { margin-inline: 12px; padding-inline: 12px; }
+  body .contact-form-section .container, body .newsletter-section .container { padding-inline: 0; }
+  body .form-container, body .newsletter-content, body .newsletter-form-wrapper, body .newsletter-form { padding: 16px; min-width: 0; }
+  body .contact-form, body .form-submit { width: 100%; min-width: 0; }
+  body .form-submit { flex-wrap: wrap; }
+  body .btn { padding-inline: 20px; }
   .portfolio-shell { width: calc(100% - 40px); }
   .portfolio-intro { padding-top: 120px; padding-bottom: 40px; }
   .portfolio-intro h1 span { display: inline; }
