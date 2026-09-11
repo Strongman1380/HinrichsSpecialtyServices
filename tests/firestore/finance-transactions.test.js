@@ -1,0 +1,102 @@
+import { createRequire } from 'node:module';
+import { beforeAll, afterAll, describe, it, expect } from 'vitest';
+const require = createRequire(import.meta.url);
+const admin = require('../../HSP CRM/functions/node_modules/firebase-admin');
+const { execute: finance } = require('../../HSP CRM/functions/handlers/finance');
+const { execute: operations } = require('../../HSP CRM/functions/handlers/operations');
+const { importLegacy } = require('../../scripts/finance-maintenance.cjs');
+let db;
+const user = { uid: 'test-admin' };
+const request = (action, data, rest = {}) => ({ action, data, requestId: crypto.randomUUID(), ...rest });
+const invoiceData = contactId => ({ contactId, clientName: 'Test Client', clientEmail: 'client@example.test', issueDate: '2026-09-01', dueDate: '2026-09-15', items: [{ description: 'Monthly care', qty: 1, rate: 150 }], status: 'draft' });
+const paymentData = (contactId, invoiceId, amount) => ({ contactId, invoiceId, amount, paymentDate: '2026-09-07', method: 'check', status: 'received' });
+beforeAll(() => {
+  if (!process.env.FIRESTORE_EMULATOR_HOST?.startsWith('127.0.0.1:')) throw new Error('Local emulator required. Never run against production.');
+  const app = admin.initializeApp({ projectId: 'demo-hsst-finance-test' }, 'finance-tests');
+  db = app.firestore();
+});
+afterAll(async () => { await db?.terminate(); });
+describe('real Firestore financial transactions', () => {
+  it('keeps imported adjustments locked until a deliberate reconciliation', async () => {
+    const contactId = `locked-${crypto.randomUUID()}`;
+    await db.collection('contacts').doc(contactId).set({ firstName: 'Locked' });
+    const invoice = await finance(db, user, request('invoice.save', { ...invoiceData(contactId), correctedAmountPaid: 150, correctionReason: 'Existing verified receipt' }));
+    const record = { contactId, contactName: 'Locked', sourceId: `${contactId}/receipt`, data: paymentData(contactId, invoice.id, 150) };
+    await importLegacy(db, record);
+    const current = (await db.collection('invoices').doc(invoice.id).get()).data();
+    await expect(finance(db, user, request('invoice.save', invoiceData(contactId), { id: invoice.id, expectedVersion: current.version }))).rejects.toThrow('reconciliation');
+    const payment = (await db.collection('payments').where('legacySourceId', '==', record.sourceId).get()).docs[0];
+    await expect(finance(db, user, request('payment.save', { ...payment.data(), notes: 'Ordinary edit' }, { id: payment.id, expectedVersion: 0 }))).rejects.toThrow('Reconcile');
+    await finance(db, user, request('invoice.save', { ...invoiceData(contactId), correctedAmountPaid: 150, correctionReason: 'Imported receipt is the same original payment' }, { id: invoice.id, expectedVersion: current.version }));
+    expect((await db.collection('invoices').doc(invoice.id).get()).data()).toMatchObject({ amountPaid: 150, creditAmount: 0, adjustmentCents: 0, reconciliationRequired: false });
+  });
+  it('requires restore before republishing an archived survey', async () => {
+    const data = { title: 'Survey lifecycle', active: true, questions: [{ id: 'name', label: 'Name', type: 'text' }] };
+    const saved = await operations(db, user, request('save', data, { collection: 'surveys' }));
+    const archived = await operations(db, user, request('archive', {}, { collection: 'surveys', id: saved.id, expectedVersion: saved.version }));
+    await expect(operations(db, user, request('save', data, { collection: 'surveys', id: saved.id, expectedVersion: archived.version }))).rejects.toThrow('Restore');
+    const restored = await operations(db, user, request('archive', { archived: false }, { collection: 'surveys', id: saved.id, expectedVersion: archived.version }));
+    expect((await db.collection('surveys').doc(saved.id).get()).data().active).toBe(false);
+    await operations(db, user, request('save', data, { collection: 'surveys', id: saved.id, expectedVersion: restored.version }));
+    expect((await db.collection('surveys').doc(saved.id).get()).data().active).toBe(true);
+  });
+  it('imports a legacy payment exactly once across repeated and concurrent runs', async () => {
+    const contactId = `migration-${crypto.randomUUID()}`;
+    await db.collection('contacts').doc(contactId).set({ firstName: 'Migration' });
+    const invoice = await finance(db, user, request('invoice.save', invoiceData(contactId)));
+    const record = { contactId, contactName: 'Migration', sourceId: `${contactId}/payment`, data: paymentData(contactId, invoice.id, 100) };
+    const result = await Promise.all([importLegacy(db, record), importLegacy(db, record)]);
+    expect(result.filter(Boolean)).toHaveLength(1);
+    expect(await importLegacy(db, record)).toBe(false);
+    const payments = await db.collection('payments').where('legacySourceId', '==', record.sourceId).get();
+    expect(payments.size).toBe(1);
+    expect(payments.docs[0].data().amount).toBe(100);
+    expect((await db.collection('invoices').doc(invoice.id).get()).data()).toMatchObject({ accountingVersion: 1, reconciliationRequired: true });
+    await expect(importLegacy(db, { ...record, data: { ...record.data, amount: 90 } })).rejects.toThrow('differs');
+  });
+  it('preserves overpayments, prevents stale saves, and archives without erasing debt', async () => {
+    const client = `client-${crypto.randomUUID()}`;
+    await db.collection('contacts').doc(client).set({ firstName: 'Test', status: 'client' });
+    const inv = await finance(db, user, request('invoice.save', invoiceData(client)));
+    const a = await finance(db, user, request('payment.save', paymentData(client, inv.id, 100)));
+    const b = await finance(db, user, request('payment.save', paymentData(client, inv.id, 100)));
+    expect((await db.collection('invoices').doc(inv.id).get()).data()).toMatchObject({ amountPaid: 200, creditAmount: 50, balanceDue: 0 });
+    await expect(finance(db, user, request('invoice.save', invoiceData(client), { id: inv.id, expectedVersion: inv.version }))).rejects.toThrow('changed');
+    await finance(db, user, request('payment.save', { ...paymentData(client, inv.id, 100), status: 'reversed' }, { id: a.id, expectedVersion: a.version }));
+    expect((await db.collection('invoices').doc(inv.id).get()).data()).toMatchObject({ amountPaid: 100, balanceDue: 50, creditAmount: 0 });
+    await finance(db, user, request('payment.archive', {}, { id: b.id, expectedVersion: b.version }));
+    expect((await db.collection('invoices').doc(inv.id).get()).data().amountPaid).toBe(100);
+    const current = (await db.collection('invoices').doc(inv.id).get()).data();
+    await finance(db, user, request('invoice.archive', {}, { id: inv.id, expectedVersion: current.version }));
+    expect((await db.collection('invoices').doc(inv.id).get()).data()).toMatchObject({ balanceDue: 50 });
+    expect((await db.collection('payments').doc(b.id).get()).data().invoiceId).toBe(inv.id);
+  });
+  it('serializes numbering and returns the same receipt on repeat', async () => {
+    const client = `client-${crypto.randomUUID()}`;
+    await db.collection('contacts').doc(client).set({ firstName: 'Test' });
+    const commands = Array.from({ length: 3 }, () => request('invoice.save', invoiceData(client)));
+    const results = await Promise.all(commands.map(body => finance(db, user, body)));
+    expect(new Set(results.map(r => r.invoiceNumber)).size).toBe(3);
+    expect(await finance(db, user, commands[0])).toEqual(results[0]);
+  });
+  it('requires explicit reconciliation for ambiguous legacy balances', async () => {
+    const client = `client-${crypto.randomUUID()}`, id = `legacy-${crypto.randomUUID()}`;
+    await db.collection('contacts').doc(client).set({ firstName: 'Test' });
+    await db.collection('invoices').doc(id).set({ ...invoiceData(client), total: 150, amountPaid: 150, status: 'paid', invoiceNumber: id });
+    await expect(finance(db, user, request('invoice.save', invoiceData(client), { id, expectedVersion: 0 }))).rejects.toThrow('reconciliation');
+    await finance(db, user, request('invoice.save', { ...invoiceData(client), correctedAmountPaid: 150, correctionReason: 'Verified against existing receipt' }, { id, expectedVersion: 0 }));
+    expect((await db.collection('invoices').doc(id).get()).data()).toMatchObject({ adjustmentCents: 15000, paymentStatus: 'paid' });
+  });
+  it('serializes included-hour capacity and keeps archived time counted', async () => {
+    const contactId = `client-${crypto.randomUUID()}`;
+    await db.collection('contacts').doc(contactId).set({ firstName: 'Test' });
+    await operations(db, user, request('save', { contactId, startDate: '2026-01-31' }, { collection: 'servicePlans' }));
+    const time = { contactId, workDate: '2026-02-28', minutes: 200, scope: 'Website updates', billing: 'included' };
+    const results = await Promise.allSettled([1, 2].map(() => operations(db, user, request('save', time, { collection: 'timeEntries' }))));
+    expect(results.filter(r => r.status === 'fulfilled')).toHaveLength(1);
+    expect(results.filter(r => r.status === 'rejected')).toHaveLength(1);
+    const saved = results.find(r => r.status === 'fulfilled').value;
+    await operations(db, user, request('archive', {}, { collection: 'timeEntries', id: saved.id, expectedVersion: saved.version }));
+    await expect(operations(db, user, request('save', time, { collection: 'timeEntries' }))).rejects.toThrow('five included hours');
+  });
+});

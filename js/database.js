@@ -1,6 +1,9 @@
 // Firebase Database Service
 // Handles all database operations using Firestore
 
+// CRM API endpoint (overridable via window.HSST_ENV.CRM_API_BASE_URL)
+const CRM_API_BASE_URL = ((window.HSST_ENV && window.HSST_ENV.CRM_API_BASE_URL) || 'https://hsp-crm.web.app').replace(/\/$/, '');
+
 // Collection references - matches your existing form submissions
 const collections = {
     contacts: 'contact_submissions',
@@ -185,6 +188,82 @@ const Database = {
             console.error('Error saving referral intake:', error);
             return { success: false, error: error.message };
         }
+    },
+
+    // Submit lead data to the HSP CRM API and record sync status in Firestore
+    async submitLeadToCRM(data, collectionName, docId) {
+        this.pendingLeadRequests ||= new Map();
+        const payload = {
+            serviceRange: data.serviceRange || data.budget || '',
+            timeline: data.timeline || '',
+            privacyConsent: data.privacyConsent === true,
+            newsletterConsent: data.newsletterConsent === true,
+            firstName: data.firstName || 'Website',
+            lastName: data.lastName || '',
+            email: data.email || '',
+            phone: data.phone || '',
+            interest: data.interest || 'General Inquiry',
+            message: data.message || '',
+            metadata: {
+                source: data.source || 'website',
+                page: (typeof window !== 'undefined' && window.location.pathname) || '',
+                company: data.organization || '',
+                ...data.metadata
+            },
+            website: data.website || ''
+        };
+
+        const fingerprint = JSON.stringify(payload);
+        const digest = [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(fingerprint)))].map(byte => byte.toString(16).padStart(2, '0')).join('');
+        const storageKey = `hsst:lead:${digest}`;
+        let storedId;
+        try { storedId = sessionStorage.getItem(storageKey); } catch { /* in-memory retry still works */ }
+        payload.requestId = this.pendingLeadRequests.get(fingerprint) || storedId || crypto.randomUUID();
+        try { sessionStorage.setItem(storageKey, payload.requestId); } catch { /* in-memory retry still works */ }
+        this.pendingLeadRequests.set(fingerprint, payload.requestId);
+        try {
+            const response = await fetch(`${CRM_API_BASE_URL}/api/create-lead`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+                signal: AbortSignal.timeout(20000)
+            });
+
+            if (!response.ok) {
+                const errorBody = await response.json().catch(() => ({}));
+                throw new Error(errorBody.error || `CRM responded with ${response.status}`);
+            }
+
+            const result = await response.json();
+            this.pendingLeadRequests.delete(fingerprint);
+            try { sessionStorage.removeItem(storageKey); } catch { /* a replay remains safe */ }
+
+            if (collectionName && docId) {
+                await getFirebaseDB().collection(collectionName).doc(docId).update({
+                    crmSynced: true,
+                    crmSyncedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }).catch(() => {});
+            }
+
+            return { success: true, crmId: result.id };
+        } catch (error) {
+            console.error('[Database.submitLeadToCRM] CRM sync error:', error);
+
+            if (collectionName && docId) {
+                await getFirebaseDB().collection(collectionName).doc(docId).update({
+                    crmSynced: false,
+                    crmError: error.message,
+                    crmSyncedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }).catch(() => {});
+            }
+
+            return { success: false, error: error.message };
+        }
+    },
+
+    // Re-sync a previously failed lead to the CRM
+    async reSyncToCRM(collectionName, docId, data) {
+        return this.submitLeadToCRM(data, collectionName, docId);
     },
 
     // Get submissions (for admin page)

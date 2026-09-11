@@ -1,4 +1,7 @@
 {
+  "firestore": {
+    "rules": "HSP CRM/firestore.rules"
+  },
   "hosting": {
     "site": "hinrichsspecialtyservices",
     "public": "dist",

@@ -103,14 +103,14 @@ export function addArticleSchema(article) {
     image: article.image,
     author: {
       '@type': 'Person',
-      name: article.author || 'Aspire Impact Network'
+      name: article.author || 'Hinrichs Specialty Services and Technology'
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Aspire Impact Network',
+      name: 'Hinrichs Specialty Services and Technology',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://hinrichs-specialty-services.vercel.app/images/logo.png'
+        url: 'https://www.hinrichsspecialtyservices.com/images/logo.png'
       }
     },
     datePublished: article.publishedDate,
@@ -126,7 +126,7 @@ export function addServiceSchema(service) {
     description: service.description,
     provider: {
       '@type': 'Organization',
-      name: 'Aspire Impact Network'
+      name: 'Hinrichs Specialty Services and Technology'
     },
     areaServed: {
       '@type': 'Place',
@@ -143,10 +143,10 @@ export function addServiceSchema(service) {
 // Add LocalBusiness schema
 export function addLocalBusinessSchema() {
   addStructuredData('LocalBusiness', {
-    name: 'Aspire Impact Network',
-    image: 'https://hinrichs-specialty-services.vercel.app/images/hero-image.png',
-    '@id': 'https://hinrichs-specialty-services.vercel.app',
-    url: 'https://hinrichs-specialty-services.vercel.app',
+    name: 'Hinrichs Specialty Services and Technology',
+    image: 'https://www.hinrichsspecialtyservices.com/images/hero-image.png',
+    '@id': 'https://www.hinrichsspecialtyservices.com',
+    url: 'https://www.hinrichsspecialtyservices.com',
     telephone: '+1-402-759-2210',
     address: {
       '@type': 'PostalAddress',
@@ -212,7 +212,7 @@ export function generateSitemap() {
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.map(page => `  <url>
-    <loc>https://hinrichs-specialty-services.vercel.app${page.url}</loc>
+    <loc>https://www.hinrichsspecialtyservices.com${page.url}</loc>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
     <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>

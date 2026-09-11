@@ -1,0 +1,16 @@
+{
+  "name": "hsp-crm-functions",
+  "private": true,
+  "engines": {
+    "node": "22"
+  },
+  "main": "index.js",
+  "scripts": {
+    "lint": "node --check index.js",
+    "build": "node --check index.js && node --check handlers/chat.js && node --check handlers/faq-fallback.js && node --check handlers/submit-survey.js && node --check handlers/survey-notification.js && node --check handlers/send-invoice.js && node --check handlers/send-campaign.js && node --check handlers/ai-survey.js && node --check handlers/create-lead.js && node --check handlers/request-limits.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.10.0",
+    "firebase-functions": "^6.4.0"
+  }
+}

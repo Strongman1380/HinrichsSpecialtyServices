@@ -7,8 +7,9 @@ Allow: /our-story.html
 Allow: /digital-solutions.html
 Allow: /contact.html
 Allow: /blog.html
-Allow: /membership.html
-Allow: /success.html
+Allow: /virtual-assistance.html
+Allow: /privacy.html
+Allow: /terms.html
 
 # Static assets
 Allow: /css/
@@ -16,9 +17,15 @@ Allow: /js/
 Allow: /images/
 Allow: /favicon.svg
 
-# Admin / internal — block from indexing
+# CRM must be crawlable so its noindex meta/header can be read.
+Allow: /crm/
+
+# Retired / internal paths
 Disallow: /submissions.html
 Disallow: /api/
+Disallow: /enrollment.html
+Disallow: /dv-weekly-payment.html
+Disallow: /referral-intake.html
 Disallow: /node_modules/
 
 # Sitemap

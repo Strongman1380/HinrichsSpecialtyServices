@@ -74,8 +74,12 @@ function saveEnrollmentData(formData) {
 
 // Handle form submission
 document.addEventListener('DOMContentLoaded', async function() {
-    // Initialize Supabase
-    await initializeSupabase();
+    // Initialize Firebase/Firestore for enrollment storage and CRM sync.
+    if (typeof window.initializeFirebase === 'function') {
+        window.initializeFirebase();
+    } else {
+        console.error('Firebase initialization function not found');
+    }
 
     // Update plan summary on page load
     updatePlanSummary();
@@ -107,15 +111,39 @@ document.addEventListener('DOMContentLoaded', async function() {
             // Save to Supabase database
             await sendToDatabase(enrollmentData);
 
-            // Get the payment link for this plan
+            // Get plan type and billing period
             const planKey = getPlanFromURL();
-            const paymentLink = PLAN_CONFIG[planKey].paymentLink;
+            const billingPeriod = planKey.includes('yearly') ? 'yearly' : 'monthly';
+            const planType = planKey;
+
+            // Get email and name for prefilling
+            const email = enrollmentData.email;
+            const name = enrollmentData.fullName;
 
             // Update loading state
             submitBtn.textContent = 'Redirecting to payment...';
 
-            // Redirect to Stripe payment
-            window.location.href = paymentLink;
+            // Create Stripe Checkout Session
+            const response = await fetch('/api/create-checkout-session', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    planType: planType,
+                    billingPeriod: billingPeriod,
+                    email: email,
+                    name: name
+                })
+            });
+
+            const data = await response.json();
+            if (data.url) {
+                // Redirect to Stripe checkout page
+                window.location.href = data.url;
+            } else {
+                throw new Error(data.error || 'Failed to create checkout session');
+            }
 
         } catch (error) {
             console.error('Error processing enrollment:', error);
@@ -126,7 +154,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
 });
 
-// Function to send data to Supabase
+// Function to send data to Firestore and sync the CRM
 async function sendToDatabase(enrollmentData) {
     try {
         // Parse name into first and last
@@ -145,12 +173,24 @@ async function sendToDatabase(enrollmentData) {
             billingFrequency: enrollmentData.plan.includes('yearly') ? 'yearly' : 'monthly'
         };
 
-        // Save to Supabase using existing function
+        // Save to database using existing function
         const result = await Database.saveMembershipEnrollment(membershipData);
 
         if (!result.success) {
             throw new Error(result.error);
         }
+
+        // Sync to CRM (non-blocking — payment redirect must not be delayed)
+        Database.submitLeadToCRM({
+            firstName: membershipData.firstName,
+            lastName: membershipData.lastName,
+            email: membershipData.email,
+            phone: membershipData.phone,
+            organization: membershipData.organization,
+            interest: `Membership: ${membershipData.membershipType}`,
+            message: `Billing: ${membershipData.billingFrequency}. Referral: ${enrollmentData.referral || 'N/A'}. Goals: ${enrollmentData.goals || 'N/A'}`,
+            source: 'enrollment-page'
+        }, 'membership_enrollments', result.id).catch(() => {});
 
         return result;
     } catch (error) {

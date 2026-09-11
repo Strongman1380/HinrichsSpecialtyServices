@@ -1,6 +1,7 @@
-// Aspire Impact Network - Main JavaScript File
+// HSST public website behavior
 
 document.addEventListener('DOMContentLoaded', async function() {
+    initBrandNavigation();
     // Initialize Supabase
     await initializeFirebase();
 
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Newsletter Signup
     initNewsletterSignup();
 
-    // Smooth Scrolling for Anchor Links
+    // Smooth Scrolling for Anchor Links (now powered by Lenis when available)
     initSmoothScrolling();
 
     // Load More Articles
@@ -48,7 +49,27 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Startup Inquiry Modal
     initStartupInquiryModal();
+
 });
+
+function initBrandNavigation() {
+    document.querySelectorAll('.nav-logo-link').forEach(link => {
+        if (!link.querySelector('.nav-brand-image')) {
+            const image = document.createElement('img');
+            image.src = 'images/hinrichs-specialty-services-logo.png';
+            image.alt = 'Hinrichs Specialty Services and Technology';
+            image.width = 58;
+            image.height = 44;
+            image.className = 'nav-brand-image';
+            link.prepend(image);
+        }
+    });
+
+    document.querySelectorAll('a[href="/crm/login"]').forEach(link => {
+        link.removeAttribute('target');
+        link.removeAttribute('rel');
+    });
+}
 
 // Scroll Reveal Animations
 function initScrollReveal() {
@@ -212,6 +233,11 @@ function initBlogSearch() {
 }
 
 // Contact Form Handling
+// Delegates to Database.submitLeadToCRM (defined in database.js)
+async function submitLeadToCRM(data) {
+    return Database.submitLeadToCRM(data);
+}
+
 function initContactForm() {
     const contactForm = document.getElementById('contactForm');
 
@@ -231,23 +257,20 @@ function initContactForm() {
             submitButton.disabled = true;
 
             try {
-                // Submit to Web3Forms
-                const formData = new FormData(contactForm);
-                const fullName = `${contactForm.firstName.value || ''} ${contactForm.lastName.value || ''}`.trim();
-                formData.set('name', fullName || 'Website Visitor');
-
-                const response = await fetch(contactForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        Accept: 'application/json'
-                    }
+                const result = await submitLeadToCRM({
+                    firstName: contactForm.firstName.value,
+                    lastName: contactForm.lastName.value,
+                    email: contactForm.email.value,
+                    phone: contactForm.phone.value,
+                    organization: contactForm.organization.value,
+                    interest: contactForm.interest.value || 'Contact Form',
+                    message: contactForm.message.value,
+                    website: contactForm.website ? contactForm.website.value : '',
+                    source: 'contact-form'
                 });
 
-                const result = await response.json();
-
-                if (response.ok && result.success) {
-                    showMessage('Thank you for your message! We\'ll respond within 24 hours.', 'success');
+                if (result.success) {
+                    showMessage('Thank you for your message. We\'ll respond as soon as possible.', 'success');
 
                     // Reset form
                     contactForm.reset();
@@ -263,7 +286,7 @@ function initContactForm() {
                         window.location.href = 'success.html';
                     }, 1500);
                 } else {
-                    throw new Error(result.message || 'Submission failed');
+                    throw new Error(result.error || 'Submission failed');
                 }
             } catch (error) {
                 console.error('Error submitting form:', error);
@@ -299,12 +322,18 @@ function initNewsletterSignup() {
             submitButton.disabled = true;
 
             try {
-                // Save to Supabase
-                const result = await Database.saveNewsletterSubscription(emailInput.value);
+                const result = await Database.submitLeadToCRM({
+                    firstName: 'Newsletter',
+                    email: emailInput.value,
+                    interest: 'Newsletter Subscription',
+                    message: 'Requested website newsletter updates.',
+                    source: 'newsletter-form'
+                });
 
                 if (result.success) {
                     showMessage('Thank you for subscribing! Check your email for confirmation.', 'success');
                     form.reset();
+
                 } else {
                     throw new Error(result.error);
                 }
@@ -597,6 +626,108 @@ function addErrorStyles() {
         `;
         document.head.appendChild(style);
     }
+}
+
+// ── 3D Card Tilt Effect ──
+// Adds perspective-based 3D tilt to cards on mouse movement
+function init3DCardTilt() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if ('ontouchstart' in window) return; // Skip on mobile
+
+    var tiltCards = document.querySelectorAll('.panel, .service-card, .action-card, .method-card');
+
+    tiltCards.forEach(function(card) {
+        card.addEventListener('mousemove', function(e) {
+            var rect = card.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+            var centerX = rect.width / 2;
+            var centerY = rect.height / 2;
+
+            var rotateX = ((y - centerY) / centerY) * -6;
+            var rotateY = ((x - centerX) / centerX) * 6;
+
+            card.style.transform = 'perspective(800px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-4px) scale(1.02)';
+            card.style.transition = 'transform 0.1s ease';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            card.style.transform = '';
+            card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+        });
+    });
+}
+
+// ── Magnetic Button Effect ──
+// Buttons slightly follow the cursor on hover for a magnetic feel
+function initMagneticButtons() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if ('ontouchstart' in window) return;
+
+    var buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .btn-hero-primary');
+
+    buttons.forEach(function(btn) {
+        btn.addEventListener('mousemove', function(e) {
+            var rect = btn.getBoundingClientRect();
+            var x = e.clientX - rect.left - rect.width / 2;
+            var y = e.clientY - rect.top - rect.height / 2;
+
+            btn.style.transform = 'translate(' + (x * 0.15) + 'px, ' + (y * 0.15) + 'px) scale(1.03)';
+            btn.style.transition = 'transform 0.15s ease';
+        });
+
+        btn.addEventListener('mouseleave', function() {
+            btn.style.transform = '';
+            btn.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        });
+    });
+}
+
+// ── Animated Counters ──
+// Counts up numbers when they scroll into view (for stats sections)
+function initAnimatedCounters() {
+    var statNumbers = document.querySelectorAll('.stat-number, .impact-stat-number');
+    if (statNumbers.length === 0) return;
+
+    var observed = new Set();
+
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting && !observed.has(entry.target)) {
+                observed.add(entry.target);
+                animateNumber(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    statNumbers.forEach(function(el) { observer.observe(el); });
+}
+
+function animateNumber(el) {
+    var text = el.textContent.trim();
+    var match = text.match(/^([\d,]+)(\+?%?)$/);
+    if (!match) return;
+
+    var target = parseInt(match[1].replace(/,/g, ''), 10);
+    var suffix = match[2] || '';
+    var duration = 1500;
+    var start = performance.now();
+
+    function tick(now) {
+        var elapsed = now - start;
+        var progress = Math.min(elapsed / duration, 1);
+        // Ease out cubic
+        var ease = 1 - Math.pow(1 - progress, 3);
+        var current = Math.round(target * ease);
+
+        el.textContent = current.toLocaleString() + suffix;
+
+        if (progress < 1) {
+            requestAnimationFrame(tick);
+        }
+    }
+
+    requestAnimationFrame(tick);
 }
 
 // Startup Inquiry Modal Initialization
@@ -954,6 +1085,17 @@ async function handleMembershipEnrollment(event) {
         if (result.success) {
             showMessage(`Thank you for joining our ${formData.membershipType} membership! We'll send you enrollment details shortly.`, 'success');
             closeModal('membershipModal');
+
+            Database.submitLeadToCRM({
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                phone: formData.phone,
+                organization: formData.organization,
+                interest: `Membership: ${formData.membershipType}`,
+                message: `Billing frequency: ${formData.billingFrequency}`,
+                source: 'membership-modal'
+            }, 'membership_enrollments', result.id).catch(() => {});
         } else {
             throw new Error(result.error);
         }
@@ -993,6 +1135,21 @@ async function handleDigitalServicesSignup(event) {
         if (result.success) {
             showMessage('Thank you for signing up for our digital services! We\'ll contact you within 24 hours to get started.', 'success');
             closeModal('digitalServicesModal');
+
+            Database.submitLeadToCRM({
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                phone: formData.phone,
+                organization: formData.organization,
+                interest: 'Digital Services',
+                message: formData.goals || '',
+                source: 'digital-services-modal',
+                metadata: {
+                    websiteUrl: formData.websiteUrl || '',
+                    businessType: formData.businessType || ''
+                }
+            }, 'digital_services_signups', result.id).catch(() => {});
         } else {
             throw new Error(result.error);
         }

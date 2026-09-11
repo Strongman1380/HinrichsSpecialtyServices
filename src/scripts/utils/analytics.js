@@ -1,6 +1,6 @@
 /**
  * Analytics and Monitoring Utilities
- * Supports Google Analytics 4, Plausible, and custom event tracking
+ * Supports Google Analytics 4 and custom event tracking.
  */
 
 // Analytics configuration
@@ -8,20 +8,12 @@ const config = {
   ga4: {
     measurementId: import.meta.env.VITE_GA_MEASUREMENT_ID || '',
     enabled: false
-  },
-  plausible: {
-    domain: 'www.hsst.com',
-    enabled: false
-  },
-  sentry: {
-    dsn: import.meta.env.VITE_SENTRY_DSN || '',
-    enabled: false
   }
 };
 
 // Initialize Google Analytics 4
 export function initGA4() {
-  if (!config.ga4.measurementId || config.ga4.enabled) return;
+  if (!/^G-[A-Z0-9]+$/.test(config.ga4.measurementId) || /X{3,}/.test(config.ga4.measurementId) || config.ga4.enabled) return;
 
   // Load gtag script
   const script = document.createElement('script');
@@ -38,7 +30,7 @@ export function initGA4() {
 
   gtag('js', new Date());
   gtag('config', config.ga4.measurementId, {
-    send_page_view: true,
+    send_page_view: false,
     anonymize_ip: true
   });
 
@@ -46,54 +38,12 @@ export function initGA4() {
   console.log('✅ Google Analytics 4 initialized');
 }
 
-// Initialize Plausible Analytics (privacy-friendly alternative)
-export function initPlausible() {
-  if (config.plausible.enabled) return;
-
-  const script = document.createElement('script');
-  script.defer = true;
-  script.setAttribute('data-domain', config.plausible.domain);
-  script.src = 'https://plausible.io/js/script.js';
-  document.head.appendChild(script);
-
-  config.plausible.enabled = true;
-  console.log('✅ Plausible Analytics initialized');
-}
-
-// Initialize Sentry for error tracking
-export function initSentry() {
-  if (!config.sentry.dsn || config.sentry.enabled) return;
-
-  import('@sentry/browser').then(Sentry => {
-    Sentry.init({
-      dsn: config.sentry.dsn,
-      environment: import.meta.env.VITE_ENV || 'production',
-      integrations: [
-        new Sentry.BrowserTracing(),
-        new Sentry.Replay()
-      ],
-      tracesSampleRate: 0.1,
-      replaysSessionSampleRate: 0.1,
-      replaysOnErrorSampleRate: 1.0
-    });
-
-    config.sentry.enabled = true;
-    console.log('✅ Sentry error tracking initialized');
-  }).catch(err => {
-    console.warn('Failed to load Sentry:', err);
-  });
-}
-
 // Track custom events
 export function trackEvent(eventName, eventParams = {}) {
+  sessionEventCount += 1;
   // Google Analytics 4
   if (config.ga4.enabled && window.gtag) {
     window.gtag('event', eventName, eventParams);
-  }
-
-  // Plausible
-  if (config.plausible.enabled && window.plausible) {
-    window.plausible(eventName, { props: eventParams });
   }
 
   // Console log in development
@@ -151,7 +101,7 @@ export function trackSearch(searchTerm, searchResults = 0) {
   });
 }
 
-// Track conversions (membership signups, enrollments)
+// Track conversions.
 export function trackConversion(conversionType, value = 0) {
   trackEvent('conversion', {
     conversion_type: conversionType,
@@ -161,10 +111,6 @@ export function trackConversion(conversionType, value = 0) {
 
 // Track errors
 export function trackError(errorMessage, errorType = 'javascript_error') {
-  if (config.sentry.enabled && window.Sentry) {
-    window.Sentry.captureException(new Error(errorMessage));
-  }
-
   trackEvent('error', {
     error_message: errorMessage,
     error_type: errorType,
@@ -174,42 +120,27 @@ export function trackError(errorMessage, errorType = 'javascript_error') {
 
 // Core Web Vitals tracking
 export function trackWebVitals() {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined' || !('PerformanceObserver' in window)) return;
 
-  // Import web-vitals library dynamically
-  import('web-vitals').then(({ onCLS, onFID, onFCP, onLCP, onTTFB }) => {
-    onCLS(metric => trackEvent('web_vitals', {
-      metric_name: 'CLS',
-      value: metric.value,
-      rating: metric.rating
-    }));
+  const observe = (type, metricName) => {
+    try {
+      const observer = new PerformanceObserver((list) => {
+        const entry = list.getEntries().at(-1);
+        if (!entry) return;
+        trackEvent('web_vitals', {
+          metric_name: metricName,
+          value: Math.round(entry.startTime || entry.duration || 0),
+        });
+        observer.disconnect();
+      });
+      observer.observe({ type, buffered: true });
+    } catch {
+      // Older browsers can safely skip unsupported performance entry types.
+    }
+  };
 
-    onFID(metric => trackEvent('web_vitals', {
-      metric_name: 'FID',
-      value: metric.value,
-      rating: metric.rating
-    }));
-
-    onFCP(metric => trackEvent('web_vitals', {
-      metric_name: 'FCP',
-      value: metric.value,
-      rating: metric.rating
-    }));
-
-    onLCP(metric => trackEvent('web_vitals', {
-      metric_name: 'LCP',
-      value: metric.value,
-      rating: metric.rating
-    }));
-
-    onTTFB(metric => trackEvent('web_vitals', {
-      metric_name: 'TTFB',
-      value: metric.value,
-      rating: metric.rating
-    }));
-  }).catch(err => {
-    console.warn('Failed to load web-vitals library:', err);
-  });
+  observe('largest-contentful-paint', 'LCP');
+  observe('first-contentful-paint', 'FCP');
 }
 
 // Auto-track all outbound links
@@ -239,6 +170,7 @@ export function autoTrackOutboundLinks() {
 // Session tracking
 let sessionStartTime = Date.now();
 let sessionEventCount = 0;
+let initialized = false;
 
 export function trackSessionMetrics() {
   const sessionDuration = (Date.now() - sessionStartTime) / 1000; // seconds
@@ -246,7 +178,7 @@ export function trackSessionMetrics() {
   trackEvent('session_metrics', {
     session_duration: Math.round(sessionDuration),
     events_count: sessionEventCount,
-    pages_viewed: sessionStorage.getItem('pages_viewed') || 1
+    pages_viewed: getPagesViewed() || 1
   });
 }
 
@@ -257,18 +189,18 @@ window.addEventListener('beforeunload', () => {
 
 // Update pages viewed
 function incrementPagesViewed() {
-  const pagesViewed = parseInt(sessionStorage.getItem('pages_viewed') || '0') + 1;
-  sessionStorage.setItem('pages_viewed', pagesViewed.toString());
+  try { sessionStorage.setItem('pages_viewed', String(getPagesViewed() + 1)); } catch { /* Storage may be disabled. */ }
+}
+
+function getPagesViewed() {
+  try { return Number(sessionStorage.getItem('pages_viewed')) || 0; } catch { return 0; }
 }
 
 // Initialize all analytics
 export function initAnalytics() {
-  // Choose your analytics provider(s)
-  // Uncomment the ones you want to use:
-
-  // initGA4(); // Google Analytics 4
-  initPlausible(); // Privacy-friendly alternative (recommended)
-  // initSentry(); // Error tracking
+  if (initialized) return;
+  initialized = true;
+  initGA4();
 
   // Track initial page view
   trackPageView();

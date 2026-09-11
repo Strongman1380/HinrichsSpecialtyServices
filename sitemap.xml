@@ -1,79 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-    <!-- Homepage — Technology Consultation & Digital Solutions | Geneva, NE -->
-    <url>
-        <loc>https://www.hinrichsspecialtyservices.com/</loc>
-        <lastmod>2026-03-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
-
-    <!-- Services & Pricing — Website Design, SEO, AI Automation Nebraska -->
-    <url>
-        <loc>https://www.hinrichsspecialtyservices.com/digital-solutions.html</loc>
-        <lastmod>2026-03-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.95</priority>
-    </url>
-
-    <!-- Our Story — About Brandon Hinrichs, Technology Consultant Nebraska -->
-    <url>
-        <loc>https://www.hinrichsspecialtyservices.com/our-story.html</loc>
-        <lastmod>2026-03-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.85</priority>
-    </url>
-
-    <!-- Contact — Hire a Technology Consultant in Geneva, Nebraska -->
-    <url>
-        <loc>https://www.hinrichsspecialtyservices.com/contact.html</loc>
-        <lastmod>2026-03-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.85</priority>
-    </url>
-
-    <!-- Resource Hub — Digital Solutions Insights & Guides -->
-    <url>
-        <loc>https://www.hinrichsspecialtyservices.com/blog.html</loc>
-        <lastmod>2026-03-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.75</priority>
-    </url>
-
-    <!-- Membership — Community Plans -->
-    <url>
-        <loc>https://www.hinrichsspecialtyservices.com/membership.html</loc>
-        <lastmod>2026-03-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.65</priority>
-    </url>
-
-    <!-- Creative Services — AI Art &amp; Digital Prints -->
-    <url>
-        <loc>https://www.hinrichsspecialtyservices.com/ai-art.html</loc>
-        <lastmod>2026-04-07</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.85</priority>
-    </url>
-
-    <!-- Privacy Policy -->
-    <url>
-        <loc>https://www.hinrichsspecialtyservices.com/privacy.html</loc>
-        <lastmod>2026-05-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.30</priority>
-    </url>
-
-    <!-- Data Deletion Policy -->
-    <url>
-        <loc>https://www.hinrichsspecialtyservices.com/data-deletion.html</loc>
-        <lastmod>2026-05-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.30</priority>
-    </url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.hinrichsspecialtyservices.com/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.hinrichsspecialtyservices.com/our-story.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.hinrichsspecialtyservices.com/digital-solutions.html</loc>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://www.hinrichsspecialtyservices.com/portfolio.html</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.hinrichsspecialtyservices.com/virtual-assistance.html</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.hinrichsspecialtyservices.com/blog.html</loc>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.hinrichsspecialtyservices.com/contact.html</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.hinrichsspecialtyservices.com/links.html</loc>
+    <priority>0.40</priority>
+  </url>
+  <url>
+    <loc>https://www.hinrichsspecialtyservices.com/terms.html</loc>
+    <priority>0.20</priority>
+  </url>
+  <url>
+    <loc>https://www.hinrichsspecialtyservices.com/privacy.html</loc>
+    <priority>0.20</priority>
+  </url>
+  <url>
+    <loc>https://www.hinrichsspecialtyservices.com/data-deletion.html</loc>
+    <priority>0.20</priority>
+  </url>
 </urlset>

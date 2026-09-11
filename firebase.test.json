@@ -1,0 +1,4 @@
+{
+  "firestore": { "rules": "HSP CRM/firestore.rules", "indexes": "HSP CRM/firestore.indexes.json" },
+  "emulators": { "auth": { "port": 9099 }, "firestore": { "port": 8080 }, "singleProjectMode": false, "ui": { "enabled": false } }
+}

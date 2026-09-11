@@ -18,14 +18,25 @@ let auth = null;
 
 function initializeFirebase() {
     try {
+        if (db) {
+            return true;
+        }
+
         // Check if Firebase is loaded
         if (typeof firebase === 'undefined') {
             console.error('Firebase SDK not loaded. Add the Firebase CDN script to your HTML.');
             return false;
         }
 
+        if (!firebaseConfig.apiKey || !firebaseConfig.projectId || !firebaseConfig.appId) {
+            console.error('Firebase configuration is incomplete. Check VITE_FIREBASE_* environment variables.');
+            return false;
+        }
+
         // Initialize Firebase app
-        app = firebase.initializeApp(firebaseConfig);
+        app = firebase.apps && firebase.apps.length
+            ? firebase.app()
+            : firebase.initializeApp(firebaseConfig);
         db = firebase.firestore();
         auth = (typeof firebase.auth === 'function') ? firebase.auth() : null;
 

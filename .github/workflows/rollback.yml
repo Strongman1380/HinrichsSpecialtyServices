@@ -1,0 +1,54 @@
+name: Restore Hostinger snapshot
+on:
+  workflow_dispatch:
+    inputs:
+      release_run_id:
+        description: Run ID containing the reviewed rollback snapshot
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: hsst-production
+  cancel-in-progress: false
+jobs:
+  rollback:
+    if: github.ref == 'refs/heads/main'
+    environment: Production
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      HOSTINGER_FTP_HOST: ${{ secrets.HOSTINGER_FTP_HOST }}
+      HOSTINGER_FTP_CONNECT_IP: ${{ secrets.HOSTINGER_FTP_CONNECT_IP }}
+      HOSTINGER_FTP_USER: ${{ secrets.HOSTINGER_FTP_USER }}
+      HOSTINGER_FTP_PASSWORD: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+      HSST_BACKUP_DIR: ${{ runner.temp }}/before-rollback
+      HSST_BACKUP_KEY: ${{ secrets.HSST_BACKUP_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: rollback-${{ inputs.release_run_id }}
+          run-id: ${{ inputs.release_run_id }}
+          github-token: ${{ github.token }}
+      - run: node scripts/backup-envelope.mjs decrypt rollback.tar.gz.enc rollback.tar.gz && mkdir restore && tar -xzf rollback.tar.gz -C restore
+      - name: Restore static files only; never weaken rules or reverse financial data
+        run: bash scripts/deploy-hostinger.sh --rollback restore
+      - if: always()
+        run: |
+          if [ -d "$HSST_BACKUP_DIR" ]; then
+            tar -czf before-rollback.tar.gz -C "$HSST_BACKUP_DIR" .
+            node scripts/backup-envelope.mjs encrypt before-rollback.tar.gz before-rollback.tar.gz.enc
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: before-rollback-${{ github.run_id }}
+          path: before-rollback.tar.gz.enc
+          retention-days: 90

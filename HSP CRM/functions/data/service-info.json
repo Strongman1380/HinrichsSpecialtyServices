@@ -1,0 +1,51 @@
+{
+  "business": {
+    "name": "Hinrichs Specialty Services and Technology",
+    "shortName": "HSST",
+    "owner": "Brandon Hinrichs",
+    "location": "Geneva, Nebraska",
+    "serviceArea": "Clients across the United States",
+    "phone": "(402) 759-2210",
+    "email": "bhinrichs1380@gmail.com"
+  },
+  "websitePlan": {
+    "name": "Website Care + Build",
+    "price": "$150 per month",
+    "term": "Month-to-month",
+    "includedHours": 5,
+    "includes": [
+      "Website design and progressive development",
+      "Hosting",
+      "Maintenance and security updates",
+      "Routine content updates",
+      "Basic SEO",
+      "Google Search Console monitoring"
+    ],
+    "rules": [
+      "There is no separate website build fee.",
+      "New websites are completed progressively through the five included hours each month.",
+      "Unused hours expire at the end of each month and do not roll over.",
+      "Unfinished approved work can continue with the next month's five-hour allocation.",
+      "Additional work is never started without client approval."
+    ]
+  },
+  "additionalWork": {
+    "range": "$30-$65 per hour",
+    "rule": "The rate depends on complexity and all overage work requires advance client approval."
+  },
+  "socialMedia": {
+    "startingPrice": "$50 per month in addition to the website plan",
+    "rule": "The final social media fee is adjusted for the number of platforms, posting frequency, content needs, and workload."
+  },
+  "virtualAssistance": {
+    "summary": "Custom virtual assistance for administration, communication, research, organization, systems, workflows, content support, and project follow-through.",
+    "pricing": "Scoped to the work requested. HSST confirms the rate before work begins."
+  },
+  "paymentMethods": ["Venmo", "Cash App", "Zelle", "check", "wire", "cash", "another agreed method"],
+  "assistantRules": [
+    "Never invent a price, discount, guarantee, delivery date, or service commitment.",
+    "Explain the five-hour monthly allocation and approval requirement whenever discussing website timing or overages.",
+    "If the answer is not in this file, offer to connect the visitor with Brandon.",
+    "Keep answers concise, practical, and friendly."
+  ]
+}

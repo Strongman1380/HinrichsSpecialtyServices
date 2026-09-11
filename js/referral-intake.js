@@ -1,10 +1,10 @@
 // Referral Intake Form Logic
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Supabase
-    if (typeof window.initializeSupabase === 'function') {
-        window.initializeSupabase();
+    // Initialize Firebase/Firestore for referral storage and CRM sync.
+    if (typeof window.initializeFirebase === 'function') {
+        window.initializeFirebase();
     } else {
-        console.error('Supabase initialization function not found');
+        console.error('Firebase initialization function not found');
     }
 
     const form = document.getElementById('referral-intake-form');
@@ -122,8 +122,33 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             if (typeof window.Database.saveReferral === 'function') {
                 const result = await window.Database.saveReferral(data);
-                
+
                 if (result.success) {
+                    // Sync to CRM (non-blocking)
+                    const nameParts = (data.youth_name || '').trim().split(' ');
+                    const crmMessage = [
+                        `Youth: ${data.youth_name || 'N/A'}, Age: ${data.youth_age || 'N/A'}, DOB: ${data.youth_dob || 'N/A'}`,
+                        `Gender: ${data.youth_gender || 'N/A'}, Crossover: ${data.crossover_status || 'N/A'}`,
+                        `Caseworker: ${data.caseworker_name || 'N/A'}`,
+                        `P.O.: ${data.probation_officer || 'N/A'} (${data.probation_district || 'N/A'})`,
+                        `Service: ${data.service_type || 'N/A'} — ${data.service_duration || 'N/A'}`
+                    ].join(' | ');
+
+                    window.Database.submitLeadToCRM({
+                        firstName: nameParts[0] || 'Youth',
+                        lastName: nameParts.slice(1).join(' ') || '',
+                        email: data.parent_email || '',
+                        phone: data.parent_phone || '',
+                        interest: `Probation Referral: ${data.service_type || 'Non-Treatment'}`,
+                        message: crmMessage,
+                        source: 'referral-intake-form',
+                        metadata: {
+                            caseworker: data.caseworker_name || '',
+                            county: data.county || '',
+                            cspIdentified: data.csp_identified ? 'Yes' : 'No'
+                        }
+                    }, 'referrals', result.id).catch(() => {});
+
                     showSuccess();
                 } else {
                     throw new Error(result.error || 'Submission failed');

@@ -1,0 +1,129 @@
+name: Validate and release to Hostinger
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hsst-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+  cancel-in-progress: false
+
+jobs:
+  checks:
+    name: Release acceptance
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      VITE_GA_MEASUREMENT_ID: G-SZ7VX12KWH
+      VITE_CRM_API_BASE_URL: https://hsp-crm.web.app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            HSP CRM/package-lock.json
+            HSP CRM/functions/package-lock.json
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - name: Install locked dependencies
+        run: npm ci && npm --prefix 'HSP CRM' ci && npm --prefix 'HSP CRM/functions' ci
+      - run: npx playwright install --with-deps chromium webkit
+      - name: Unit, release failure, and financial model tests
+        run: npx vitest run
+      - name: Firestore authorization and transaction regressions
+        run: npm run test:rules
+      - name: Authenticated CRM workflows (isolated emulators only)
+        run: npm run test:workflows
+      - name: Build the production artifact once
+        run: npm run build:hostinger && node scripts/check-release.mjs && node scripts/release-artifact.mjs
+      - name: Public, mobile, WebKit, and CRM login acceptance
+        env:
+          HSST_SKIP_BUILD: 'true'
+        run: npx playwright test tests/e2e/portfolio.spec.js tests/e2e/site-upgrade.spec.js tests/e2e/contact-form.spec.js tests/e2e/crm.spec.js tests/e2e/release-responsive.spec.js --project=chromium --project=webkit --project='Mobile Chrome' --project='Mobile Safari' --workers=2
+      - name: Preserve the exact checked artifact
+        run: tar -czf release.tar.gz dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ github.sha }}
+          path: release.tar.gz
+          retention-days: 90
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: acceptance-${{ github.run_id }}
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 14
+
+  release:
+    name: Verified production release
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment:
+      name: Production
+      url: https://www.hinrichsspecialtyservices.com
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      HOSTINGER_FTP_HOST: ${{ secrets.HOSTINGER_FTP_HOST }}
+      HOSTINGER_FTP_CONNECT_IP: ${{ secrets.HOSTINGER_FTP_CONNECT_IP }}
+      HOSTINGER_FTP_USER: ${{ secrets.HOSTINGER_FTP_USER }}
+      HOSTINGER_FTP_PASSWORD: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+      HSST_BACKUP_DIR: ${{ runner.temp }}/hsst-before-release
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci && npm --prefix 'HSP CRM/functions' ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-${{ github.sha }}
+      - run: tar -xzf release.tar.gz
+      - name: Authenticate Firebase without a saved service-account key
+        uses: google-github-actions/auth@v3
+        with:
+          project_id: hsp-crm
+          workload_identity_provider: projects/264528879401/locations/global/workloadIdentityPools/hsst-github/providers/github
+          service_account: hsst-release@hsp-crm.iam.gserviceaccount.com
+      - name: Verify Hostinger access before changing the backend
+        run: bash scripts/deploy-hostinger.sh --preflight
+      - name: Create and encrypt complete pre-release snapshot
+        env:
+          HSST_BACKUP_KEY: ${{ secrets.HSST_BACKUP_KEY }}
+        run: |
+          node -e "if(Buffer.from(process.env.HSST_BACKUP_KEY||'','base64').length!==32)throw Error('Backup key unavailable')"
+          bash scripts/deploy-hostinger.sh --backup
+          tar -czf rollback.tar.gz -C "$HSST_BACKUP_DIR" .
+          node scripts/backup-envelope.mjs encrypt rollback.tar.gz rollback.tar.gz.enc
+      - name: Persist encrypted rollback before publication
+        uses: actions/upload-artifact@v4
+        with:
+          name: rollback-${{ github.run_id }}
+          path: rollback.tar.gz.enc
+          if-no-files-found: error
+          retention-days: 90
+      - name: Publish compatible backend (no data migrations)
+        env:
+          FIREBASE_FUNCTION_ENV: ${{ secrets.FIREBASE_FUNCTION_ENV }}
+        run: |
+          node -e "const fs=require('node:fs'); if(!process.env.FIREBASE_FUNCTION_ENV)throw Error('Missing backend environment'); fs.writeFileSync('HSP CRM/functions/.env',process.env.FIREBASE_FUNCTION_ENV,{mode:0o600});"
+          npm run deploy:firebase
+      - name: Back up, stage, verify, publish, and check live hashes
+        env:
+          HSST_PREPARED_BACKUP: 'true'
+        run: bash scripts/deploy-hostinger.sh --artifact dist

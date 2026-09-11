@@ -1,25 +1,18 @@
-// HSST Chatbot Widget — self-contained floating chat assistant
+import { getChatbotFallback } from "../src/scripts/utils/chatbot-fallback.js";
+
+// HSST Chatbot Widget - self-contained floating chat assistant
 (function () {
     'use strict';
 
     // ── Config ──────────────────────────────────────────────────
-    const API_ENDPOINT = '/api/chat';
+    const CRM_API_BASE_URL = (window.HSST_ENV?.CRM_API_BASE_URL || 'https://hsp-crm.web.app').replace(/\/$/, '');
+    const API_ENDPOINT = `${CRM_API_BASE_URL}/api/chat`;
     const WELCOME_MESSAGE = "Hi! I'm the HSST assistant. I can answer questions about our digital services, pricing, or help connect you with Brandon. What can I help you with?";
     const QUICK_REPLIES = [
         'What services do you offer?',
         'How much does a website cost?',
-        'Get a quote',
+        'What is included each month?',
     ];
-
-    // CRM Integration (HSS Business Platform)
-    const CRM_FIREBASE_CONFIG = {
-        apiKey: window.HSST_ENV?.CRM_FIREBASE_API_KEY || "",
-        authDomain: window.HSST_ENV?.CRM_FIREBASE_AUTH_DOMAIN || "",
-        projectId: window.HSST_ENV?.CRM_FIREBASE_PROJECT_ID || "",
-        storageBucket: window.HSST_ENV?.CRM_FIREBASE_STORAGE_BUCKET || "",
-        messagingSenderId: window.HSST_ENV?.CRM_FIREBASE_MESSAGING_SENDER_ID || "",
-        appId: window.HSST_ENV?.CRM_FIREBASE_APP_ID || ""
-    };
 
     // ── State ────────────────────────────────────────────────────
     let isOpen = false;
@@ -45,11 +38,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             outline: none;
         }
         #hsst-chat-btn:hover {
-            transform: scale(1.1) translateY(-2px);
+            transform: scale(1.03) translateY(-1px);
             box-shadow: 0 8px 32px rgba(26,120,230,0.6);
         }
         #hsst-chat-btn svg { pointer-events: none; }
@@ -65,11 +58,7 @@
             border: 2.5px solid #fff;
             display: none;
         }
-        #hsst-chat-badge.visible { display: block; animation: hsstPulse 2s ease-in-out infinite; }
-        @keyframes hsstPulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(245,130,32,0.4); }
-            50% { box-shadow: 0 0 0 5px rgba(245,130,32,0); }
-        }
+        #hsst-chat-badge.visible { display: block; }
 
         /* ── Chat Window ── */
         #hsst-chat-window {
@@ -83,7 +72,7 @@
             background: #f8fafc;
             border-radius: 20px;
             box-shadow: 0 32px 72px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.06);
-            z-index: 8999;
+            z-index: 9001;
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -396,6 +385,7 @@
 
     // ── Build DOM ────────────────────────────────────────────────
     function init() {
+        if (document.getElementById('hsst-chat-btn')) return;
         // Inject CSS
         const styleEl = document.createElement('style');
         styleEl.textContent = styles;
@@ -405,6 +395,8 @@
         const btn = document.createElement('button');
         btn.id = 'hsst-chat-btn';
         btn.setAttribute('aria-label', 'Open chat');
+        btn.setAttribute('aria-controls', 'hsst-chat-window');
+        btn.setAttribute('aria-expanded', 'false');
         btn.innerHTML = `
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H6L4 18V4H20V16Z" fill="white"/>
@@ -418,6 +410,8 @@
         win.id = 'hsst-chat-window';
         win.setAttribute('role', 'dialog');
         win.setAttribute('aria-label', 'HSST Chat Assistant');
+        win.setAttribute('aria-hidden', 'true');
+        win.inert = true;
         win.innerHTML = `
             <div id="hsst-chat-header">
                 <div id="hsst-chat-avatar-wrap">
@@ -437,7 +431,7 @@
                     <strong>HSST Assistant</strong>
                     <span>
                         <svg width="7" height="7" viewBox="0 0 8 8" fill="#22c55e"><circle cx="4" cy="4" r="4"/></svg>
-                        Online now
+                        FAQ help & contact requests
                     </span>
                 </div>
                 <button id="hsst-chat-close" aria-label="Close chat">
@@ -448,9 +442,10 @@
             </div>
             <div id="hsst-chat-messages"></div>
             <div id="hsst-quick-replies"></div>
+            <a class="hsst-follow-up" href="/contact.html#contactForm">Request follow-up — no AI required</a>
             <div id="hsst-lead-success">✓ Info saved — Brandon will be in touch soon!</div>
             <form id="hsst-chat-form" autocomplete="off">
-                <input id="hsst-chat-input" type="text" placeholder="Ask a question..." maxlength="400" autocomplete="off" />
+                <input id="hsst-chat-input" type="text" aria-label="Message to HSST Assistant" placeholder="Ask a question..." maxlength="400" autocomplete="off" />
                 <button id="hsst-chat-send" type="submit" aria-label="Send">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
                         <path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -465,6 +460,9 @@
         // Event listeners
         btn.addEventListener('click', toggleChat);
         document.getElementById('hsst-chat-close').addEventListener('click', closeChat);
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && isOpen) closeChat();
+        });
         document.getElementById('hsst-chat-form').addEventListener('submit', handleSubmit);
         document.getElementById('hsst-chat-input').addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
@@ -492,15 +490,23 @@
     function openChat() {
         isOpen = true;
         document.getElementById('hsst-chat-window').classList.add('open');
+        document.getElementById('hsst-chat-window').setAttribute('aria-hidden', 'false');
+        document.getElementById('hsst-chat-window').inert = false;
         document.getElementById('hsst-chat-badge').classList.remove('visible');
         document.getElementById('hsst-chat-btn').setAttribute('aria-label', 'Close chat');
-        setTimeout(() => document.getElementById('hsst-chat-input').focus(), 100);
+        document.getElementById('hsst-chat-btn').setAttribute('aria-expanded', 'true');
+        document.getElementById('hsst-chat-input').focus({ preventScroll: true });
+        window.dispatchEvent(new CustomEvent('hsst:analytics', { detail: { name: 'chat_open' } }));
     }
 
     function closeChat() {
         isOpen = false;
         document.getElementById('hsst-chat-window').classList.remove('open');
+        document.getElementById('hsst-chat-window').setAttribute('aria-hidden', 'true');
+        document.getElementById('hsst-chat-window').inert = true;
         document.getElementById('hsst-chat-btn').setAttribute('aria-label', 'Open chat');
+        document.getElementById('hsst-chat-btn').setAttribute('aria-expanded', 'false');
+        document.getElementById('hsst-chat-btn').focus({ preventScroll: true });
     }
 
     // ── Markdown renderer (bold, line breaks, links) ─────────────
@@ -613,8 +619,9 @@
         try {
             const res = await fetch(API_ENDPOINT, {
                 method: 'POST',
+                signal: AbortSignal.timeout(20000),
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ messages: messageHistory })
+                body: JSON.stringify({ message: userText, history: messageHistory })
             });
 
             const data = await res.json();
@@ -640,10 +647,13 @@
             hideTyping();
             appendBotMessage(reply);
             messageHistory.push({ role: 'assistant', content: reply });
+            window.dispatchEvent(new CustomEvent('hsst:analytics', { detail: { name: 'chat_message' } }));
 
         } catch (err) {
             hideTyping();
-            appendBotMessage("Sorry, I'm having trouble connecting. You can reach Brandon directly at (402) 759-2210 or bhinrichs1380@gmail.com.");
+            const fallback = getChatbotFallback(userText, window.HSST_SERVICE_INFO);
+            appendBotMessage(fallback);
+            messageHistory.push({ role: 'assistant', content: fallback });
             console.error('Chatbot error:', err);
         } finally {
             isTyping = false;
@@ -657,87 +667,55 @@
         pendingLead = lead;
 
         try {
-            // 1. Save to Supabase (existing Database helper)
-            if (window.Database && typeof window.Database.saveContactSubmission === 'function') {
-                const nameParts = (lead.name || '').trim().split(' ');
-                await window.Database.saveContactSubmission({
-                    firstName: nameParts[0] || lead.name,
-                    lastName: nameParts.slice(1).join(' ') || '',
-                    email: lead.email,
-                    phone: '',
-                    organization: '',
-                    interest: lead.interest || 'Chatbot inquiry',
-                    message: `Chatbot lead — Interest: ${lead.interest || 'general inquiry'}`,
-                    newsletter: false,
-                    privacy: true
-                });
-            }
-
-            // 2. Save to HSS CRM (Firebase Firestore)
+            // Save through the validated CRM function.
             await saveToHSSCRM(lead);
 
             // Show success notice inside chat
             const notice = document.getElementById('hsst-lead-success');
             if (notice) notice.classList.add('visible');
+            document.querySelectorAll('.hsst-retry-lead').forEach(button => button.remove());
+            window.dispatchEvent(new CustomEvent('hsst:analytics', { detail: { name: 'chat_lead_created' } }));
         } catch (err) {
+            pendingLead = null;
+            appendBotMessage('Your contact request could not be confirmed. Retry below or use Request follow-up.');
+            const retry = document.createElement('button');
+            retry.type = 'button'; retry.className = 'hsst-retry-lead'; retry.textContent = 'Retry contact request';
+            retry.style.cssText = 'margin:8px;padding:12px 16px;border-radius:8px;border:1px solid #95b4d5;color:#132e54;background:#fff;cursor:pointer';
+            retry.addEventListener('click', async () => { retry.disabled = true; await saveLead(lead); retry.remove(); });
+            document.getElementById('hsst-chat-messages').appendChild(retry);
             console.error('Lead save error:', err);
         }
     }
 
     async function saveToHSSCRM(lead) {
-        try {
-            // Dynamically load Firebase if needed
-            if (!window.firebase) {
-                await loadScript('https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js');
-                await loadScript('https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js');
-            }
+        const nameParts = (lead.name || '').trim().split(/\s+/).filter(Boolean);
+        const firstName = nameParts[0] || 'Website';
+        const lastName = nameParts.slice(1).join(' ');
 
-            if (!window.crmApp) {
-                window.crmApp = window.firebase.initializeApp(CRM_FIREBASE_CONFIG, 'hss-crm');
-                window.crmDb = window.firebase.firestore(window.crmApp);
-            }
-
-            const nameParts = (lead.name || '').trim().split(' ');
-            
-            await window.crmDb.collection('contacts').add({
-                firstName: nameParts[0] || lead.name,
-                lastName: nameParts.slice(1).join(' ') || 'User',
-                email: (lead.email || '').toLowerCase(),
-                phone: '',
-                company: 'Website Chatbot',
-                status: 'lead',
-                interest: lead.interest || 'General Inquiry',
-                notes: `Chatbot inquiry recorded from ${window.location.hostname}`,
-                createdAt: window.firebase.firestore.FieldValue.serverTimestamp(),
-                updatedAt: window.firebase.firestore.FieldValue.serverTimestamp()
+        const res = await fetch(`${CRM_API_BASE_URL}/api/create-lead`, {
+                signal: AbortSignal.timeout(20000),
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    requestId: lead.requestId || (lead.requestId = crypto.randomUUID()),
+                    firstName,
+                    lastName,
+                    email: lead.email || '',
+                    phone: lead.phone || '',
+                    interest: lead.interest || 'Chatbot inquiry',
+                    message: `Chatbot inquiry recorded from ${window.location.hostname}`,
+                    metadata: {
+                        source: 'chatbot',
+                        page: window.location.pathname,
+                        company: 'Website Chatbot'
+                    }
+                })
             });
 
-            // Also log a response to trigger CRM dashboard counts
-            await window.crmDb.collection('responses').add({
-                surveyTitle: 'Chatbot Inquiry',
-                submittedAt: window.firebase.firestore.FieldValue.serverTimestamp(),
-                response: {
-                    name: lead.name,
-                    email: lead.email,
-                    interest: lead.interest,
-                    source: 'HSST Chatbot'
-                }
-            });
-
-            console.log('Successfully synced lead with HSS CRM');
-        } catch (err) {
-            console.error('CRM Sync Error:', err);
+        if (!res.ok) {
+            const error = await res.json().catch(() => ({}));
+            throw new Error(error.error || 'CRM lead sync failed');
         }
-    }
-
-    function loadScript(src) {
-        return new Promise((resolve, reject) => {
-            const s = document.createElement('script');
-            s.src = src;
-            s.onload = resolve;
-            s.onerror = reject;
-            document.head.appendChild(s);
-        });
     }
 
     // ── Boot ─────────────────────────────────────────────────────

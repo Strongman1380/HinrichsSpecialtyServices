@@ -134,6 +134,8 @@ Upload all files to your web server via FTP/SFTP:
 3. Upload `images/` folder when you add images
 4. Ensure `index.html` is in the root directory
 
+For the current Hostinger deployment, see [notes/hostinger-deployment-runbook.md](/Volumes/Seagate%20Portable%20Drive/Local%20Repositories/Websites/Hinrichs%20Specialty%20Services%20and%20Technology/notes/hostinger-deployment-runbook.md).
+
 ### Option 3: Local Development
 
 To run locally for development:

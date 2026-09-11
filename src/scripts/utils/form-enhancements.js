@@ -100,14 +100,15 @@ export class FormAutoSave {
       <button type="button" class="btn-clear-saved">Clear</button>
     `;
     notification.style.cssText = `
-      background: #00ff41;
-      color: #0a0f0a;
+      background: var(--blue, #3b82f6);
+      color: #ffffff;
       padding: 1rem;
       border-radius: 0.5rem;
       margin-bottom: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: var(--shadow-sm);
     `;
 
     this.form.insertBefore(notification, this.form.firstChild);

@@ -144,3 +144,11 @@ test-results/
 playwright-report/
 blob-report/
 playwright/.cache/
+.DS_Store
+.playwright-mcp/
+**/.playwright-mcp/
+**/.firebase/
+release-backups/
+release-artifacts/
+gha-creds-*.json
+**/gha-creds-*.json

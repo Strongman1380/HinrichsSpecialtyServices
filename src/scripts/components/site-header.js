@@ -6,7 +6,7 @@
 class SiteHeader extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
   }
 
   connectedCallback() {
@@ -15,7 +15,7 @@ class SiteHeader extends HTMLElement {
   }
 
   render() {
-    const currentPage = this.getAttribute('current-page') || '';
+    const currentPage = this.getAttribute("current-page") || "";
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -26,9 +26,8 @@ class SiteHeader extends HTMLElement {
         .header {
           background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(10, 10, 15, 0.95) 100%);
           backdrop-filter: blur(20px);
-          border-bottom: 1px solid rgba(0, 255, 65, 0.2);
-          box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.7), 0 4px 6px -4px rgb(0 0 0 / 0.6),
-                      0 0 20px rgba(0, 255, 65, 0.6), 0 0 40px rgba(0, 255, 65, 0.4), 0 0 60px rgba(0, 255, 65, 0.2);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+          box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45), 0 1px 0 rgba(59, 130, 246, 0.08);
           position: fixed;
           top: 0;
           left: 0;
@@ -47,19 +46,13 @@ class SiteHeader extends HTMLElement {
         }
 
         .nav-logo h2 {
-          background: linear-gradient(45deg, #00ff41, #00ffaa, #39ff14);
+          background: linear-gradient(135deg, var(--blue-light, #60a5fa) 0%, var(--blue, #3b82f6) 40%, var(--orange, #f97316) 80%, var(--orange-light, #fb923c) 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
           font-weight: 700;
           font-size: 1.5rem;
           margin: 0;
-          animation: logoGlow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes logoGlow {
-          0% { filter: brightness(1); }
-          100% { filter: brightness(1.2); }
         }
 
         .nav-menu {
@@ -72,7 +65,7 @@ class SiteHeader extends HTMLElement {
 
         .nav-link {
           text-decoration: none;
-          color: #e0ffe0;
+          color: var(--muted, rgba(240, 244, 255, 0.6));
           font-weight: 500;
           transition: all 0.3s ease;
           position: relative;
@@ -82,17 +75,48 @@ class SiteHeader extends HTMLElement {
         }
 
         .nav-link:hover {
-          color: #00ff41;
-          text-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
-          background: rgba(0, 229, 255, 0.1);
+          color: var(--foreground, #f0f4ff);
+          background: rgba(255, 255, 255, 0.055);
           transform: translateY(-2px);
         }
 
         .nav-link.active {
-          color: #00ffaa;
-          text-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
-          background: rgba(57, 255, 20, 0.1);
-          border: 1px solid rgba(57, 255, 20, 0.3);
+          color: var(--blue-light, #60a5fa);
+          background: rgba(59, 130, 246, 0.1);
+          border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .ai-art-link {
+          border: 1px solid rgba(245, 130, 32, 0.35);
+          color: #f5c07a !important;
+          background: rgba(245, 130, 32, 0.06);
+        }
+
+        .ai-art-link:hover {
+          background: rgba(245, 130, 32, 0.14) !important;
+          border-color: rgba(245, 130, 32, 0.8) !important;
+          color: #f58220 !important;
+          text-shadow: 0 0 16px rgba(245, 130, 32, 0.5) !important;
+        }
+
+        .ai-art-link.active {
+          background: rgba(245, 130, 32, 0.12) !important;
+          border-color: rgba(245, 130, 32, 0.6) !important;
+          color: #f58220 !important;
+        }
+
+        .admin-crm-btn {
+          border: 1px solid rgba(59, 130, 246, 0.18) !important;
+          color: var(--blue-light, #60a5fa) !important;
+          background: rgba(59, 130, 246, 0.07) !important;
+        }
+
+        .admin-crm-btn:hover {
+          background: rgba(59, 130, 246, 0.14) !important;
+          border-color: rgba(59, 130, 246, 0.35) !important;
+          color: var(--foreground, #f0f4ff) !important;
+          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15), 0 0 14px rgba(59, 130, 246, 0.3) !important;
+          transform: translateY(-1px) scale(1.03);
         }
 
         .nav-toggle {
@@ -108,7 +132,7 @@ class SiteHeader extends HTMLElement {
         .nav-toggle span {
           width: 25px;
           height: 3px;
-          background-color: #e0ffe0;
+          background-color: var(--muted, rgba(240, 244, 255, 0.6));
           transition: 0.3s;
           border-radius: 2px;
         }
@@ -136,7 +160,7 @@ class SiteHeader extends HTMLElement {
             padding: 2rem;
             gap: 1rem;
             transition: left 0.3s ease;
-            border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
           }
 
@@ -150,7 +174,7 @@ class SiteHeader extends HTMLElement {
 
           .nav-link {
             padding: 1rem;
-            border: 1px solid rgba(0, 255, 65, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.1);
             width: 100%;
             text-align: center;
           }
@@ -164,10 +188,13 @@ class SiteHeader extends HTMLElement {
               <h2>Hinrichs Specialty Services and Technology</h2>
             </div>
             <ul class="nav-menu">
-              <li><a href="/index.html" class="nav-link ${currentPage === 'home' ? 'active' : ''}">Home</a></li>
-              <li><a href="/our-story.html" class="nav-link ${currentPage === 'our-story' ? 'active' : ''}">Our Story</a></li>
-              <li><a href="/digital-solutions.html" class="nav-link ${currentPage === 'digital-solutions' ? 'active' : ''}">Digital Solutions</a></li>
-              <li><a href="/contact.html" class="nav-link ${currentPage === 'contact' ? 'active' : ''}">Contact</a></li>
+              <li><a href="/index.html" class="nav-link ${currentPage === "home" ? "active" : ""}">Home</a></li>
+              <li><a href="/our-story.html" class="nav-link ${currentPage === "our-story" ? "active" : ""}">Our Story</a></li>
+              <li><a href="/digital-solutions.html" class="nav-link ${currentPage === "digital-solutions" ? "active" : ""}">Digital Solutions</a></li>
+              <li><a href="virtual-assistance.html" class="nav-link">Virtual Assistance</a></li>
+              <li><a href="/portfolio.html" class="nav-link ${currentPage === "portfolio" ? "active" : ""}">Portfolio</a></li>
+              <li><a href="/contact.html" class="nav-link ${currentPage === "contact" ? "active" : ""}">Contact</a></li>
+              <li><a href="/crm/login" class="nav-link admin-crm-btn" target="_blank" rel="noopener noreferrer">&#x1F512; Admin CRM</a></li>
             </ul>
             <button class="nav-toggle" aria-label="Toggle navigation menu">
               <span></span>
@@ -181,35 +208,35 @@ class SiteHeader extends HTMLElement {
   }
 
   setupEventListeners() {
-    const navToggle = this.shadowRoot.querySelector('.nav-toggle');
-    const navMenu = this.shadowRoot.querySelector('.nav-menu');
-    const navLinks = this.shadowRoot.querySelectorAll('.nav-link');
+    const navToggle = this.shadowRoot.querySelector(".nav-toggle");
+    const navMenu = this.shadowRoot.querySelector(".nav-menu");
+    const navLinks = this.shadowRoot.querySelectorAll(".nav-link");
 
     if (navToggle && navMenu) {
-      navToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        navToggle.classList.toggle('active');
+      navToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        navToggle.classList.toggle("active");
       });
 
       // Close menu when clicking on a link
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          navMenu.classList.remove('active');
-          navToggle.classList.remove('active');
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          navMenu.classList.remove("active");
+          navToggle.classList.remove("active");
         });
       });
 
       // Close menu when clicking outside
-      document.addEventListener('click', (event) => {
+      document.addEventListener("click", (event) => {
         if (!this.shadowRoot.contains(event.target)) {
-          navMenu.classList.remove('active');
-          navToggle.classList.remove('active');
+          navMenu.classList.remove("active");
+          navToggle.classList.remove("active");
         }
       });
     }
   }
 }
 
-customElements.define('site-header', SiteHeader);
+customElements.define("site-header", SiteHeader);
 
 export default SiteHeader;

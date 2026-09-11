@@ -12,8 +12,8 @@ export function createSkipLink() {
     position: absolute;
     top: -40px;
     left: 0;
-    background: #00ff41;
-    color: #0a0f0a;
+    background: var(--blue, #3b82f6);
+    color: #ffffff;
     padding: 8px 16px;
     text-decoration: none;
     font-weight: 600;
@@ -54,9 +54,9 @@ export function enhanceFocusVisibility() {
   const style = document.createElement('style');
   style.textContent = `
     :focus-visible {
-      outline: 3px solid #00ff41 !important;
+      outline: 3px solid var(--blue, #3b82f6) !important;
       outline-offset: 2px !important;
-      box-shadow: 0 0 0 4px rgba(0, 255, 65, 0.3) !important;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3) !important;
     }
 
     .nav-link:focus-visible,
@@ -66,7 +66,7 @@ export function enhanceFocusVisibility() {
     input:focus-visible,
     select:focus-visible,
     textarea:focus-visible {
-      outline: 3px solid #00ff41 !important;
+      outline: 3px solid var(--blue, #3b82f6) !important;
       outline-offset: 2px !important;
     }
   `;

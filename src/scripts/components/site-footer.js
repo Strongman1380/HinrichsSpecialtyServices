@@ -23,8 +23,9 @@ class SiteFooter extends HTMLElement {
         }
 
         .footer {
-          background: linear-gradient(135deg, rgba(10, 15, 10, 0.95) 0%, rgba(5, 8, 5, 0.95) 100%);
-          border-top: 1px solid rgba(0, 255, 65, 0.2);
+          background: var(--navy-2, #0c1526);
+          border-top: 1px solid transparent;
+          border-image: linear-gradient(90deg, transparent, var(--blue, #3b82f6), var(--orange, #f97316), var(--blue-light, #60a5fa), transparent) 1;
           padding: 3rem 0 1rem;
           margin-top: 4rem;
         }
@@ -42,41 +43,40 @@ class SiteFooter extends HTMLElement {
           margin-bottom: 2rem;
         }
 
-        .footer-section h3,
-        .footer-section h4 {
-          color: #00ff41;
+        .footer-section h3 {
+          color: var(--foreground, #f0f4ff);
           margin-bottom: 1rem;
           font-weight: 600;
-        }
-
-        .footer-section h3 {
           font-size: 1.5rem;
         }
 
         .footer-section h4 {
+          color: var(--orange-light, #fb923c);
+          margin-bottom: 1rem;
+          font-weight: 600;
           font-size: 1.125rem;
         }
 
         .footer-section p {
-          color: #e0ffe0;
+          color: var(--muted, rgba(240, 244, 255, 0.6));
           line-height: 1.6;
           margin-bottom: 1rem;
         }
 
         .footer-contact p {
           margin-bottom: 0.5rem;
-          color: #ccffcc;
+          color: var(--muted, rgba(240, 244, 255, 0.6));
         }
 
         .contact-link {
-          color: #ccffcc;
+          color: var(--muted, rgba(240, 244, 255, 0.6));
           text-decoration: none;
           transition: all 0.3s ease;
         }
 
         .contact-link:hover {
-          color: #00ff41;
-          text-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
+          color: var(--blue-light, #60a5fa);
+          text-shadow: 0 0 10px rgba(96, 165, 250, 0.6);
         }
 
         .footer-section ul {
@@ -90,22 +90,22 @@ class SiteFooter extends HTMLElement {
         }
 
         .footer-section ul li a {
-          color: #e0ffe0;
+          color: var(--muted, rgba(240, 244, 255, 0.6));
           text-decoration: none;
           transition: all 0.3s ease;
         }
 
         .footer-section ul li a:hover {
-          color: #00ff41;
-          text-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
+          color: var(--blue-light, #60a5fa);
+          text-shadow: 0 0 10px rgba(96, 165, 250, 0.6);
           padding-left: 0.5rem;
         }
 
         .footer-bottom {
           text-align: center;
           padding-top: 2rem;
-          border-top: 1px solid rgba(0, 255, 65, 0.1);
-          color: #ccffcc;
+          border-top: 1px solid rgba(255, 255, 255, 0.055);
+          color: var(--muted-2, rgba(240, 244, 255, 0.38));
         }
 
         @media (max-width: 768px) {
@@ -146,7 +146,7 @@ class SiteFooter extends HTMLElement {
             </div>
           </div>
           <div class="footer-bottom">
-            <p>&copy; ${year} Hinrichs Specialty Services and Technology. All rights reserved. | <a href="/privacy.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Privacy Policy</a> | <a href="/data-deletion.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Data Deletion Policy</a></p>
+            <p>&copy; ${year} Hinrichs Specialty Services and Technology. All rights reserved. | <a href="/terms.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Terms of Service</a> | <a href="/privacy.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Privacy Policy</a> | <a href="/data-deletion.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Data Deletion Policy</a></p>
           </div>
         </div>
       </footer>

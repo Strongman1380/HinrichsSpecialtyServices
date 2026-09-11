@@ -1,15 +1,5 @@
 {
   "projects": {
-    "default": "brandonhinrichs"
-  },
-  "targets": {
-    "brandonhinrichs": {
-      "hosting": {
-        "hsst-site": [
-          "hsst-site"
-        ]
-      }
-    }
-  },
-  "etags": {}
+    "default": "hsp-crm"
+  }
 }

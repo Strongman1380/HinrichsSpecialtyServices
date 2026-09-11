@@ -1,906 +1,1600 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Our Services | Hinrichs Specialty Services and Technology | Nebraska</title>
-    <meta name="description" content="Website design, SEO, AI automation, database development, CRM builds, social media management, and technology consultation for Nebraska small businesses and nonprofits. Request a free bid today.">
-    <meta name="keywords" content="website design Nebraska, SEO services Nebraska, AI automation Nebraska, technology consultation Geneva NE, website development small business Nebraska, nonprofit website design Nebraska, AI chatbot integration, database development Nebraska, digital marketing Nebraska, Brandon Hinrichs web design, HSST services, CRM development Nebraska">
-    <meta name="author" content="Brandon Hinrichs, Hinrichs Specialty Services and Technology">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-    <link rel="canonical" href="https://hinrichs-specialty-services.vercel.app/digital-solutions.html">
+    <meta
+      name="description"
+      content="Website Care + Build for $150 per month, including up to five hours for progressive development, hosting, maintenance, updates, basic SEO, and Search Console monitoring."
+    />
+    <meta
+      name="keywords"
+      content="website design Nebraska, SEO services Nebraska, AI automation Nebraska, technology consultation Geneva NE, website development small business Nebraska, nonprofit website design Nebraska, AI chatbot integration, database development Nebraska, digital marketing Nebraska, Brandon Hinrichs web design, HSST services, CRM development Nebraska"
+    />
+    <meta name="author" content="Brandon Hinrichs, Hinrichs Specialty Services and Technology" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://www.hinrichsspecialtyservices.com/digital-solutions.html" />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://hinrichs-specialty-services.vercel.app/digital-solutions.html">
-    <meta property="og:title" content="Our Services | Hinrichs Specialty Services and Technology">
-    <meta property="og:description" content="Website design, SEO, AI automation, database development, and technology consultation for Nebraska small businesses and nonprofits. Request a free bid.">
-    <meta property="og:image" content="https://hinrichs-specialty-services.vercel.app/images/hero-banner.png">
-    <meta property="og:site_name" content="Hinrichs Specialty Services and Technology">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.hinrichsspecialtyservices.com/digital-solutions.html" />
+    <meta property="og:title" content="Our Services | Hinrichs Specialty Services and Technology" />
+    <meta
+      property="og:description"
+      content="Website Care + Build is $150 per month with no separate build fee. Social media management starts at an additional $50 per month."
+    />
+    <meta property="og:image" content="https://www.hinrichsspecialtyservices.com/images/hero-banner.jpg" />
+    <meta property="og:site_name" content="Hinrichs Specialty Services and Technology" />
 
     <!-- Twitter / X -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://hinrichs-specialty-services.vercel.app/digital-solutions.html">
-    <meta name="twitter:title" content="Our Services | HSST Nebraska">
-    <meta name="twitter:description" content="Website design, SEO, AI automation, database development, and technology consultation for Nebraska small businesses and nonprofits.">
-    <meta name="twitter:image" content="https://hinrichs-specialty-services.vercel.app/images/hero-banner.png">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.hinrichsspecialtyservices.com/digital-solutions.html" />
+    <meta name="twitter:title" content="Our Services | HSST Nebraska" />
+    <meta
+      name="twitter:description"
+      content="Website design, SEO, AI automation, database development, and technology consultation for Nebraska small businesses and nonprofits."
+    />
+    <meta name="twitter:image" content="https://www.hinrichsspecialtyservices.com/images/hero-banner.jpg" />
 
     <!-- Geo / Local SEO -->
-    <meta name="geo.region" content="US-NE">
-    <meta name="geo.placename" content="Geneva, Nebraska">
-    <meta name="geo.position" content="40.5267;-97.5956">
-    <meta name="ICBM" content="40.5267, -97.5956">
+    <meta name="geo.region" content="US-NE" />
+    <meta name="geo.placename" content="Geneva, Nebraska" />
+    <meta name="geo.position" content="40.5267;-97.5956" />
+    <meta name="ICBM" content="40.5267, -97.5956" />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
-        /* ── Services Page — Light Theme Modern ── */
+      /* Services page */
 
-        /* Hero — dark section for contrast */
-        .services-hero {
-            position: relative;
-            padding: 6rem 0 4rem;
-            margin-top: 4rem;
-            overflow: hidden;
-            background: linear-gradient(160deg, #0a0f1a 0%, #0d1b2a 40%, #132e54 100%);
+      /* Dark hero section */
+      .services-hero {
+        position: relative;
+        padding: 6rem 0 4rem;
+        margin-top: 4rem;
+        overflow: hidden;
+        background: linear-gradient(160deg, #0a0f1a 0%, #0d1b2a 40%, #132e54 100%);
+      }
+      .services-hero::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 80%;
+        height: 200%;
+        background: radial-gradient(ellipse at center, rgba(26, 120, 230, 0.12) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .services-hero::after {
+        content: "";
+        position: absolute;
+        bottom: -30%;
+        left: -10%;
+        width: 60%;
+        height: 150%;
+        background: radial-gradient(ellipse at center, rgba(245, 130, 32, 0.08) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+      }
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(245, 130, 32, 0.12);
+        border: 1px solid rgba(245, 130, 32, 0.3);
+        padding: 0.35rem 1rem;
+        border-radius: 100px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #f58220;
+        margin-bottom: 1.25rem;
+      }
+      .hero-eyebrow .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #f58220;
+        animation: pulse-dot 2s infinite;
+      }
+      @keyframes pulse-dot {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
         }
-        .services-hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 80%;
-            height: 200%;
-            background: radial-gradient(ellipse at center, rgba(26,120,230,0.12) 0%, transparent 70%);
-            pointer-events: none;
+        50% {
+          opacity: 0.5;
+          transform: scale(1.4);
         }
-        .services-hero::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 60%;
-            height: 150%;
-            background: radial-gradient(ellipse at center, rgba(245,130,32,0.08) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .hero-inner { position: relative; z-index: 1; max-width: 800px; }
-        .hero-eyebrow {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            background: rgba(245,130,32,0.12); border: 1px solid rgba(245,130,32,0.3);
-            padding: 0.35rem 1rem; border-radius: 100px;
-            font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
-            text-transform: uppercase; color: #f58220; margin-bottom: 1.25rem;
-        }
-        .hero-eyebrow .dot {
-            width: 6px; height: 6px; border-radius: 50%; background: #f58220;
-            animation: pulse-dot 2s infinite;
-        }
-        @keyframes pulse-dot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.4); }
-        }
-        .services-hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900;
-            line-height: 1.05; letter-spacing: -0.03em; color: #fff; margin-bottom: 1.25rem;
-        }
-        .services-hero h1 .gradient-text {
-            background: linear-gradient(135deg, #3ba6ff, #60bfff, #f58220);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .services-hero p { font-size: 1.15rem; line-height: 1.7; color: rgba(255,255,255,0.7); max-width: 600px; }
-        .hero-cta-row { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
-        .btn-hero {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.85rem 1.75rem; border-radius: 10px; font-weight: 700;
-            font-size: 0.92rem; text-decoration: none;
-            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .btn-hero-primary {
-            background: linear-gradient(135deg, #f58220, #e06b10); color: #fff;
-            box-shadow: 0 4px 20px rgba(245,130,32,0.3);
-        }
-        .btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,130,32,0.4); }
-        .btn-hero-outline {
-            background: transparent; color: rgba(255,255,255,0.85);
-            border: 1px solid rgba(255,255,255,0.25);
-        }
-        .btn-hero-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); transform: translateY(-2px); }
+      }
+      .services-hero h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        color: #fff;
+        margin-bottom: 1.25rem;
+      }
+      .services-hero h1 .gradient-text {
+        background: linear-gradient(135deg, #3ba6ff, #60bfff, #f58220);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .services-hero p {
+        font-size: 1.15rem;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 600px;
+      }
+      .hero-cta-row {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+      }
+      .btn-hero {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.85rem 1.75rem;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.92rem;
+        text-decoration: none;
+        transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .btn-hero-primary {
+        background: linear-gradient(135deg, #f58220, #e06b10);
+        color: #fff;
+        box-shadow: 0 4px 20px rgba(245, 130, 32, 0.3);
+      }
+      .btn-hero-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(245, 130, 32, 0.4);
+      }
+      .btn-hero-outline {
+        background: transparent;
+        color: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+      }
+      .btn-hero-outline:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
+      }
 
-        /* ── Section helpers (light) ── */
-        .services-section { padding: 5rem 0; }
-        .section-label {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em;
-            text-transform: uppercase; color: #1a78e6; margin-bottom: 0.75rem;
-        }
-        .section-label::before { content: ''; width: 24px; height: 2px; background: #1a78e6; }
-        .section-title {
-            font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 800;
-            color: #0f172a; letter-spacing: -0.02em; margin-bottom: 0.5rem;
-        }
-        .section-subtitle { font-size: 1.05rem; color: #475569; max-width: 550px; line-height: 1.6; margin-bottom: 3rem; }
+      /* ── Section helpers (dark, matched to the site system) ── */
+      .services-section {
+        padding: 5rem 0;
+      }
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #60a5fa;
+        margin-bottom: 0.75rem;
+      }
+      .section-label::before {
+        content: "";
+        width: 24px;
+        height: 2px;
+        background: #60a5fa;
+      }
+      .section-title {
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+        font-weight: 800;
+        color: #f0f4ff;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.5rem;
+      }
+      .section-subtitle {
+        font-size: 1.05rem;
+        color: rgba(240, 244, 255, 0.76);
+        max-width: 550px;
+        line-height: 1.6;
+        margin-bottom: 3rem;
+      }
 
-        /* ── Service cards (light) ── */
-        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-        .service-card {
-            position: relative; background: #fff;
-            border: 1px solid #e2e8f0; border-radius: 16px; padding: 2rem;
-            overflow: hidden; transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-            display: flex; flex-direction: column;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-        }
-        .service-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, var(--accent-start, #1a78e6), var(--accent-end, #3ba6ff));
-            opacity: 0; transition: opacity 0.3s;
-        }
-        .service-card:hover {
-            transform: translateY(-6px); border-color: #cbd5e1;
-            box-shadow: 0 20px 50px -12px rgba(0,0,0,0.12), 0 0 0 1px rgba(26,120,230,0.08);
-        }
-        .service-card:hover::before { opacity: 1; }
+      /* ── Service cards ── */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+      }
+      .service-card {
+        position: relative;
+        background: rgba(17, 30, 53, 0.88);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 2rem;
+        overflow: hidden;
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+      }
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent-start, #1a78e6), var(--accent-end, #3ba6ff));
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .service-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(96, 165, 250, 0.42);
+        background: rgba(23, 37, 67, 0.96);
+        box-shadow:
+          0 22px 56px rgba(0, 0, 0, 0.45),
+          0 0 0 1px rgba(96, 165, 250, 0.12);
+      }
+      .service-card:hover::before {
+        opacity: 1;
+      }
 
-        .service-card[data-accent="blue"]    { --accent-start: #1a78e6; --accent-end: #3ba6ff; }
-        .service-card[data-accent="green"]   { --accent-start: #10b981; --accent-end: #34d399; }
-        .service-card[data-accent="orange"]  { --accent-start: #f58220; --accent-end: #fbbf24; }
-        .service-card[data-accent="purple"]  { --accent-start: #8b5cf6; --accent-end: #a78bfa; }
-        .service-card[data-accent="teal"]    { --accent-start: #06b6d4; --accent-end: #22d3ee; }
-        .service-card[data-accent="pink"]    { --accent-start: #ec4899; --accent-end: #f472b6; }
-        .service-card[data-accent="red"]     { --accent-start: #ef4444; --accent-end: #f87171; }
-        .service-card[data-accent="cyan"]    { --accent-start: #0ea5e9; --accent-end: #38bdf8; }
-        .service-card[data-accent="amber"]   { --accent-start: #d97706; --accent-end: #fbbf24; }
+      .service-card[data-accent="blue"] {
+        --accent-start: #1a78e6;
+        --accent-end: #3ba6ff;
+      }
+      .service-card[data-accent="green"] {
+        --accent-start: #10b981;
+        --accent-end: #34d399;
+      }
+      .service-card[data-accent="orange"] {
+        --accent-start: #f58220;
+        --accent-end: #fbbf24;
+      }
+      .service-card[data-accent="purple"] {
+        --accent-start: #8b5cf6;
+        --accent-end: #a78bfa;
+      }
+      .service-card[data-accent="teal"] {
+        --accent-start: #06b6d4;
+        --accent-end: #22d3ee;
+      }
+      .service-card[data-accent="pink"] {
+        --accent-start: #ec4899;
+        --accent-end: #f472b6;
+      }
+      .service-card[data-accent="red"] {
+        --accent-start: #ef4444;
+        --accent-end: #f87171;
+      }
+      .service-card[data-accent="cyan"] {
+        --accent-start: #0ea5e9;
+        --accent-end: #38bdf8;
+      }
+      .service-card[data-accent="amber"] {
+        --accent-start: #d97706;
+        --accent-end: #fbbf24;
+      }
 
-        .service-card.wide { grid-column: span 2; }
+      .service-card.wide {
+        grid-column: span 2;
+      }
 
-        .card-icon {
-            width: 48px; height: 48px; border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; margin-bottom: 1.25rem; flex-shrink: 0;
-            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+      .card-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 1.25rem;
+        flex-shrink: 0;
+        background: linear-gradient(135deg, rgba(96, 165, 250, 0.16), rgba(249, 115, 22, 0.12));
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .service-card h3 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #f8fbff;
+        margin-bottom: 0.6rem;
+      }
+      .service-card .card-desc {
+        font-size: 0.88rem;
+        color: rgba(240, 244, 255, 0.78);
+        line-height: 1.65;
+        margin-bottom: 1rem;
+        flex: 1;
+      }
+      .card-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .card-tag {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(240, 244, 255, 0.82);
+        font-size: 0.72rem;
+        font-weight: 500;
+        padding: 3px 10px;
+        border-radius: 100px;
+        white-space: nowrap;
+      }
+      .service-card:hover .card-tag {
+        background: rgba(96, 165, 250, 0.12);
+        color: #f8fbff;
+        border-color: rgba(96, 165, 250, 0.28);
+      }
+
+      /* ── Process ── */
+      .process-section {
+        padding: 5rem 0;
+        background: linear-gradient(180deg, transparent, rgba(26, 120, 230, 0.03), transparent);
+      }
+      .process-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        margin-top: 3rem;
+      }
+      .process-step {
+        text-align: center;
+        position: relative;
+      }
+      .process-step::after {
+        content: "";
+        position: absolute;
+        top: 28px;
+        right: -0.75rem;
+        width: calc(100% - 56px);
+        height: 2px;
+        background: linear-gradient(90deg, rgba(26, 120, 230, 0.3), rgba(26, 120, 230, 0.05));
+        transform: translateX(100%);
+      }
+      .process-step:last-child::after {
+        display: none;
+      }
+      .step-num {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        font-weight: 800;
+        margin: 0 auto 1rem;
+        background: linear-gradient(135deg, rgba(96, 165, 250, 0.14), rgba(249, 115, 22, 0.08));
+        border: 1px solid rgba(96, 165, 250, 0.24);
+        color: #60a5fa;
+      }
+      .process-step h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #f8fbff;
+        margin-bottom: 0.4rem;
+      }
+      .process-step p {
+        font-size: 0.83rem;
+        color: rgba(240, 244, 255, 0.74);
+        line-height: 1.5;
+      }
+
+      /* ── Request Form (light) ── */
+      .request-section {
+        padding: 5rem 0;
+        position: relative;
+      }
+      .request-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1px;
+        height: 80px;
+        background: linear-gradient(180deg, transparent, rgba(245, 130, 32, 0.3), transparent);
+      }
+      .request-layout {
+        display: grid;
+        grid-template-columns: 1fr 1.6fr;
+        gap: 3rem;
+        align-items: start;
+      }
+      .request-info {
+        position: sticky;
+        top: 6rem;
+      }
+      .request-info h2 {
+        font-size: clamp(1.75rem, 3vw, 2.25rem);
+        font-weight: 800;
+        color: #f8fbff;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+      }
+      .request-info h2 .accent {
+        color: #f58220;
+      }
+      .request-info > p {
+        font-size: 0.95rem;
+        color: rgba(240, 244, 255, 0.76);
+        line-height: 1.7;
+        margin-bottom: 2rem;
+      }
+      .info-perks {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .perk-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+      .perk-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+        background: rgba(245, 130, 32, 0.08);
+        border: 1px solid rgba(245, 130, 32, 0.15);
+      }
+      .perk-text {
+        font-size: 0.88rem;
+        color: rgba(240, 244, 255, 0.76);
+        line-height: 1.5;
+      }
+      .perk-text strong {
+        color: #f8fbff;
+        display: block;
+        margin-bottom: 1px;
+      }
+
+      /* Payment badges */
+      .payment-section {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .payment-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(240, 244, 255, 0.55);
+        margin-bottom: 0.6rem;
+      }
+      .payment-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .pay-badge {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(240, 244, 255, 0.82);
+        font-size: 0.7rem;
+        font-weight: 500;
+        padding: 4px 10px;
+        border-radius: 100px;
+      }
+
+      /* Form card */
+      .request-form-card {
+        background: rgba(12, 21, 38, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 2.5rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 20px 52px rgba(0, 0, 0, 0.34);
+      }
+      .request-form-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #1a78e6, #f58220);
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+      .form-group.full {
+        grid-column: 1 / -1;
+      }
+      .form-group label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: rgba(240, 244, 255, 0.88);
+        letter-spacing: 0.02em;
+      }
+      .form-group input,
+      .form-group textarea {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
+        padding: 0.75rem 1rem;
+        color: #f8fbff;
+        font-size: 0.9rem;
+        font-family: "Inter", sans-serif;
+        transition: all 0.2s;
+      }
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #60a5fa;
+        background: rgba(255, 255, 255, 0.09);
+        box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.16);
+      }
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: rgba(240, 244, 255, 0.42);
+      }
+      .form-group textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      /* Checkbox grid */
+      .services-check-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: rgba(240, 244, 255, 0.88);
+        letter-spacing: 0.02em;
+        margin-bottom: 0.6rem;
+      }
+      .services-check-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+        margin-bottom: 1.5rem;
+      }
+      .check-item {
+        position: relative;
+      }
+      .check-item input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .check-item label {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        padding: 0.7rem 1rem;
+        background: rgba(255, 255, 255, 0.055);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.84rem;
+        color: rgba(240, 244, 255, 0.78);
+        font-weight: 500;
+      }
+      .check-item label:hover {
+        background: rgba(255, 255, 255, 0.085);
+        border-color: rgba(96, 165, 250, 0.3);
+        color: #f8fbff;
+      }
+      .check-item input:checked + label {
+        background: rgba(96, 165, 250, 0.12);
+        border-color: #60a5fa;
+        color: #f8fbff;
+        box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.2);
+      }
+      .check-box {
+        width: 18px;
+        height: 18px;
+        border-radius: 5px;
+        border: 2px solid rgba(240, 244, 255, 0.28);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.2s;
+      }
+      .check-box svg {
+        width: 10px;
+        height: 10px;
+        opacity: 0;
+        transform: scale(0.5);
+        transition: all 0.2s;
+      }
+      .check-item input:checked + label .check-box {
+        background: #1a78e6;
+        border-color: #1a78e6;
+      }
+      .check-item input:checked + label .check-box svg {
+        opacity: 1;
+        transform: scale(1);
+      }
+      .check-emoji {
+        font-size: 1rem;
+      }
+
+      /* Submit */
+      .btn-submit {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, #f58220, #e06b10);
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1rem;
+        font-family: "Inter", sans-serif;
+        cursor: pointer;
+        transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: 0 4px 20px rgba(245, 130, 32, 0.25);
+      }
+      .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(245, 130, 32, 0.35);
+      }
+      .btn-submit:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+      .form-note {
+        text-align: center;
+        font-size: 0.78rem;
+        color: #94a3b8;
+        margin-top: 0.75rem;
+      }
+
+      /* Success */
+      .form-success {
+        display: none;
+        text-align: center;
+        padding: 3rem 2rem;
+      }
+      .form-success .success-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: rgba(16, 185, 129, 0.1);
+        border: 2px solid rgba(16, 185, 129, 0.25);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.75rem;
+        margin-bottom: 1.25rem;
+      }
+      .form-success h3 {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: #10b981;
+        margin-bottom: 0.5rem;
+      }
+      .form-success p {
+        color: rgba(240, 244, 255, 0.76);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      /* FAQ */
+      .faq-section {
+        padding: 4rem 0;
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 1024px) {
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
         }
-        .service-card h3 { font-size: 1.15rem; font-weight: 700; color: #0f172a; margin-bottom: 0.6rem; }
-        .service-card .card-desc { font-size: 0.88rem; color: #475569; line-height: 1.65; margin-bottom: 1rem; flex: 1; }
-        .card-features { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-        .card-tag {
-            background: #f1f5f9; border: 1px solid #e2e8f0; color: #64748b;
-            font-size: 0.72rem; font-weight: 500; padding: 3px 10px; border-radius: 100px; white-space: nowrap;
+        .service-card.wide {
+          grid-column: span 1;
         }
-        .service-card:hover .card-tag { background: #e2e8f0; color: #334155; }
-
-        /* ── Process (light) ── */
-        .process-section { padding: 5rem 0; background: linear-gradient(180deg, transparent, rgba(26,120,230,0.03), transparent); }
-        .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
-        .process-step { text-align: center; position: relative; }
+        .request-layout {
+          grid-template-columns: 1fr;
+        }
+        .request-info {
+          position: static;
+        }
+        .process-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
         .process-step::after {
-            content: ''; position: absolute; top: 28px; right: -0.75rem;
-            width: calc(100% - 56px); height: 2px;
-            background: linear-gradient(90deg, rgba(26,120,230,0.3), rgba(26,120,230,0.05));
-            transform: translateX(100%);
+          display: none;
         }
-        .process-step:last-child::after { display: none; }
-        .step-num {
-            width: 56px; height: 56px; border-radius: 16px;
-            display: inline-flex; align-items: center; justify-content: center;
-            font-size: 1.25rem; font-weight: 800; margin: 0 auto 1rem;
-            background: linear-gradient(135deg, rgba(26,120,230,0.1), rgba(26,120,230,0.04));
-            border: 1px solid rgba(26,120,230,0.2); color: #1a78e6;
+      }
+      @media (max-width: 640px) {
+        .services-grid {
+          grid-template-columns: 1fr;
         }
-        .process-step h3 { font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.4rem; }
-        .process-step p { font-size: 0.83rem; color: #475569; line-height: 1.5; }
-
-        /* ── Request Form (light) ── */
-        .request-section { padding: 5rem 0; position: relative; }
-        .request-section::before {
-            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            width: 1px; height: 80px;
-            background: linear-gradient(180deg, transparent, rgba(245,130,32,0.3), transparent);
+        .form-row {
+          grid-template-columns: 1fr;
         }
-        .request-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 3rem; align-items: start; }
-        .request-info { position: sticky; top: 6rem; }
-        .request-info h2 {
-            font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 800;
-            color: #0f172a; letter-spacing: -0.02em; margin-bottom: 1rem;
+        .services-check-grid {
+          grid-template-columns: 1fr;
         }
-        .request-info h2 .accent { color: #f58220; }
-        .request-info > p { font-size: 0.95rem; color: #475569; line-height: 1.7; margin-bottom: 2rem; }
-        .info-perks { display: flex; flex-direction: column; gap: 1rem; }
-        .perk-item { display: flex; align-items: flex-start; gap: 0.75rem; }
-        .perk-icon {
-            width: 36px; height: 36px; border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.1rem; flex-shrink: 0;
-            background: rgba(245,130,32,0.08); border: 1px solid rgba(245,130,32,0.15);
+        .process-grid {
+          grid-template-columns: 1fr;
         }
-        .perk-text { font-size: 0.88rem; color: #475569; line-height: 1.5; }
-        .perk-text strong { color: #0f172a; display: block; margin-bottom: 1px; }
-
-        /* Payment badges */
-        .payment-section { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e2e8f0; }
-        .payment-label {
-            font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
-            text-transform: uppercase; color: #94a3b8; margin-bottom: 0.6rem;
-        }
-        .payment-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-        .pay-badge {
-            background: #f1f5f9; border: 1px solid #e2e8f0; color: #64748b;
-            font-size: 0.7rem; font-weight: 500; padding: 4px 10px; border-radius: 100px;
-        }
-
-        /* Form card */
         .request-form-card {
-            background: #fff; border: 1px solid #e2e8f0; border-radius: 20px;
-            padding: 2.5rem; position: relative; overflow: hidden;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+          padding: 1.5rem;
         }
-        .request-form-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0;
-            height: 3px; background: linear-gradient(90deg, #1a78e6, #f58220);
+        .hero-cta-row {
+          flex-direction: column;
         }
-
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem; }
-        .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-        .form-group.full { grid-column: 1 / -1; }
-        .form-group label { font-size: 0.8rem; font-weight: 600; color: #334155; letter-spacing: 0.02em; }
-        .form-group input,
-        .form-group textarea {
-            background: #f8fafc; border: 1px solid #d1d5db; border-radius: 10px;
-            padding: 0.75rem 1rem; color: #0f172a; font-size: 0.9rem;
-            font-family: 'Inter', sans-serif; transition: all 0.2s;
+        .hero-cta-row .btn-hero {
+          text-align: center;
+          justify-content: center;
         }
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none; border-color: #1a78e6; background: #fff;
-            box-shadow: 0 0 0 3px rgba(26,120,230,0.1);
-        }
-        .form-group input::placeholder,
-        .form-group textarea::placeholder { color: #94a3b8; }
-        .form-group textarea { min-height: 120px; resize: vertical; }
-
-        /* Checkbox grid */
-        .services-check-label { font-size: 0.8rem; font-weight: 600; color: #334155; letter-spacing: 0.02em; margin-bottom: 0.6rem; }
-        .services-check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 1.5rem; }
-        .check-item { position: relative; }
-        .check-item input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0; }
-        .check-item label {
-            display: flex; align-items: center; gap: 0.65rem;
-            padding: 0.7rem 1rem; background: #f8fafc;
-            border: 1px solid #e2e8f0; border-radius: 10px; cursor: pointer;
-            transition: all 0.2s; font-size: 0.84rem; color: #475569; font-weight: 500;
-        }
-        .check-item label:hover { background: #f1f5f9; border-color: #cbd5e1; color: #1e293b; }
-        .check-item input:checked + label {
-            background: rgba(26,120,230,0.06); border-color: #1a78e6; color: #0f172a;
-            box-shadow: 0 0 0 1px rgba(26,120,230,0.15);
-        }
-        .check-box {
-            width: 18px; height: 18px; border-radius: 5px;
-            border: 2px solid #cbd5e1; display: flex; align-items: center;
-            justify-content: center; flex-shrink: 0; transition: all 0.2s;
-        }
-        .check-box svg { width: 10px; height: 10px; opacity: 0; transform: scale(0.5); transition: all 0.2s; }
-        .check-item input:checked + label .check-box { background: #1a78e6; border-color: #1a78e6; }
-        .check-item input:checked + label .check-box svg { opacity: 1; transform: scale(1); }
-        .check-emoji { font-size: 1rem; }
-
-        /* Submit */
-        .btn-submit {
-            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-            width: 100%; padding: 1rem 2rem;
-            background: linear-gradient(135deg, #f58220, #e06b10); color: #fff; border: none;
-            border-radius: 12px; font-weight: 700; font-size: 1rem;
-            font-family: 'Inter', sans-serif; cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 4px 20px rgba(245,130,32,0.25);
-        }
-        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,130,32,0.35); }
-        .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
-        .form-note { text-align: center; font-size: 0.78rem; color: #94a3b8; margin-top: 0.75rem; }
-
-        /* Success */
-        .form-success { display: none; text-align: center; padding: 3rem 2rem; }
-        .form-success .success-icon {
-            width: 64px; height: 64px; border-radius: 50%;
-            background: rgba(16,185,129,0.1); border: 2px solid rgba(16,185,129,0.25);
-            display: inline-flex; align-items: center; justify-content: center;
-            font-size: 1.75rem; margin-bottom: 1.25rem;
-        }
-        .form-success h3 { font-size: 1.35rem; font-weight: 700; color: #10b981; margin-bottom: 0.5rem; }
-        .form-success p { color: #475569; font-size: 0.95rem; line-height: 1.6; }
-
-        /* FAQ */
-        .faq-section { padding: 4rem 0; }
-
-        /* ── Responsive ── */
-        @media (max-width: 1024px) {
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
-            .service-card.wide { grid-column: span 1; }
-            .request-layout { grid-template-columns: 1fr; }
-            .request-info { position: static; }
-            .process-grid { grid-template-columns: repeat(2, 1fr); }
-            .process-step::after { display: none; }
-        }
-        @media (max-width: 640px) {
-            .services-grid { grid-template-columns: 1fr; }
-            .form-row { grid-template-columns: 1fr; }
-            .services-check-grid { grid-template-columns: 1fr; }
-            .process-grid { grid-template-columns: 1fr; }
-            .request-form-card { padding: 1.5rem; }
-            .hero-cta-row { flex-direction: column; }
-            .hero-cta-row .btn-hero { text-align: center; justify-content: center; }
-        }
+      }
     </style>
 
     <!-- JSON-LD: Service structured data -->
     <script type="application/ld+json">
-    {
+      {
         "@context": "https://schema.org",
         "@type": "ItemList",
-        "name": "Technology & Digital Services — Hinrichs Specialty Services and Technology",
+        "name": "Technology & Digital Services | Hinrichs Specialty Services and Technology",
         "description": "Technology consultation and digital services for Nebraska small businesses, nonprofits, and service organizations.",
-        "url": "https://hinrichs-specialty-services.vercel.app/digital-solutions.html",
+        "url": "https://www.hinrichsspecialtyservices.com/digital-solutions.html",
         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "item": { "@type": "Service", "name": "Website Design & Development", "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" }, "areaServed": "Nebraska" } },
-            { "@type": "ListItem", "position": 2, "item": { "@type": "Service", "name": "SEO & AEO Optimization", "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" }, "areaServed": "Nebraska" } },
-            { "@type": "ListItem", "position": 3, "item": { "@type": "Service", "name": "AI Automation & Chatbot Integration", "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" }, "areaServed": "United States" } },
-            { "@type": "ListItem", "position": 4, "item": { "@type": "Service", "name": "Technology Consultation", "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" }, "areaServed": "United States" } },
-            { "@type": "ListItem", "position": 5, "item": { "@type": "Service", "name": "Social Media Management", "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" }, "areaServed": "United States" } },
-            { "@type": "ListItem", "position": 6, "item": { "@type": "Service", "name": "Database & Analytics Development", "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" }, "areaServed": "United States" } },
-            { "@type": "ListItem", "position": 7, "item": { "@type": "Service", "name": "Custom CRM Development", "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" }, "areaServed": "United States" } },
-            { "@type": "ListItem", "position": 8, "item": { "@type": "Service", "name": "Digital Marketing", "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" }, "areaServed": "United States" } }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "Service",
+              "name": "Website Design & Development",
+              "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" },
+              "areaServed": "Nebraska"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "Service",
+              "name": "SEO & AEO Optimization",
+              "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" },
+              "areaServed": "Nebraska"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "Service",
+              "name": "AI Automation & Chatbot Integration",
+              "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" },
+              "areaServed": "United States"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "Service",
+              "name": "Technology Consultation",
+              "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" },
+              "areaServed": "United States"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+              "@type": "Service",
+              "name": "Social Media Management",
+              "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" },
+              "areaServed": "United States"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "item": {
+              "@type": "Service",
+              "name": "Database & Analytics Development",
+              "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" },
+              "areaServed": "United States"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "item": {
+              "@type": "Service",
+              "name": "Custom CRM Development",
+              "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" },
+              "areaServed": "United States"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "item": {
+              "@type": "Service",
+              "name": "Digital Marketing",
+              "provider": { "@type": "LocalBusiness", "name": "Hinrichs Specialty Services and Technology" },
+              "areaServed": "United States"
+            }
+          }
         ]
-    }
+      }
     </script>
 
     <!-- JSON-LD: FAQ -->
     <script type="application/ld+json">
-    {
+      {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-            { "@type": "Question", "name": "How much do services cost at HSST?", "acceptedAnswer": { "@type": "Answer", "text": "Every project is different. HSST provides free consultations and custom bids tailored to your needs and budget. Contact (402) 759-2210 or submit a service request." } },
-            { "@type": "Question", "name": "What payment methods does HSST accept?", "acceptedAnswer": { "@type": "Answer", "text": "HSST accepts credit/debit cards, ACH bank transfers, checks, cash, Venmo, CashApp, PayPal, and Zelle. Payment plans are available for larger projects." } },
-            { "@type": "Question", "name": "Does HSST work outside Nebraska?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. While based in Geneva, Nebraska, HSST serves clients nationwide through a fully remote, digital-first approach." } }
+          {
+            "@type": "Question",
+            "name": "How much do services cost at HSST?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Website Care + Build is $150 per month with no separate build fee. The plan includes up to five hours each month for progressive development, hosting, maintenance, security updates, routine content updates, basic SEO, and Search Console monitoring. Additional approved work is $30-$65 per hour."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What payment methods does HSST accept?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "HSST accepts Venmo, Cash App, Zelle, check, wire, cash, or another agreed method. Contact HSST for the correct payment instructions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does HSST work outside Nebraska?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. While based in Geneva, Nebraska, HSST serves clients nationwide through a fully remote, digital-first approach."
+            }
+          }
         ]
-    }
+      }
     </script>
 
     <!-- JSON-LD: BreadcrumbList -->
     <script type="application/ld+json">
-    { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://hinrichs-specialty-services.vercel.app/" }, { "@type": "ListItem", "position": 2, "name": "Our Services", "item": "https://hinrichs-specialty-services.vercel.app/digital-solutions.html" } ] }
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.hinrichsspecialtyservices.com/" },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Our Services",
+            "item": "https://www.hinrichsspecialtyservices.com/digital-solutions.html"
+          }
+        ]
+      }
     </script>
-</head>
-<body>
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <div class="nav-logo">
-                    <a href="index.html" class="nav-logo-link"><h2 class="nav-logo-abbr">HSST</h2><p class="nav-logo-tagline">Hinrichs Specialty Services &amp; Technology</p></a>
-                </div>
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="our-story.html" class="nav-link">Our Story</a></li>
-                    <li><a href="digital-solutions.html" class="nav-link active">Our Services</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
-                </ul>
-                <div class="nav-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </nav>
-    </header>
+  </head>
+  <body>
+    <!-- public-header -->
 
     <main>
-        <!-- ── Hero ── -->
-        <section class="services-hero">
-            <div class="container">
-                <div class="hero-inner">
-                    <div class="hero-eyebrow"><span class="dot"></span> Digital Services &amp; Technology</div>
-                    <h1>Technology that <span class="gradient-text">works for you.</span></h1>
-                    <p>From websites and SEO to AI chatbots and custom databases — we build the digital tools your business needs. No fluff. No subscriptions. Just results that fit your budget.</p>
-                    <div class="hero-cta-row">
-                        <a href="#request" class="btn-hero btn-hero-primary">Request a Free Bid &darr;</a>
-                        <a href="tel:4027592210" class="btn-hero btn-hero-outline">Call (402) 759-2210</a>
-                    </div>
-                </div>
+      <!-- ── Hero ── -->
+      <section class="services-hero">
+        <div class="container">
+          <div class="hero-inner">
+            <div class="hero-eyebrow"><span class="dot"></span> Digital Services &amp; Technology</div>
+            <h1>Technology that <span class="gradient-text">works for you.</span></h1>
+            <p>
+              Website Care + Build gives your organization a dependable site, ongoing support, and clear monthly capacity for $150 per month.
+            </p>
+            <div class="hero-cta-row">
+              <a href="#request" class="btn-hero btn-hero-primary">See the Monthly Plan</a>
+              <a href="tel:4027592210" class="btn-hero btn-hero-outline">Call (402) 759-2210</a>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <!-- ── Services Grid ── -->
-        <section class="services-section">
-            <div class="container">
-                <div class="section-label">What We Do</div>
-                <h2 class="section-title">Services built for real businesses.</h2>
-                <p class="section-subtitle">Every service is scoped to your needs and budget. Pick one, pick a few, or tell us your problem and we'll figure it out together.</p>
+      <!-- ── Services Grid ── -->
+      <section class="services-section section">
+        <div class="marcelo-frame">
+          <div class="section-label">What We Do</div>
+          <h2 class="section-title">Services built for real businesses.</h2>
+          <p class="section-subtitle">
+            Every service is scoped to your needs and budget. Pick one, pick a few, or tell us your problem and we'll
+            figure it out together.
+          </p>
 
-                <div class="services-grid">
-                    <div class="service-card wide" data-accent="blue" id="website">
-                        <div class="card-icon">🌐</div>
-                        <h3>Website Design &amp; Development</h3>
-                        <p class="card-desc">Custom, mobile-responsive websites built from scratch. No templates, no page builders — real code, real design, built for your brand. You own everything when we're done.</p>
-                        <div class="card-features">
-                            <span class="card-tag">Custom design</span>
-                            <span class="card-tag">Mobile-first</span>
-                            <span class="card-tag">SEO built-in</span>
-                            <span class="card-tag">Contact forms</span>
-                            <span class="card-tag">Fast load times</span>
-                            <span class="card-tag">No lock-in</span>
-                        </div>
-                    </div>
-
-                    <div class="service-card" data-accent="green" id="seo">
-                        <div class="card-icon">📈</div>
-                        <h3>SEO &amp; Digital Visibility</h3>
-                        <p class="card-desc">Get found on Google and in AI-powered search. We optimize your presence so customers find you first.</p>
-                        <div class="card-features">
-                            <span class="card-tag">On-page SEO</span>
-                            <span class="card-tag">Technical audit</span>
-                            <span class="card-tag">Google Business</span>
-                            <span class="card-tag">AEO / AI search</span>
-                        </div>
-                    </div>
-
-                    <div class="service-card wide" data-accent="purple" id="chatbot">
-                        <div class="card-icon">🤖</div>
-                        <h3>AI Automation &amp; Chatbots</h3>
-                        <p class="card-desc">Custom AI chatbots that answer questions, capture leads, and handle conversations 24/7. Workflow automation that saves you hours every week. Works on any website.</p>
-                        <div class="card-features">
-                            <span class="card-tag">AI-powered chat</span>
-                            <span class="card-tag">Lead capture</span>
-                            <span class="card-tag">Workflow automation</span>
-                            <span class="card-tag">Multi-language</span>
-                            <span class="card-tag">Scheduling</span>
-                            <span class="card-tag">CRM integration</span>
-                        </div>
-                    </div>
-
-                    <div class="service-card" data-accent="teal" id="database">
-                        <div class="card-icon">🗄️</div>
-                        <h3>Database &amp; Backend</h3>
-                        <p class="card-desc">Custom databases to organize records, track data, and power your operations behind the scenes.</p>
-                        <div class="card-features">
-                            <span class="card-tag">Relational DBs</span>
-                            <span class="card-tag">Dashboards</span>
-                            <span class="card-tag">User roles</span>
-                            <span class="card-tag">API integrations</span>
-                        </div>
-                    </div>
-
-                    <div class="service-card" data-accent="orange" id="crm">
-                        <div class="card-icon">📋</div>
-                        <h3>Custom CRM Development</h3>
-                        <p class="card-desc">A CRM built around the way you work — not a bloated platform with features you'll never touch.</p>
-                        <div class="card-features">
-                            <span class="card-tag">Contact management</span>
-                            <span class="card-tag">Automations</span>
-                            <span class="card-tag">Reporting</span>
-                            <span class="card-tag">Integrations</span>
-                        </div>
-                    </div>
-
-                    <div class="service-card" data-accent="pink" id="social">
-                        <div class="card-icon">📱</div>
-                        <h3>Social Media Management</h3>
-                        <p class="card-desc">Content, scheduling, and engagement that keeps your brand active and growing on the platforms that matter.</p>
-                        <div class="card-features">
-                            <span class="card-tag">Content creation</span>
-                            <span class="card-tag">Scheduling</span>
-                            <span class="card-tag">Analytics</span>
-                            <span class="card-tag">Community mgmt</span>
-                        </div>
-                    </div>
-
-                    <div class="service-card" data-accent="red" id="marketing">
-                        <div class="card-icon">📣</div>
-                        <h3>Digital Marketing</h3>
-                        <p class="card-desc">Targeted campaigns, content strategy, and lead generation to reach more people and convert them into customers.</p>
-                        <div class="card-features">
-                            <span class="card-tag">Content strategy</span>
-                            <span class="card-tag">Email campaigns</span>
-                            <span class="card-tag">Paid ads</span>
-                            <span class="card-tag">Lead gen</span>
-                        </div>
-                    </div>
-
-                    <div class="service-card" data-accent="cyan" id="consultation">
-                        <div class="card-icon">💡</div>
-                        <h3>Technology Consultation</h3>
-                        <p class="card-desc">Not sure what you need? We'll help you figure it out — digital strategy, platform recommendations, and roadmaps.</p>
-                        <div class="card-features">
-                            <span class="card-tag">Strategy</span>
-                            <span class="card-tag">Platform recs</span>
-                            <span class="card-tag">Cost breakdown</span>
-                            <span class="card-tag">Nonprofits</span>
-                        </div>
-                    </div>
-
-                    <div class="service-card" data-accent="amber" id="maintenance">
-                        <div class="card-icon">🔧</div>
-                        <h3>Ongoing Maintenance &amp; Support</h3>
-                        <p class="card-desc">Regular updates, monitoring, and support to keep your site fast, secure, and up to date — without managing it yourself.</p>
-                        <div class="card-features">
-                            <span class="card-tag">Updates</span>
-                            <span class="card-tag">Monitoring</span>
-                            <span class="card-tag">Security</span>
-                            <span class="card-tag">Priority support</span>
-                        </div>
-                    </div>
-                </div>
+          <div class="services-grid">
+            <div class="service-card wide" data-accent="blue" id="website">
+              <div class="card-icon">🌐</div>
+              <h3>Website Design &amp; Development</h3>
+              <p class="card-desc">
+                Custom, mobile-responsive websites developed progressively through the five hours included in your monthly plan. Hosting and ongoing care stay together.
+              </p>
+              <div class="card-features">
+                <span class="card-tag">Custom design</span>
+                <span class="card-tag">Mobile-first</span>
+                <span class="card-tag">SEO built-in</span>
+                <span class="card-tag">Contact forms</span>
+                <span class="card-tag">Fast load times</span>
+                <span class="card-tag">No lock-in</span>
+              </div>
             </div>
-        </section>
 
-        <!-- ── How It Works ── -->
-        <section class="process-section">
-            <div class="container">
-                <div class="section-label">How It Works</div>
-                <h2 class="section-title">Four steps to your solution.</h2>
-
-                <div class="process-grid">
-                    <div class="process-step">
-                        <div class="step-num">1</div>
-                        <h3>Free Consultation</h3>
-                        <p>Tell us what you need. We'll talk through your goals and figure out the best approach together.</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-num">2</div>
-                        <h3>Custom Bid</h3>
-                        <p>You get a clear, written bid tailored to your project and budget. No hidden fees, no surprises.</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-num">3</div>
-                        <h3>Build &amp; Review</h3>
-                        <p>We build, you review. Revisions included. You stay in the loop at every stage.</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-num">4</div>
-                        <h3>Deliver &amp; Hand Off</h3>
-                        <p>You receive all files, credentials, and access. No vendor lock-in — you own everything.</p>
-                    </div>
-                </div>
+            <div class="service-card" data-accent="green" id="seo">
+              <div class="card-icon">📈</div>
+              <h3>SEO &amp; Digital Visibility</h3>
+              <p class="card-desc">
+                Get found on Google and in AI-powered search. We optimize your presence so customers find you first.
+              </p>
+              <div class="card-features">
+                <span class="card-tag">On-page SEO</span>
+                <span class="card-tag">Technical audit</span>
+                <span class="card-tag">Google Business</span>
+                <span class="card-tag">AEO / AI search</span>
+              </div>
             </div>
-        </section>
 
-        <!-- ── Request Form ── -->
-        <section class="request-section" id="request">
-            <div class="container">
-                <div class="request-layout">
-                    <div class="request-info">
-                        <div class="section-label">Get Started</div>
-                        <h2>Request a <span class="accent">free bid.</span></h2>
-                        <p>Tell us about your project and we'll put together a custom quote that fits your budget. No obligation — just a straight answer on what it'll take.</p>
-
-                        <div class="info-perks">
-                            <div class="perk-item">
-                                <div class="perk-icon">🎯</div>
-                                <div class="perk-text"><strong>Custom-scoped to you</strong>Every bid is built around your specific goals and budget.</div>
-                            </div>
-                            <div class="perk-item">
-                                <div class="perk-icon">⚡</div>
-                                <div class="perk-text"><strong>Fast turnaround</strong>Most bids delivered within 1–2 business days.</div>
-                            </div>
-                            <div class="perk-item">
-                                <div class="perk-icon">💳</div>
-                                <div class="perk-text"><strong>Flexible payment</strong>Payment plans available. Multiple payment methods accepted.</div>
-                            </div>
-                            <div class="perk-item">
-                                <div class="perk-icon">🤝</div>
-                                <div class="perk-text"><strong>No lock-in</strong>You own all files, code, and content. Always.</div>
-                            </div>
-                        </div>
-
-                        <div class="payment-section">
-                            <div class="payment-label">Accepted Payment Methods</div>
-                            <div class="payment-row">
-                                <span class="pay-badge">Credit / Debit</span>
-                                <span class="pay-badge">ACH Transfer</span>
-                                <span class="pay-badge">Check</span>
-                                <span class="pay-badge">Cash</span>
-                                <span class="pay-badge">Venmo</span>
-                                <span class="pay-badge">CashApp</span>
-                                <span class="pay-badge">PayPal</span>
-                                <span class="pay-badge">Zelle</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="request-form-card">
-                        <form id="serviceRequestForm">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="req-first-name">First Name *</label>
-                                    <input type="text" id="req-first-name" name="firstName" required placeholder="Jane">
-                                </div>
-                                <div class="form-group">
-                                    <label for="req-last-name">Last Name *</label>
-                                    <input type="text" id="req-last-name" name="lastName" required placeholder="Smith">
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="req-email">Email *</label>
-                                    <input type="email" id="req-email" name="email" required placeholder="jane@example.com">
-                                </div>
-                                <div class="form-group">
-                                    <label for="req-phone">Phone</label>
-                                    <input type="tel" id="req-phone" name="phone" placeholder="(555) 123-4567">
-                                </div>
-                            </div>
-
-                            <div class="form-group full" style="margin-bottom: 1.25rem;">
-                                <label for="req-organization">Business / Organization Name</label>
-                                <input type="text" id="req-organization" name="organization" placeholder="Your company or org name">
-                            </div>
-
-                            <div class="services-check-label">Services You're Interested In *</div>
-                            <div class="services-check-grid">
-                                <div class="check-item">
-                                    <input type="checkbox" id="svc-website" name="services" value="Website Design & Development">
-                                    <label for="svc-website">
-                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                                        <span class="check-emoji">🌐</span> Website Design &amp; Development
-                                    </label>
-                                </div>
-                                <div class="check-item">
-                                    <input type="checkbox" id="svc-seo" name="services" value="SEO & Digital Visibility">
-                                    <label for="svc-seo">
-                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                                        <span class="check-emoji">📈</span> SEO &amp; Digital Visibility
-                                    </label>
-                                </div>
-                                <div class="check-item">
-                                    <input type="checkbox" id="svc-ai" name="services" value="AI Automation & Chatbots">
-                                    <label for="svc-ai">
-                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                                        <span class="check-emoji">🤖</span> AI Automation &amp; Chatbots
-                                    </label>
-                                </div>
-                                <div class="check-item">
-                                    <input type="checkbox" id="svc-db" name="services" value="Database & Backend Development">
-                                    <label for="svc-db">
-                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                                        <span class="check-emoji">🗄️</span> Database &amp; Backend
-                                    </label>
-                                </div>
-                                <div class="check-item">
-                                    <input type="checkbox" id="svc-crm" name="services" value="Custom CRM Development">
-                                    <label for="svc-crm">
-                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                                        <span class="check-emoji">📋</span> Custom CRM Development
-                                    </label>
-                                </div>
-                                <div class="check-item">
-                                    <input type="checkbox" id="svc-social" name="services" value="Social Media Management">
-                                    <label for="svc-social">
-                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                                        <span class="check-emoji">📱</span> Social Media Management
-                                    </label>
-                                </div>
-                                <div class="check-item">
-                                    <input type="checkbox" id="svc-marketing" name="services" value="Digital Marketing">
-                                    <label for="svc-marketing">
-                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                                        <span class="check-emoji">📣</span> Digital Marketing
-                                    </label>
-                                </div>
-                                <div class="check-item">
-                                    <input type="checkbox" id="svc-consult" name="services" value="Technology Consultation">
-                                    <label for="svc-consult">
-                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                                        <span class="check-emoji">💡</span> Technology Consultation
-                                    </label>
-                                </div>
-                                <div class="check-item">
-                                    <input type="checkbox" id="svc-maintenance" name="services" value="Ongoing Maintenance & Support">
-                                    <label for="svc-maintenance">
-                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                                        <span class="check-emoji">🔧</span> Maintenance &amp; Support
-                                    </label>
-                                </div>
-                                <div class="check-item">
-                                    <input type="checkbox" id="svc-other" name="services" value="Other / Not Sure">
-                                    <label for="svc-other">
-                                        <span class="check-box"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                                        <span class="check-emoji">❓</span> Other / Not Sure
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="form-group full" style="margin-bottom: 1.5rem;">
-                                <label for="req-details">Tell us about your project *</label>
-                                <textarea id="req-details" name="details" required placeholder="What are you looking for? What problem are you trying to solve? Any details help us put together an accurate bid."></textarea>
-                            </div>
-
-                            <button type="submit" class="btn-submit" id="submitRequestBtn">
-                                Request Free Bid &amp; Consultation
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                            </button>
-                            <p class="form-note">No spam. No obligation. We'll respond within 1–2 business days.</p>
-                        </form>
-
-                        <div class="form-success" id="requestSuccess">
-                            <div class="success-icon">✓</div>
-                            <h3>Request Received!</h3>
-                            <p>Thanks for reaching out. We'll review your request and get back to you with a custom bid — usually within 1–2 business days.</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="service-card wide" data-accent="purple" id="chatbot">
+              <div class="card-icon">🤖</div>
+              <h3>AI Automation &amp; Chatbots</h3>
+              <p class="card-desc">
+                Custom AI chatbots that answer common questions, capture leads, and support visitors when the service is available. Workflow automation reduces repeated work.
+              </p>
+              <div class="card-features">
+                <span class="card-tag">AI-powered chat</span>
+                <span class="card-tag">Lead capture</span>
+                <span class="card-tag">Workflow automation</span>
+                <span class="card-tag">Multi-language</span>
+                <span class="card-tag">Scheduling</span>
+                <span class="card-tag">CRM integration</span>
+              </div>
             </div>
-        </section>
 
-        <!-- FAQ -->
-        <section class="faq-section">
-            <div class="container">
-                <h2>Frequently Asked Questions</h2>
-                <div class="faq-grid">
-                    <div class="faq-item">
-                        <h3>How much does a project cost?</h3>
-                        <p>Every project is different. Submit a service request above and we'll put together a free, no-obligation bid based on your specific needs and budget.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>What payment methods do you accept?</h3>
-                        <p>We accept credit/debit cards, ACH bank transfers, checks, cash, Venmo, CashApp, PayPal, and Zelle. Payment plans are available for larger projects.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>Do you offer payment plans?</h3>
-                        <p>Yes. For larger projects we can work out a payment plan that fits your budget — typically split across project milestones.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>How quickly can you get started?</h3>
-                        <p>Most projects start within a few business days of agreement. Smaller tasks can often begin within 1–2 days.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>Do I own the files when we're done?</h3>
-                        <p>Absolutely. You receive all files, code, credentials, and content. No vendor lock-in, ever.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>Do you work outside Nebraska?</h3>
-                        <p>Yes — while we're based in Geneva, Nebraska, we serve clients nationwide through a fully remote, digital-first approach.</p>
-                    </div>
-                </div>
+            <div class="service-card" data-accent="teal" id="database">
+              <div class="card-icon">🗄️</div>
+              <h3>Database &amp; Backend</h3>
+              <p class="card-desc">
+                Custom databases to organize records, track data, and power your operations behind the scenes.
+              </p>
+              <div class="card-features">
+                <span class="card-tag">Relational DBs</span>
+                <span class="card-tag">Dashboards</span>
+                <span class="card-tag">User roles</span>
+                <span class="card-tag">API integrations</span>
+              </div>
             </div>
-        </section>
 
-        <!-- CTA -->
-        <section class="contact-cta">
-            <div class="container">
-                <div class="cta-content">
-                    <h2>Ready to Get Started?</h2>
-                    <p>Contact us to discuss your project or schedule a free consultation. We'll find the right solution for your budget.</p>
-                    <div class="contact-options">
-                        <div class="contact-method">
-                            <h3>Call Us</h3>
-                            <p>(402) 759-2210</p>
-                        </div>
-                        <div class="contact-method">
-                            <h3>Email Us</h3>
-                            <p>bhinrichs1380@gmail.com</p>
-                        </div>
-                        <div class="contact-method">
-                            <h3>Free Consultation</h3>
-                            <p>No obligation, no pressure</p>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="btn btn-primary">Contact Us</a>
-                </div>
+            <div class="service-card" data-accent="orange" id="crm">
+              <div class="card-icon">📋</div>
+              <h3>Custom CRM Development</h3>
+              <p class="card-desc">
+                A CRM built around the way you work, without a bloated platform full of features you will never touch.
+              </p>
+              <div class="card-features">
+                <span class="card-tag">Contact management</span>
+                <span class="card-tag">Automations</span>
+                <span class="card-tag">Reporting</span>
+                <span class="card-tag">Integrations</span>
+              </div>
             </div>
-        </section>
+
+            <div class="service-card" data-accent="pink" id="social">
+              <div class="card-icon">📱</div>
+              <h3>Social Media Management</h3>
+              <p class="card-desc">
+                Content, scheduling, and engagement starting at an additional $50 per month. The final fee adjusts for
+                platforms, frequency, content needs, and workload.
+              </p>
+              <div class="card-features">
+                <span class="card-tag">Content creation</span>
+                <span class="card-tag">Scheduling</span>
+                <span class="card-tag">Analytics</span>
+                <span class="card-tag">Community mgmt</span>
+              </div>
+            </div>
+
+            <div class="service-card" data-accent="red" id="marketing">
+              <div class="card-icon">📣</div>
+              <h3>Digital Marketing</h3>
+              <p class="card-desc">
+                Targeted campaigns, content strategy, and lead generation to reach more people and convert them into
+                customers.
+              </p>
+              <div class="card-features">
+                <span class="card-tag">Content strategy</span>
+                <span class="card-tag">Email campaigns</span>
+                <span class="card-tag">Paid ads</span>
+                <span class="card-tag">Lead gen</span>
+              </div>
+            </div>
+
+            <div class="service-card" data-accent="cyan" id="consultation">
+              <div class="card-icon">💡</div>
+              <h3>Technology Consultation</h3>
+              <p class="card-desc">
+                Not sure what you need? We'll help you figure it out through digital strategy, platform recommendations, and
+                roadmaps.
+              </p>
+              <div class="card-features">
+                <span class="card-tag">Strategy</span>
+                <span class="card-tag">Platform recs</span>
+                <span class="card-tag">Cost breakdown</span>
+                <span class="card-tag">Nonprofits</span>
+              </div>
+            </div>
+
+            <div class="service-card" data-accent="amber" id="maintenance">
+              <div class="card-icon">🔧</div>
+              <h3>Ongoing Maintenance &amp; Support</h3>
+              <p class="card-desc">
+                Regular updates, monitoring, and support to keep your site fast, secure, and up to date without
+                managing it yourself.
+              </p>
+              <div class="card-features">
+                <span class="card-tag">Updates</span>
+                <span class="card-tag">Monitoring</span>
+                <span class="card-tag">Security</span>
+                <span class="card-tag">Planned support</span>
+              </div>
+            </div>
+            <div class="service-card wide" data-accent="blue" id="virtual-assistance">
+              <div class="card-icon">🤝</div>
+              <h3>Virtual Assistance</h3>
+              <p class="card-desc">
+                A custom VA who works inside your workflow and handles the admin, communication, research, and
+                follow-through you do not have time to carry.
+              </p>
+              <div class="card-features">
+                <a class="card-tag" href="virtual-assistance.html">Explore Virtual Assistance →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /.marcelo-frame -->
+
+      <!-- ── How It Works ── -->
+      <section class="process-section">
+        <div class="container">
+          <div class="section-label">How It Works</div>
+          <h2 class="section-title">Four steps to your solution.</h2>
+
+          <div class="process-grid">
+            <div class="process-step">
+              <div class="step-num">1</div>
+              <h3>Understand the Need</h3>
+              <p>Tell us what you need. We'll talk through your goals and figure out the best approach together.</p>
+            </div>
+            <div class="process-step">
+              <div class="step-num">2</div>
+              <h3>Confirm the Monthly Plan</h3>
+              <p>We confirm what fits into the five included hours and identify any optional work that would need advance approval.</p>
+            </div>
+            <div class="process-step">
+              <div class="step-num">3</div>
+              <h3>Build &amp; Review</h3>
+              <p>We build, you review. Revisions included. You stay in the loop at every stage.</p>
+            </div>
+            <div class="process-step">
+              <div class="step-num">4</div>
+              <h3>Continue with Clear Capacity</h3>
+              <p>Unfinished work can continue with the next month's five hours. Unused hours expire and do not roll over.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Request Form ── -->
+      <section class="request-section" id="request">
+        <div class="container">
+          <div class="request-layout">
+            <div class="request-info">
+              <div class="section-label">Get Started</div>
+              <h2><span class="accent">$150 per month.</span> No build fee.</h2>
+              <p>
+                Website Care + Build includes up to five hours each month for the build, hosting, maintenance, security updates, routine content updates, basic SEO, and Search Console monitoring.
+              </p>
+
+              <div class="info-perks">
+                <div class="perk-item">
+                  <div class="perk-icon">🎯</div>
+                  <div class="perk-text">
+                    <strong>Five included hours</strong>New websites are built progressively through each month's allocation.
+                  </div>
+                </div>
+                <div class="perk-item">
+                  <div class="perk-icon">⚡</div>
+                  <div class="perk-text">
+                    <strong>Month-to-month</strong>No long-term contract is required and unused hours do not roll over.
+                  </div>
+                </div>
+                <div class="perk-item">
+                  <div class="perk-icon">💳</div>
+                  <div class="perk-text">
+                    <strong>Approved overages only</strong>Extra work is $30-$65 per hour and never begins without approval.
+                  </div>
+                </div>
+                <div class="perk-item">
+                  <div class="perk-icon">🤝</div>
+                  <div class="perk-text"><strong>Social media option</strong>Management starts at an additional $50 per month and adjusts with scope.</div>
+                </div>
+              </div>
+
+              <div class="payment-section">
+                <div class="payment-label">Accepted Payment Methods</div>
+                <div class="payment-row">
+                  <span class="pay-badge">Venmo</span>
+                  <span class="pay-badge">Cash App</span>
+                  <span class="pay-badge">Zelle</span>
+                  <span class="pay-badge">Check</span>
+                  <span class="pay-badge">Wire</span>
+                  <span class="pay-badge">Cash</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="request-form-card">
+              <form id="serviceRequestForm">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="req-first-name">First Name *</label>
+                    <input type="text" id="req-first-name" name="firstName" required placeholder="Jane" />
+                  </div>
+                  <div class="form-group">
+                    <label for="req-last-name">Last Name *</label>
+                    <input type="text" id="req-last-name" name="lastName" required placeholder="Smith" />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="req-email">Email *</label>
+                    <input type="email" id="req-email" name="email" required placeholder="jane@example.com" />
+                  </div>
+                  <div class="form-group">
+                    <label for="req-phone">Phone</label>
+                    <input type="tel" id="req-phone" name="phone" placeholder="(555) 123-4567" />
+                  </div>
+                </div>
+
+                <div class="form-group full" style="margin-bottom: 1.25rem">
+                  <label for="req-organization">Business / Organization Name</label>
+                  <input type="text" id="req-organization" name="organization" placeholder="Your company or org name" />
+                </div>
+
+                <div class="services-check-label">Services You're Interested In *</div>
+                <div class="services-check-grid">
+                  <div class="check-item">
+                    <input type="checkbox" id="svc-website" name="services" value="Website Design & Development" />
+                    <label for="svc-website">
+                      <span class="check-box"
+                        ><svg viewBox="0 0 12 10" fill="none">
+                          <path
+                            d="M1 5l3.5 3.5L11 1"
+                            stroke="#fff"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          /></svg
+                      ></span>
+                      <span class="check-emoji">🌐</span> Website Design &amp; Development
+                    </label>
+                  </div>
+                  <div class="check-item">
+                    <input type="checkbox" id="svc-seo" name="services" value="SEO & Digital Visibility" />
+                    <label for="svc-seo">
+                      <span class="check-box"
+                        ><svg viewBox="0 0 12 10" fill="none">
+                          <path
+                            d="M1 5l3.5 3.5L11 1"
+                            stroke="#fff"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          /></svg
+                      ></span>
+                      <span class="check-emoji">📈</span> SEO &amp; Digital Visibility
+                    </label>
+                  </div>
+                  <div class="check-item">
+                    <input type="checkbox" id="svc-ai" name="services" value="AI Automation & Chatbots" />
+                    <label for="svc-ai">
+                      <span class="check-box"
+                        ><svg viewBox="0 0 12 10" fill="none">
+                          <path
+                            d="M1 5l3.5 3.5L11 1"
+                            stroke="#fff"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          /></svg
+                      ></span>
+                      <span class="check-emoji">🤖</span> AI Automation &amp; Chatbots
+                    </label>
+                  </div>
+                  <div class="check-item">
+                    <input type="checkbox" id="svc-db" name="services" value="Database & Backend Development" />
+                    <label for="svc-db">
+                      <span class="check-box"
+                        ><svg viewBox="0 0 12 10" fill="none">
+                          <path
+                            d="M1 5l3.5 3.5L11 1"
+                            stroke="#fff"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          /></svg
+                      ></span>
+                      <span class="check-emoji">🗄️</span> Database &amp; Backend
+                    </label>
+                  </div>
+                  <div class="check-item">
+                    <input type="checkbox" id="svc-crm" name="services" value="Custom CRM Development" />
+                    <label for="svc-crm">
+                      <span class="check-box"
+                        ><svg viewBox="0 0 12 10" fill="none">
+                          <path
+                            d="M1 5l3.5 3.5L11 1"
+                            stroke="#fff"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          /></svg
+                      ></span>
+                      <span class="check-emoji">📋</span> Custom CRM Development
+                    </label>
+                  </div>
+                  <div class="check-item">
+                    <input type="checkbox" id="svc-social" name="services" value="Social Media Management" />
+                    <label for="svc-social">
+                      <span class="check-box"
+                        ><svg viewBox="0 0 12 10" fill="none">
+                          <path
+                            d="M1 5l3.5 3.5L11 1"
+                            stroke="#fff"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          /></svg
+                      ></span>
+                      <span class="check-emoji">📱</span> Social Media Management
+                    </label>
+                  </div>
+                  <div class="check-item">
+                    <input type="checkbox" id="svc-marketing" name="services" value="Digital Marketing" />
+                    <label for="svc-marketing">
+                      <span class="check-box"
+                        ><svg viewBox="0 0 12 10" fill="none">
+                          <path
+                            d="M1 5l3.5 3.5L11 1"
+                            stroke="#fff"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          /></svg
+                      ></span>
+                      <span class="check-emoji">📣</span> Digital Marketing
+                    </label>
+                  </div>
+                  <div class="check-item">
+                    <input type="checkbox" id="svc-consult" name="services" value="Technology Consultation" />
+                    <label for="svc-consult">
+                      <span class="check-box"
+                        ><svg viewBox="0 0 12 10" fill="none">
+                          <path
+                            d="M1 5l3.5 3.5L11 1"
+                            stroke="#fff"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          /></svg
+                      ></span>
+                      <span class="check-emoji">💡</span> Technology Consultation
+                    </label>
+                  </div>
+                  <div class="check-item">
+                    <input type="checkbox" id="svc-maintenance" name="services" value="Ongoing Maintenance & Support" />
+                    <label for="svc-maintenance">
+                      <span class="check-box"
+                        ><svg viewBox="0 0 12 10" fill="none">
+                          <path
+                            d="M1 5l3.5 3.5L11 1"
+                            stroke="#fff"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          /></svg
+                      ></span>
+                      <span class="check-emoji">🔧</span> Maintenance &amp; Support
+                    </label>
+                  </div>
+                  <div class="check-item">
+                    <input type="checkbox" id="svc-va" name="services" value="Virtual Assistance" />
+                    <label for="svc-va">
+                      <span class="check-box"
+                        ><svg viewBox="0 0 12 10" fill="none">
+                          <path
+                            d="M1 5l3.5 3.5L11 1"
+                            stroke="#fff"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          /></svg
+                      ></span>
+                      <span class="check-emoji">🤝</span> Virtual Assistance
+                    </label>
+                  </div>
+                  <div class="check-item">
+                    <input type="checkbox" id="svc-other" name="services" value="Other / Not Sure" />
+                    <label for="svc-other">
+                      <span class="check-box"
+                        ><svg viewBox="0 0 12 10" fill="none">
+                          <path
+                            d="M1 5l3.5 3.5L11 1"
+                            stroke="#fff"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          /></svg
+                      ></span>
+                      <span class="check-emoji">❓</span> Other / Not Sure
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group full" style="margin-bottom: 1.5rem">
+                  <label for="req-details">Tell us about your project *</label>
+                  <textarea
+                    id="req-details"
+                    name="details"
+                    required
+                    placeholder="What needs to be built, maintained, organized, or improved?"
+                  ></textarea>
+                </div>
+
+                <label class="service-consent"><input type="checkbox" name="privacy" required /> I agree to the <a href="privacy.html">privacy policy</a> and consent to being contacted about this request.</label>
+                <button type="submit" class="btn-submit" id="submitRequestBtn">
+                  Send Service Request
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </button>
+                <p class="form-note">No spam. No obligation. We will respond within 1-2 business days.</p>
+              </form>
+
+              <div class="form-success" id="requestSuccess">
+                <div class="success-icon">✓</div>
+                <h3>Request Received!</h3>
+                <p>
+                  Thanks for reaching out. We'll review the request, explain what fits within the monthly plan, and contact you about next steps.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="faq-section">
+        <div class="container">
+          <h2>Frequently Asked Questions</h2>
+          <div class="faq-grid">
+            <div class="faq-item">
+              <h3>How much does website service cost?</h3>
+              <p>
+                Website Care + Build is $150 per month with no separate build fee. It includes up to five hours each month.
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3>What payment methods do you accept?</h3>
+              <p>
+                We accept Venmo, Cash App, Zelle, check, wire, cash, or another agreed method. Contact HSST for the correct instructions.
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3>What happens when the five hours are used?</h3>
+              <p>
+                Work pauses or continues with the next month's allocation. Faster work can be approved in advance at $30-$65 per hour, depending on complexity.
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3>How quickly can you get started?</h3>
+              <p>
+                Timing depends on the current workload and the work requested. HSST confirms the starting plan before committing to a delivery date.
+              </p>
+            </div>
+            <div class="faq-item">
+              <h3>Do I own the files when we're done?</h3>
+              <p>Absolutely. You receive all files, code, credentials, and content. No vendor lock-in, ever.</p>
+            </div>
+            <div class="faq-item">
+              <h3>Do you work outside Nebraska?</h3>
+              <p>
+                Yes. While we're based in Geneva, Nebraska, we serve clients nationwide through a fully remote,
+                digital-first approach.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="contact-cta">
+        <div class="container">
+          <div class="cta-content">
+            <h2>Ready to Get Started?</h2>
+            <p>
+              Contact us to discuss the work, understand the five-hour monthly allocation, and confirm any optional support before it begins.
+            </p>
+            <div class="contact-options">
+              <div class="contact-method">
+                <h3>Call Us</h3>
+                <p>(402) 759-2210</p>
+              </div>
+              <div class="contact-method">
+                <h3>Email Us</h3>
+                <p>bhinrichs1380@gmail.com</p>
+              </div>
+              <div class="contact-method">
+                <h3>Scope Conversation</h3>
+                <p>No obligation, no pressure</p>
+              </div>
+            </div>
+            <a href="contact.html" class="btn btn-primary">Contact Us</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="portfolio-teaser" aria-labelledby="portfolio-teaser-title">
+        <div class="portfolio-shell portfolio-teaser-layout">
+          <div><p class="portfolio-kicker">Selected website work</p><h2 id="portfolio-teaser-title">Different businesses.<br>Distinct websites.</h2><p>Explore websites for local businesses, care providers, and community organizations.</p><a class="portfolio-action" href="portfolio.html">Explore the portfolio <span aria-hidden="true">↗</span></a></div>
+          <a class="portfolio-teaser-image" href="portfolio.html" aria-label="Explore the website portfolio"><img src="images/portfolio/general-exteriors.webp" width="1200" height="675" loading="lazy" decoding="async" alt="General Exteriors website with bold typography and a gold estimate button"></a>
+        </div>
+      </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Hinrichs Specialty Services and Technology</h3>
-                    <p>Practical digital solutions for small businesses, nonprofits, and service organizations. No subscriptions. No lock-in. You own everything.</p>
-                    <div class="footer-contact">
-                        <p>📞 (402) 759-2210</p>
-                        <p>✉️ bhinrichs1380@gmail.com</p>
-                        <p>📍 Geneva, Nebraska</p>
-                    </div>
-                    <div class="footer-social">
-                        <a href="https://www.linkedin.com/in/brandon-hinrichs-3841bb78/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link">
-                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                        </a>
-                        <a href="https://www.facebook.com/hinrichsspecialtyservicestechnologyconsultation" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-link">
-                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="digital-solutions.html#website">Website Development</a></li>
-                        <li><a href="digital-solutions.html#seo">SEO &amp; Visibility</a></li>
-                        <li><a href="digital-solutions.html#chatbot">AI &amp; Chatbots</a></li>
-                        <li><a href="digital-solutions.html#database">Database &amp; Backend</a></li>
-                        <li><a href="digital-solutions.html#crm">Custom CRM</a></li>
-                        <li><a href="digital-solutions.html#social">Social Media</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="our-story.html">Our Story</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Hinrichs Specialty Services and Technology. All rights reserved. | <a href="privacy.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Privacy Policy</a> | <a href="data-deletion.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Data Deletion Policy</a></p>
-            </div>
-        </div>
-    </footer>
+    <!-- public-footer -->
 
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <script src="js/firebase-config.js"></script>
     <script src="js/database.js"></script>
     <script src="js/toast.js"></script>
     <script src="js/validation.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/chatbot.js"></script>
+    <script src="js/main-public.js"></script>
+    <script type="module" src="js/chatbot.js"></script>
 
     <script>
-    // Service Request Form Handler
-    (function() {
-        var form = document.getElementById('serviceRequestForm');
-        var submitBtn = document.getElementById('submitRequestBtn');
-        var successMsg = document.getElementById('requestSuccess');
+      // Service Request Form Handler
+      (function () {
+        var form = document.getElementById("serviceRequestForm");
+        var submitBtn = document.getElementById("submitRequestBtn");
+        var successMsg = document.getElementById("requestSuccess");
 
         if (!form) return;
 
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
+        form.addEventListener("submit", async function (e) {
+          e.preventDefault();
 
-            // Collect checked services
-            var checked = form.querySelectorAll('input[name="services"]:checked');
-            if (checked.length === 0) {
-                if (typeof showToast === 'function') {
-                    showToast('Please select at least one service.', 'error');
-                }
-                return;
+          // Collect checked services
+          var checked = form.querySelectorAll('input[name="services"]:checked');
+          if (checked.length === 0) {
+            if (typeof showToast === "function") {
+              showToast("Please select at least one service.", "error");
             }
+            return;
+          }
 
-            var services = Array.from(checked).map(function(cb) { return cb.value; });
+          var services = Array.from(checked).map(function (cb) {
+            return cb.value;
+          });
 
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = 'Submitting&hellip;';
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = "Submitting&hellip;";
 
-            var formData = {
-                firstName: form.querySelector('[name="firstName"]').value.trim(),
-                lastName: form.querySelector('[name="lastName"]').value.trim(),
-                email: form.querySelector('[name="email"]').value.trim(),
-                phone: form.querySelector('[name="phone"]').value.trim() || null,
-                organization: form.querySelector('[name="organization"]').value.trim() || null,
-                services: services,
-                details: form.querySelector('[name="details"]').value.trim(),
-                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                type: 'service_request'
-            };
+          var formData = {
+            firstName: form.querySelector('[name="firstName"]').value.trim(),
+            lastName: form.querySelector('[name="lastName"]').value.trim(),
+            email: form.querySelector('[name="email"]').value.trim(),
+            phone: form.querySelector('[name="phone"]').value.trim() || null,
+            organization: form.querySelector('[name="organization"]').value.trim() || null,
+            services: services,
+            details: form.querySelector('[name="details"]').value.trim(),
+            type: "service_request",
+          };
 
-            try {
-                var db = getFirebaseDB();
-                await db.collection('service_requests').add(formData);
-                form.style.display = 'none';
-                successMsg.style.display = 'block';
-                if (typeof showToast === 'function') {
-                    showToast('Request submitted! We\'ll be in touch soon.', 'success');
-                }
-            } catch (err) {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = 'Request Free Bid &amp; Consultation <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
-                if (typeof showToast === 'function') {
-                    showToast('Something went wrong. Please try again or call us at (402) 759-2210.', 'error');
-                }
+          try {
+            if (!window.Database || typeof window.Database.submitLeadToCRM !== "function") {
+              throw new Error("Lead service is unavailable");
             }
+            var result = await window.Database.submitLeadToCRM(
+                {
+                  firstName: formData.firstName,
+                  lastName: formData.lastName,
+                  email: formData.email,
+                  phone: formData.phone,
+                  organization: formData.organization,
+                  interest: services.join(", "),
+                  message: formData.details,
+                  source: "service-request-form",
+                  privacyConsent: form.querySelector('[name="privacy"]').checked,
+                },
+              );
+            if (!result.success) throw new Error(result.error || "Request could not be submitted");
+            window.dispatchEvent(new CustomEvent("hsst:analytics", { detail: { name: "lead_creation", params: { source: "service-request-form" } } }));
+            form.style.display = "none";
+            successMsg.style.display = "block";
+            if (typeof showToast === "function") {
+              showToast("Request submitted! We'll be in touch soon.", "success");
+            }
+          } catch (err) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML =
+              'Send Service Request <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+            if (typeof showToast === "function") {
+              showToast("Something went wrong. Please try again or call us at (402) 759-2210.", "error");
+            }
+          }
         });
-    })();
+      })();
     </script>
 
-</body>
+    <!-- Admin CRM Access Button -->
+    <a href="/crm/login" class="admin-portal-fab" aria-label="Admin Portal">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+      </svg>
+      <span>Admin Portal</span>
+    </a>
+  </body>
 </html>

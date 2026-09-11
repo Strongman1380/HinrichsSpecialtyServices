@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual Assistance Services | Hinrichs Specialty Services and Technology</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta
+      name="description"
+      content="A custom virtual assistant for the work you keep putting off. HSST handles admin, communication, research, systems, and follow-through so you can focus on what matters."
+    />
+    <link rel="canonical" href="https://www.hinrichsspecialtyservices.com/virtual-assistance.html" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .va-page {
+        background: #071323;
+        color: #f0f4ff;
+      }
+      .va-hero {
+        min-height: 76vh;
+        display: grid;
+        align-items: end;
+        padding: 8rem 0 5rem;
+        background:
+          linear-gradient(90deg, rgba(7, 19, 35, 0.98) 0%, rgba(7, 19, 35, 0.88) 39%, rgba(7, 19, 35, 0.18) 100%),
+          url("images/va-hero.webp") center/cover;
+      }
+      .va-wrap {
+        width: min(1120px, calc(100% - 3rem));
+        margin: 0 auto;
+      }
+      .va-copy {
+        max-width: 650px;
+      }
+      .va-kicker {
+        color: #f58220;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 0.75rem;
+        font-weight: 700;
+        margin-bottom: 1.25rem;
+      }
+      .va-hero h1 {
+        font-size: clamp(2.8rem, 7vw, 6.2rem);
+        line-height: 0.98;
+        letter-spacing: -0.055em;
+        margin: 0 0 1.5rem;
+      }
+      .va-hero h1 span {
+        color: #60a5fa;
+      }
+      .va-lead {
+        color: rgba(240, 244, 255, 0.74);
+        font-size: clamp(1.08rem, 2vw, 1.35rem);
+        line-height: 1.7;
+        max-width: 580px;
+      }
+      .va-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        margin-top: 2rem;
+      }
+      .va-section {
+        padding: 6rem 0;
+      }
+      .va-section.light {
+        background: #0b1d34;
+        color: #f0f4ff;
+      }
+      .va-section h2 {
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        line-height: 1.05;
+        letter-spacing: -0.04em;
+        margin: 0 0 1rem;
+      }
+      .va-section-intro {
+        max-width: 650px;
+        color: #64748b;
+        line-height: 1.7;
+        font-size: 1.05rem;
+      }
+      .va-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 3rem;
+      }
+      .va-card {
+        padding: 1.75rem;
+        border: 1px solid rgba(96, 165, 250, 0.16);
+        border-radius: 1.25rem;
+        background: rgba(19, 46, 84, 0.38);
+      }
+      .light .va-card {
+        background: rgba(19, 46, 84, 0.38);
+        border-color: rgba(96, 165, 250, 0.16);
+        box-shadow: none;
+      }
+      .va-card h3 {
+        margin: 0 0 0.7rem;
+        font-size: 1.15rem;
+      }
+      .va-card p {
+        color: rgba(240, 244, 255, 0.66);
+        line-height: 1.65;
+        margin: 0;
+      }
+      .light .va-card p {
+        color: rgba(240, 244, 255, 0.66);
+      }
+      .va-process {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+      .va-list {
+        list-style: none;
+        padding: 0;
+        margin: 2rem 0 0;
+        display: grid;
+        gap: 1rem;
+      }
+      .va-list li {
+        display: flex;
+        gap: 0.85rem;
+        align-items: flex-start;
+        line-height: 1.55;
+        color: #cbd5e1;
+      }
+      .va-list li::before {
+        content: "✓";
+        flex: 0 0 1.45rem;
+        height: 1.45rem;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(245, 130, 32, 0.18);
+        color: #f58220;
+        font-weight: 800;
+      }
+      .va-quote {
+        padding: 2rem;
+        border: 1px solid rgba(245, 130, 32, 0.45);
+        background: rgba(255, 255, 255, 0.05);
+        color: #dbeafe;
+        font-size: clamp(1.35rem, 3vw, 2rem);
+        line-height: 1.35;
+      }
+      .va-cta {
+        text-align: center;
+        background: linear-gradient(135deg, #132e54, #071323);
+      }
+      .va-cta p {
+        max-width: 580px;
+        margin: 0 auto;
+        color: rgba(240, 244, 255, 0.7);
+        line-height: 1.7;
+      }
+      @media (max-width: 800px) {
+        .va-grid,
+        .va-process {
+          grid-template-columns: 1fr;
+        }
+        .va-hero {
+          min-height: 78vh;
+          background-position: 64% center;
+        }
+      }
+    </style>
+  </head>
+  <body class="va-page">
+    <!-- public-header -->
+    <main>
+      <section class="va-hero">
+        <div class="va-wrap">
+          <div class="va-copy">
+            <div class="va-kicker">A capable extra set of hands</div>
+            <h1>Your custom <span>virtual assistant.</span></h1>
+            <p class="va-lead">
+              We work inside your workflow and take ownership of admin, research, communication, organization, and project follow-through.
+            </p>
+            <div class="va-actions">
+              <a href="contact.html" class="btn btn-primary">Contact HSST</a
+              ><a href="#services" class="btn btn-outline">See What We Handle</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="va-section light" id="services">
+        <div class="va-wrap">
+          <h2>Work that moves when you have support.</h2>
+          <p class="va-section-intro">
+            Your assistant is shaped around the way you already work. We can take ownership of a recurring task, support
+            a busy season, or help you build a cleaner system from the ground up.
+          </p>
+          <div class="va-grid">
+            <article class="va-card">
+              <h3>Admin &amp; organization</h3>
+              <p>
+                Inbox and calendar support, data entry, document cleanup, task tracking, file organization, and the
+                small details that quietly consume your day.
+              </p>
+            </article>
+            <article class="va-card">
+              <h3>Communication &amp; follow-through</h3>
+              <p>
+                Drafting messages, organizing client information, preparing updates, coordinating next steps, and making
+                sure important details do not disappear.
+              </p>
+            </article>
+            <article class="va-card">
+              <h3>Research &amp; preparation</h3>
+              <p>
+                Research, comparison, summaries, meeting preparation, content gathering, and clear next-step documents
+                that help you make decisions faster.
+              </p>
+            </article>
+            <article class="va-card">
+              <h3>Systems &amp; workflows</h3>
+              <p>
+                Build practical checklists, templates, processes, automations, and CRM routines that turn repeated work
+                into a reliable system.
+              </p>
+            </article>
+            <article class="va-card">
+              <h3>Content &amp; business support</h3>
+              <p>
+                Website updates, social content preparation, newsletters, basic SEO support, and behind-the-scenes work
+                that keeps your presence moving.
+              </p>
+            </article>
+            <article class="va-card">
+              <h3>Custom project support</h3>
+              <p>
+                Have work that does not fit a standard task list? Tell us what is stuck. We will help define the work,
+                organize it, and carry it through with you.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="va-section">
+        <div class="va-wrap va-process">
+          <div>
+            <div class="va-kicker">Designed around you</div>
+            <h2>Not a generic assistant. Your assistant.</h2>
+            <p class="va-section-intro" style="color: rgba(240, 244, 255, 0.66)">
+              We learn your priorities, your tools, and your standards. Then we become a dependable part of your
+              operation, handling the work you want done without forcing you into someone else’s process.
+            </p>
+            <ul class="va-list">
+              <li>Start with a focused list of tasks or a broader operational need.</li>
+              <li>Choose one-time project help, recurring support, or a flexible blend.</li>
+              <li>Get clear communication, visible progress, and work completed to your standard.</li>
+            </ul>
+          </div>
+          <div class="va-quote">
+            “You should not need to become an expert in every task just to keep your business moving. Let’s build the
+            support that gives your time back.”
+          </div>
+        </div>
+      </section>
+      <section class="va-section va-cta">
+        <div class="va-wrap">
+          <h2>Ready to hand off the work?</h2>
+          <p>
+            Send us the tasks, projects, or responsibilities taking up too much of your attention. We will help you
+            decide what support makes sense.
+          </p>
+          <div class="va-actions" style="justify-content: center">
+            <a href="contact.html" class="btn btn-primary">Start the Conversation</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- public-footer -->
+    <script src="js/database.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/main-public.js"></script>
+    <script type="module" src="js/chatbot.js"></script>
+  </body>
+</html>

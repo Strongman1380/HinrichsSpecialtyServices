@@ -1,7 +1,20 @@
 Options -Indexes
 
 <IfModule mod_rewrite.c>
-  RewriteEngine On
+RewriteEngine On
+
+  # One canonical site: HTTPS on the www Hostinger domain.
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} !^www\.hinrichsspecialtyservices\.com$ [NC]
+  RewriteRule ^ https://www.hinrichsspecialtyservices.com%{REQUEST_URI} [R=301,L]
+
+  # Retained release assets must not reopen retired services or payment flows.
+  RewriteRule ^(Art\ Portfolio|membership|enrollment|dv-weekly-payment|referral-intake|submissions)(\.html|/|$) - [G,L,NC]
+
+  # Keep the CRM frontend on the Hostinger domain while preserving its client-side routes.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^crm(?:/.*)?$ crm/index.html [L]
 
   # Rewrite extensionless URLs to .html files (e.g. /terms -> /terms.html)
   RewriteCond %{REQUEST_FILENAME} !-d
@@ -14,6 +27,25 @@ Options -Indexes
 
 <IfModule mod_negotiation.c>
   Options -MultiViews
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Crawlers must be able to read noindex on CRM routes, including SPA deep links.
+  Header always set X-Robots-Tag "noindex, nofollow" "expr=%{REQUEST_URI} =~ m#^/crm(?:/|$)#"
+
+  # HTML, manifests, and JSON should always revalidate so content updates show up immediately.
+  <FilesMatch "\.(html?|json|webmanifest)$">
+    Header always set Cache-Control "no-cache, no-store, must-revalidate"
+    Header always set Pragma "no-cache"
+    Header always set Expires "0"
+  </FilesMatch>
+
+  # These files use stable URLs, so they must not be cached aggressively.
+  <FilesMatch "^(sw\.js|registerSW\.js|database\.js|main-public\.js|toast\.js|validation\.js)$">
+    Header always set Cache-Control "no-cache, no-store, must-revalidate"
+    Header always set Pragma "no-cache"
+    Header always set Expires "0"
+  </FilesMatch>
 </IfModule>
 
 <FilesMatch "^\.">

@@ -1,0 +1,53 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper: check if user is the admin
+    function isAdmin() {
+      // Keep this identity synchronized with functions/data/admin-identity.json.
+      return request.auth != null && request.auth.uid == 'UJjwxRbDcBTt2zukR9fl3MjkKur2' && request.auth.token.email == 'bhinrichs1380@gmail.com' && request.auth.token.email_verified == true;
+    }
+
+    // Public lead and survey writes go through validated Cloud Functions.
+    match /contacts/{contact} {
+      allow read: if isAdmin();
+    }
+
+    match /contacts/{contact}/notes/{note} {
+      allow read: if isAdmin();
+    }
+
+    match /responses/{response} {
+      allow read, write: if isAdmin();
+    }
+
+    match /surveys/{survey} {
+      // Server-only writes enforce active=false on archive and reject publishing archived records.
+      allow read: if isAdmin() || resource.data.active == true;
+    }
+
+    // Current payment records are top-level for cross-client reporting.
+    match /payments/{payment} {
+      allow read: if isAdmin();
+    }
+
+    match /invoices/{invoice} {
+      allow read: if isAdmin();
+    }
+
+    match /{entity}/{record} {
+      allow read: if isAdmin() && entity in ['servicePlans', 'tasks', 'timeEntries', 'campaigns', 'activity'];
+    }
+
+    // Legacy contact payment records remain readable during migration.
+    match /contacts/{contact}/payments/{payment} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    // Default: block everything else, including unknown nested contact data.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
