@@ -37,6 +37,8 @@ jobs:
       - name: Install locked dependencies
         run: npm ci && npm --prefix 'HSP CRM' ci && npm --prefix 'HSP CRM/functions' ci
       - run: npx playwright install --with-deps chromium webkit
+      - name: JavaScript correctness checks
+        run: npm run lint
       - name: Unit, release failure, and financial model tests
         run: npx vitest run
       - name: Firestore authorization and transaction regressions

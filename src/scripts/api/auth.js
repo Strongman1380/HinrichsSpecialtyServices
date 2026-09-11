@@ -13,9 +13,9 @@ let firebaseAuth = null;
 async function getAuth() {
     if (!firebaseAuth) {
         const { getAuth: fbGetAuth, onAuthStateChanged, createUserWithEmailAndPassword, 
-                signInWithEmailAndPassword, signOut as fbSignOut,
-                sendPasswordResetEmail, updatePassword as fbUpdatePassword,
-                updateProfile as fbUpdateProfile } = await import('firebase/auth');
+                signInWithEmailAndPassword, signOut: fbSignOut,
+                sendPasswordResetEmail, updatePassword: fbUpdatePassword,
+                updateProfile: fbUpdateProfile } = await import('firebase/auth');
         firebaseAuth = {
             getAuth: fbGetAuth,
             onAuthStateChanged,

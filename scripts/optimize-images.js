@@ -68,7 +68,7 @@ async function optimizeImage(inputPath, outputName, sizes = SIZES.hero) {
           withoutEnlargement: true,
           fit: 'inside'
         })
-        [format.ext]({ quality: format.quality })
+        .toFormat(format.ext, { quality: format.quality })
         .toFile(outputPath);
 
       const stats = await fs.stat(outputPath);
@@ -84,7 +84,7 @@ async function optimizeImage(inputPath, outputName, sizes = SIZES.hero) {
     );
 
     await sharp(inputPath)
-      [format.ext]({ quality: format.quality })
+      .toFormat(format.ext, { quality: format.quality })
       .toFile(outputPath);
 
     const stats = await fs.stat(outputPath);
