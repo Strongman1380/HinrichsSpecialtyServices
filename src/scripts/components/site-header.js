@@ -191,7 +191,7 @@ class SiteHeader extends HTMLElement {
               <li><a href="/index.html" class="nav-link ${currentPage === "home" ? "active" : ""}">Home</a></li>
               <li><a href="/our-story.html" class="nav-link ${currentPage === "our-story" ? "active" : ""}">Our Story</a></li>
               <li><a href="/digital-solutions.html" class="nav-link ${currentPage === "digital-solutions" ? "active" : ""}">Digital Solutions</a></li>
-              <li><a href="virtual-assistance.html" class="nav-link">Virtual Assistance</a></li>
+              <li><a href="virtual-assistance.html" class="nav-link">Virtual Assistant</a></li>
               <li><a href="/portfolio.html" class="nav-link ${currentPage === "portfolio" ? "active" : ""}">Portfolio</a></li>
               <li><a href="/contact.html" class="nav-link ${currentPage === "contact" ? "active" : ""}">Contact</a></li>
               <li><a href="/crm/login" class="nav-link admin-crm-btn" target="_blank" rel="noopener noreferrer">&#x1F512; Admin CRM</a></li>

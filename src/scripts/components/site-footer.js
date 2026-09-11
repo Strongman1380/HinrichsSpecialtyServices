@@ -139,7 +139,6 @@ class SiteFooter extends HTMLElement {
             <div class="footer-section">
               <h4>Community</h4>
               <ul>
-                <li><a href="/blog.html">Blog & Resources</a></li>
                 <li><a href="/contact.html">Contact Us</a></li>
                 <li><a href="/contact.html#newsletter">Join Our Newsletter</a></li>
               </ul>

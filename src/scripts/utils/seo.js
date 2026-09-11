@@ -205,7 +205,6 @@ export function generateSitemap() {
     { url: '/', priority: 1.0, changefreq: 'weekly' },
     { url: '/our-story.html', priority: 0.8, changefreq: 'monthly' },
     { url: '/digital-solutions.html', priority: 0.9, changefreq: 'weekly' },
-    { url: '/blog.html', priority: 0.7, changefreq: 'daily' },
     { url: '/contact.html', priority: 0.6, changefreq: 'monthly' }
   ];
 

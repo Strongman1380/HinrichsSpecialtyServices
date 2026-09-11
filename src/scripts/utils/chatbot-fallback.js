@@ -26,5 +26,5 @@ export function getChatbotFallback(question, serviceInfo) {
   if (/contact|phone|email|brandon/.test(text) && (business.phone || business.email)) {
     return `You can reach Brandon at ${business.phone} or ${business.email}, or use the website contact form.`;
   }
-  return `I can explain website services, included monthly hours, social media management, virtual assistance, payment options, or how to contact Brandon. You can also call ${business.phone || "(402) 759-2210"}.`;
+  return `I can explain website services, included monthly hours, social media management, virtual assistant support, payment options, or how to contact Brandon. You can also call ${business.phone || "(402) 759-2210"}.`;
 }

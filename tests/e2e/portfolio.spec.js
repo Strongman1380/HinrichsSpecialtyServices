@@ -71,7 +71,7 @@ for (const width of [390, 820, 1440]) {
 }
 
 test('public pages expose portfolio navigation and footer links', async ({ page }) => {
-  for (const name of ['index', 'our-story', 'digital-solutions', 'blog', 'contact', 'success', 'privacy', 'terms', 'data-deletion', 'virtual-assistance', 'links']) {
+  for (const name of ['index', 'our-story', 'digital-solutions', 'contact', 'success', 'privacy', 'terms', 'data-deletion', 'virtual-assistance', 'links']) {
     await page.goto(`/${name}.html`);
     await expect(page.locator('.nav-menu a[href="portfolio.html"]')).toHaveCount(1);
     await expect(page.locator('footer a[href="portfolio.html"]')).toHaveCount(1);

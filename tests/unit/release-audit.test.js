@@ -34,7 +34,7 @@ function fixture() {
 describe('release artifact audit', () => {
   it('accepts a complete artifact and validates all inventory pages, including success', () => {
     const { directory } = fixture();
-    expect(auditRelease(directory)).toMatchObject({ pages: 12, sitemapPages: 11, failures: [] });
+    expect(auditRelease(directory)).toMatchObject({ pages: 11, sitemapPages: 10, failures: [] });
   });
 
   it('reports duplicate IDs, document structure, canonical tags and loaded scripts', () => {

@@ -16,7 +16,7 @@ const SERVICES = [
   { name: "Basic additional work - preapproved", rate: 30, isHourly: true },
   { name: "Standard additional work - preapproved", rate: 45, isHourly: true },
   { name: "Advanced additional work - preapproved", rate: 65, isHourly: true },
-  { name: "Virtual assistance - approved scope", rate: 30, isHourly: true },
+  { name: "Virtual assistant - approved scope", rate: 30, isHourly: true },
 ];
 
 const STATUSES = [

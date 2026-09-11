@@ -11,6 +11,9 @@ RewriteEngine On
   # Retained release assets must not reopen retired services or payment flows.
   RewriteRule ^(Art\ Portfolio|membership|enrollment|dv-weekly-payment|referral-intake|submissions)(\.html|/|$) - [G,L,NC]
 
+  # The resource hub is retired; keep an old retained file from being served.
+  RewriteRule ^blog(?:\.html)?$ / [R=301,L,NC]
+
   # Keep the CRM frontend on the Hostinger domain while preserving its client-side routes.
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

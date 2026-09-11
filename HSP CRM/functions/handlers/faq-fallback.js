@@ -25,7 +25,7 @@ function getFaqResponse(message, serviceInfo) {
     return `You can reach ${business.owner} at ${business.phone} or ${business.email}, or use the contact form on this website.`;
   }
   if (includesAny(normalized, ["service", "what do you do", "help with", "offer"])) {
-    return `HSST provides website care and progressive builds, virtual assistance, SEO, automation, social media support, and practical technology consultation for small businesses and nonprofits.`;
+    return `HSST provides website care and progressive builds, virtual assistant support, SEO, automation, social media support, and practical technology consultation for small businesses and nonprofits.`;
   }
 
   return null;

@@ -10,7 +10,7 @@ describe('AdSense site verification', () => {
   it('adds the AdSense loader to every generated HTML page', () => {
     execFileSync('npm', ['run', 'build'], { stdio: 'pipe' });
 
-    for (const page of ['index.html', 'contact.html', 'blog.html', 'virtual-assistance.html']) {
+    for (const page of ['index.html', 'contact.html', 'virtual-assistance.html']) {
       const html = readFileSync(resolve('dist', page), 'utf8');
       expect(html).toContain(adSenseScript);
     }

@@ -6,7 +6,6 @@ Allow: /index.html
 Allow: /our-story.html
 Allow: /digital-solutions.html
 Allow: /contact.html
-Allow: /blog.html
 Allow: /virtual-assistance.html
 Allow: /privacy.html
 Allow: /terms.html
