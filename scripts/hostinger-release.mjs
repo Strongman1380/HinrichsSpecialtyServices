@@ -7,6 +7,8 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { pathToFileURL } from 'node:url';
 import { Client } from 'basic-ftp';
+import sharp from 'sharp';
+import { isIP } from 'node:net';
 import { digest, safePath, makeManifest, validateManifest } from './release-artifact.mjs';
 
 const exec = promisify(execFile);
@@ -28,10 +30,22 @@ export function webrootClient(client) {
     sendIgnoringError: command => { if (!command.startsWith('SIZE /')) throw Error('Unsupported FTP command'); return client.sendIgnoringError(`SIZE ${resolve(command.slice(5))}`); },
   };
 }
-export async function httpBytes(name, releaseId = '') {
+export async function httpBytes(name, releaseId = '', directOrigin = false) {
   const url = `${origin}/${safePath(name).split('/').map(encodeURIComponent).join('/')}${releaseId ? `?hsstRelease=${encodeURIComponent(releaseId)}` : ''}`;
-  const { stdout } = await exec('curl', ['--fail', '--silent', '--show-error', '--location', '--proto', '=https', '--connect-timeout', '15', '--max-time', '60', url], { encoding: 'buffer', maxBuffer: 50 * 1024 * 1024 });
+  const ip = process.env.HOSTINGER_FTP_CONNECT_IP || '82.29.154.56';
+  if (directOrigin && !isIP(ip)) throw Error('Invalid origin IP');
+  const routing = directOrigin ? ['--resolve', `www.hinrichsspecialtyservices.com:443:${ip}`] : [];
+  const { stdout } = await exec('curl', ['--fail', '--silent', '--show-error', '--location', '--proto', '=https', '--connect-timeout', '15', '--max-time', '60', ...routing, url], { encoding: 'buffer', maxBuffer: 50 * 1024 * 1024 });
   return stdout;
+}
+export async function equivalentImage(original, delivered) {
+  const a = await sharp(original).metadata(), b = await sharp(delivered).metadata();
+  if (a.width !== b.width || a.height !== b.height || (a.pages || 1) !== (b.pages || 1)) return false;
+  const pixels = bytes => sharp(bytes).rotate().resize(64, 64, { fit: 'fill' }).toColourspace('srgb').ensureAlpha().raw().toBuffer();
+  const [x, y] = await Promise.all([pixels(original), pixels(delivered)]);
+  if (x.length !== y.length) return false;
+  let error = 0; for (let i = 0; i < x.length; i++) error += Math.abs(x[i] - y[i]);
+  return error / x.length <= 3;
 }
 export async function remoteHash(client, remote) {
   const hash = createHash('sha256');
@@ -41,11 +55,17 @@ export async function remoteHash(client, remote) {
 export async function verifyLive(root) {
   const manifest = await validateManifest(root);
   const files = Object.entries(manifest.files).filter(([name]) => !name.split('/').some(p => p.startsWith('.')) && !/\.(gz|br)$/.test(name));
-  let checked = 0;
+  let checked = 0, optimized = 0;
   async function worker() {
     for (let item; (item = files.shift());) {
       const [name, expected] = item;
-      if (digest(await httpBytes(name, manifest.releaseId)) !== expected.sha256) throw new Error(`LIVE HASH MISMATCH: ${name}`);
+      const delivered = await httpBytes(name, manifest.releaseId);
+      if (digest(delivered) !== expected.sha256) {
+        if (!/\.(png|jpe?g|webp|avif)$/i.test(name)) throw new Error(`LIVE HASH MISMATCH: ${name}`);
+        const original = await httpBytes(name, manifest.releaseId, true);
+        if (digest(original) !== expected.sha256 || !await equivalentImage(original, delivered)) throw new Error(`ORIGIN OR CDN IMAGE MISMATCH: ${name}`);
+        optimized++;
+      }
       checked++;
     }
   }
@@ -55,7 +75,7 @@ export async function verifyLive(root) {
   for (const route of ['crm/login', 'crm/payments', 'crm/invoices', 'crm/clients/example']) {
     if (digest(await httpBytes(route, manifest.releaseId)) !== manifest.files['crm/index.html'].sha256) throw new Error(`CRM refresh route failed: ${route}`);
   }
-  console.log(`Live verification passed: ${checked} exact file hashes and four CRM refresh routes.`);
+  console.log(`Live verification passed: ${checked} files (${optimized} CDN-optimized images matched to exact origin hashes) and four CRM refresh routes.`);
 }
 export async function preflight(client, { recovery = false } = {}) {
   await client.cd('/');

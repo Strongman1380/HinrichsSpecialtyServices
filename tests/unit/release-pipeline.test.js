@@ -4,8 +4,9 @@ import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { Writable } from 'node:stream';
+import sharp from 'sharp';
 import { makeManifest, safePath, validateManifest } from '../../scripts/release-artifact.mjs';
-import { publishFiles, backupRemote, webrootClient } from '../../scripts/hostinger-release.mjs';
+import { publishFiles, backupRemote, webrootClient, equivalentImage } from '../../scripts/hostinger-release.mjs';
 
 const temporary = [];
 async function artifact(version) {
@@ -32,6 +33,13 @@ class MemoryFTP {
 }
 afterEach(async () => { for (const root of temporary.splice(0)) await fs.rm(root, { recursive: true, force: true }); });
 describe('recoverable Hostinger releases', () => {
+  it('accepts image recompression but rejects different content or dimensions', async () => {
+    const image = color => sharp({ create: { width: 180, height: 180, channels: 4, background: color } }).png().toBuffer();
+    const original = await image('#123456'), compressed = await sharp(original).png({ palette: true }).toBuffer();
+    expect(await equivalentImage(original, compressed)).toBe(true);
+    expect(await equivalentImage(original, await image('#ff0000'))).toBe(false);
+    expect(await equivalentImage(original, await sharp(original).resize(90).png().toBuffer())).toBe(false);
+  });
   it('scopes every uploaded file and rename to the actual public_html destination', async () => {
     const raw = new MemoryFTP(), root = await artifact('scoped');
     raw.files.set('/index.html', Buffer.from('unrelated older copy'));
