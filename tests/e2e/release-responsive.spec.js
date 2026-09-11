@@ -75,14 +75,16 @@ for (const width of [320, 390, 768, 1024, 1440]) {
     for (const file of ['index.html', 'portfolio.html', 'contact.html']) {
       await page.goto(`/${file}`);
       // Text resizing, not CSS transform/zoom: content must reflow at 200%.
-      await page.addStyleTag({ content: 'html { font-size: 200% !important; }' });
+      await page.addStyleTag({ content: 'html { font-size: 200% !important; } body { font-family: Arial, sans-serif !important; }' });
       await page.waitForLoadState('networkidle');
       const clipped = await page.locator('main h1, main h2, main p, main a, main button, main input, main select, main textarea, footer a, .nav-logo-link').evaluateAll(elements => elements.filter(element => {
         const rect = element.getBoundingClientRect();
         return rect.width && rect.height && (rect.x < -1 || rect.right > innerWidth + 1);
       }).map(element => ({ tag: element.tagName, text: element.textContent.trim().slice(0, 50) })));
       expect(clipped, file).toEqual([]);
-      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), file).toBe(true);
+      const layout = await page.evaluate(() => ({ width: innerWidth, scroll: document.documentElement.scrollWidth,
+        overflow: [...document.querySelectorAll('body *')].filter(el => el.getBoundingClientRect().right > innerWidth + 1).slice(0, 12).map(el => ({ tag: el.tagName, className: el.getAttribute('class'), text: el.textContent.trim().slice(0, 60), right: el.getBoundingClientRect().right })) }));
+      expect(layout.scroll <= layout.width, `${file}: ${JSON.stringify(layout)}`).toBe(true);
       // Safari uses Option-Tab to include links when full keyboard access is off.
       await page.keyboard.press(process.platform === 'darwin' && /webkit|Safari/.test(test.info().project.name) ? 'Alt+Tab' : 'Tab');
       await expect(page.locator('.skip-link')).toBeFocused();

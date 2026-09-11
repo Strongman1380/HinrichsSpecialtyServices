@@ -50,7 +50,7 @@ jobs:
       - name: Public, mobile, WebKit, and CRM login acceptance
         env:
           HSST_SKIP_BUILD: 'true'
-        run: npx playwright test tests/e2e/portfolio.spec.js tests/e2e/site-upgrade.spec.js tests/e2e/contact-form.spec.js tests/e2e/crm.spec.js tests/e2e/release-responsive.spec.js --project=chromium --project=webkit --project='Mobile Chrome' --project='Mobile Safari' --workers=2
+        run: npx playwright test tests/e2e/portfolio.spec.js tests/e2e/site-upgrade.spec.js tests/e2e/contact-form.spec.js tests/e2e/crm.spec.js tests/e2e/release-responsive.spec.js --project=chromium --project=webkit --project='Mobile Chrome' --project='Mobile Safari' --workers=2 --max-failures=1 --retries=0
       - name: Preserve the exact checked artifact
         run: tar -czf release.tar.gz dist
       - uses: actions/upload-artifact@v4

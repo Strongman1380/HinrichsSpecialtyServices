@@ -285,7 +285,9 @@ import { getChatbotFallback } from "../src/scripts/utils/chatbot-fallback.js";
             cursor: pointer;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             transition: border-color 0.15s, background 0.15s, transform 0.15s, color 0.15s;
-            white-space: nowrap;
+            white-space: normal;
+            max-width: 100%;
+            overflow-wrap: anywhere;
             box-shadow: 0 1px 2px rgba(0,0,0,0.04);
         }
         .hsst-qr:hover {
@@ -307,6 +309,7 @@ import { getChatbotFallback } from "../src/scripts/utils/chatbot-fallback.js";
         }
         #hsst-chat-input {
             flex: 1;
+            min-width: 0;
             padding: 9px 14px;
             border: 1.5px solid #e2e8f0;
             border-radius: 12px;
