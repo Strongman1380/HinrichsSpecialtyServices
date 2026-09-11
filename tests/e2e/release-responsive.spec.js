@@ -23,7 +23,10 @@ test.beforeEach(async ({ page, baseURL }, testInfo) => {
   // Keep third-party analytics/ads and unmocked API calls off the network.
   await page.route('**/*', route => new URL(route.request().url()).hostname === '127.0.0.1' ? route.continue() : route.abort());
 });
-test.afterEach(async ({ page }) => expect(publicErrors.get(page)).toEqual([]));
+test.afterEach(async ({ page }) => {
+  try { expect(publicErrors.get(page)).toEqual([]); }
+  finally { await page.unrouteAll({ behavior: 'wait' }); }
+});
 
 for (const width of [320, 390, 768, 1024, 1101, 1440]) {
   test(`all public pages fit and navigate at ${width}px`, async ({ page }) => {
