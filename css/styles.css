@@ -2603,6 +2603,8 @@ body .hero-offer strong { white-space: normal; }
 body .portfolio-teaser-layout > *, body .footer-section { min-width: 0; overflow-wrap: anywhere; }
 body .footer-contact-item { min-width: 0; flex-wrap: wrap; }
 body .footer-contact-item a { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+body .btn { min-width: 0; max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+body .newsletter-container > *, body .map-content > *, body .contact-content > * { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
 body .impact-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 body .impact-stats .stat { min-width: 0; padding: clamp(12px, 3vw, 24px); overflow-wrap: anywhere; }
 body .stat-number { font-size: clamp(1.5rem, 5vw, 2.5rem); }
@@ -2611,6 +2613,7 @@ body .workflow-step { grid-template-columns: 100px minmax(0, 1fr); }
   body .hero-container, body .workflow-step, body .service-selector { grid-template-columns: minmax(0, 1fr); }
   body .impact-stats { grid-template-columns: minmax(0, 1fr); }
   body .footer-content { grid-template-columns: minmax(0, 1fr); }
+  body .newsletter-container, body .map-content { grid-template-columns: minmax(0, 1fr); }
   body .hero-content, body .hero-globe { width: 100%; }
 }
 .portfolio-shell { width: min(1200px, calc(100% - 80px)); margin-inline: auto; }
