@@ -45,7 +45,7 @@ The uploader forces encrypted verified transport, downloads a private previous-r
 - Verify billing, archive/restore, tasks, hours, and drafts using approved non-client test records.
 - Confirm Search Console ownership/sitemap status, one GA4 page view per navigation, and confirmed-lead events separately from attempts. Field INP requires real-user data.
 - Keep the backup path printed by the uploader. Approved static rollback: `bash scripts/deploy-hostinger.sh --rollback /absolute/previous-release-directory`.
-- Automatic workflow recovery: run **Restore Hostinger snapshot** on `main`, supplying the release run ID. It decrypts that run's rollback artifact using the Production secret. Full-snapshot checks use FTPS because snapshots can include intentionally forbidden or retired HTTP paths.
+- Automatic workflow recovery: run **Restore Hostinger snapshot** on `main`, supplying the release run ID and attempt number (normally `1`). Each attempt retains its own encrypted rollback snapshot. Full-snapshot checks use FTPS because snapshots can include intentionally forbidden or retired HTTP paths.
 - Local upload of an already checked artifact: `bash scripts/deploy-hostinger.sh --artifact /absolute/artifact`. `--verify` repeats public hash/route checks without uploading. A prepared backup may be reused only with `HSST_PREPARED_BACKUP=true` and the validated `HSST_BACKUP_DIR`.
 - Static rollback does not undo database migrations, APIs, or rules. Never restore permissive old rules. Reopen editing only after matching frontend/backend and reconciliation checks succeed.
 - Retain old remote assets until an approved retention window passes and active old-browser sessions are no longer a concern.

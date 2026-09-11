@@ -6,6 +6,11 @@ on:
         description: Run ID containing the reviewed rollback snapshot
         required: true
         type: string
+      release_attempt:
+        description: Attempt number containing the reviewed snapshot
+        required: true
+        default: '1'
+        type: string
 permissions:
   contents: read
   actions: read
@@ -34,7 +39,7 @@ jobs:
       - run: npm ci
       - uses: actions/download-artifact@v4
         with:
-          name: rollback-${{ inputs.release_run_id }}
+          name: rollback-${{ inputs.release_run_id }}-${{ inputs.release_attempt }}
           run-id: ${{ inputs.release_run_id }}
           github-token: ${{ github.token }}
       - run: node scripts/backup-envelope.mjs decrypt rollback.tar.gz.enc rollback.tar.gz && mkdir restore && tar -xzf rollback.tar.gz -C restore
@@ -49,6 +54,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: before-rollback-${{ github.run_id }}
+          name: before-rollback-${{ github.run_id }}-${{ github.run_attempt }}
           path: before-rollback.tar.gz.enc
           retention-days: 90

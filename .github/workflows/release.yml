@@ -57,11 +57,12 @@ jobs:
         with:
           name: release-${{ github.sha }}
           path: release.tar.gz
+          overwrite: true
           retention-days: 90
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: acceptance-${{ github.run_id }}
+          name: acceptance-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             test-results/
             playwright-report/
@@ -115,7 +116,7 @@ jobs:
       - name: Persist encrypted rollback before publication
         uses: actions/upload-artifact@v4
         with:
-          name: rollback-${{ github.run_id }}
+          name: rollback-${{ github.run_id }}-${{ github.run_attempt }}
           path: rollback.tar.gz.enc
           if-no-files-found: error
           retention-days: 90
