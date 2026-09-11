@@ -8,8 +8,8 @@ Do not publish or migrate production records without explicit approval. Review b
 
 - `npm run deploy:check` builds without uploading. Run `node scripts/check-release.mjs` afterward.
 - Configure `HOSTINGER_FTP_HOST`, `HOSTINGER_FTP_USER`, and `HOSTINGER_FTP_PASSWORD` locally. The hostname must match the FTP server's TLS certificate. Never disable certificate or hostname verification.
-- The existing FTP account enters the web root directly; do not add a `public_html` destination.
-- Verified connection: TLS hostname `hostinger.com`, connection IP `82.29.154.56`, port 21, username `u855082584.hinrichsspecialtyservices.com`. FTP `/` maps to `/home/u855082584/domains/hinrichsspecialtyservices.com/public_html`. Never append another `public_html` folder.
+- The existing FTP account contains an older site copy at `/`; the domain actually serves `/public_html`. The uploader scopes every operation to `/public_html` and proves the mapping with a unique uploaded probe fetched through the public domain. Matching a shared favicon does not prove the destination.
+- Verified connection: TLS hostname `hostinger.com`, connection IP `82.29.154.56`, port 21, username `u855082584.hinrichsspecialtyservices.com`. The required FTP destination is `/public_html`.
 - Never export the public site's `VITE_*` configuration into the nested CRM build. Emulator builds are prohibited in release assets.
 - Verify the administrator against `HSP CRM/functions/data/admin-identity.json`. Server, browser, and rules require that UID, email, and verified-email claim.
 - Confirm Firebase authorized domains, production origins, Search Console access, and GA4 configuration. Do not activate paid AI or email sending during release.

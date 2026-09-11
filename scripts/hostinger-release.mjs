@@ -11,6 +11,23 @@ import { digest, safePath, makeManifest, validateManifest } from './release-arti
 
 const exec = promisify(execFile);
 const origin = 'https://www.hinrichsspecialtyservices.com';
+// This account contains an older site copy at FTP /. The domain serves /public_html.
+export function webrootClient(client) {
+  const resolve = value => value === '/' ? '/public_html' : `/public_html/${safePath(value.replace(/^\//, ''))}`;
+  return {
+    get closed() { return client.closed; },
+    access: options => client.access(options), close: () => client.close(),
+    cd: value => client.cd(resolve(value)),
+    pwd: async () => { if (await client.pwd() !== '/public_html') throw Error('Unexpected physical FTP destination'); return '/'; },
+    ensureDir: value => client.ensureDir(resolve(value)),
+    list: value => client.list(resolve(value)),
+    uploadFrom: (local, remote) => client.uploadFrom(local, resolve(remote)),
+    downloadTo: (local, remote) => client.downloadTo(local, resolve(remote)),
+    rename: (from, to) => client.rename(resolve(from), resolve(to)),
+    remove: remote => client.remove(resolve(remote)),
+    sendIgnoringError: command => { if (!command.startsWith('SIZE /')) throw Error('Unsupported FTP command'); return client.sendIgnoringError(`SIZE ${resolve(command.slice(5))}`); },
+  };
+}
 export async function httpBytes(name, releaseId = '') {
   const url = `${origin}/${safePath(name).split('/').map(encodeURIComponent).join('/')}${releaseId ? `?hsstRelease=${encodeURIComponent(releaseId)}` : ''}`;
   const { stdout } = await exec('curl', ['--fail', '--silent', '--show-error', '--location', '--proto', '=https', '--connect-timeout', '15', '--max-time', '60', url], { encoding: 'buffer', maxBuffer: 50 * 1024 * 1024 });
@@ -43,21 +60,16 @@ export async function verifyLive(root) {
 export async function preflight(client, { recovery = false } = {}) {
   await client.cd('/');
   if (await client.pwd() !== '/') throw new Error('FTP account must be jailed to the site webroot');
-  if (recovery) {
-    if (process.env.HOSTINGER_FTP_USER !== 'u855082584.hinrichsspecialtyservices.com') throw new Error('Recovery requires the independently verified site-specific FTP account');
-  } else {
-    // Hostinger may transform HTML. Match a binary public asset instead of the
-    // already-corrupted entry document before staging its replacement.
-    if (process.env.HOSTINGER_FTP_USER !== 'u855082584.hinrichsspecialtyservices.com' || await remoteHash(client, '/favicon.ico') !== digest(await httpBytes('favicon.ico'))) throw new Error('FTP / does not match the public website. Refusing upload.');
-  }
-  const probe = `/.hsst-probe-${randomUUID()}`, renamed = `${probe}-renamed`, content = Buffer.from(randomUUID());
+  if (process.env.HOSTINGER_FTP_USER !== 'u855082584.hinrichsspecialtyservices.com') throw new Error('Unverified FTP account');
+  const probe = `/hsst-deploy-probe-${randomUUID()}.txt`, renamed = probe.replace('.txt', '-renamed.txt'), content = Buffer.from(randomUUID());
   let current;
   try {
     await client.uploadFrom(Readable.from(content), probe); current = probe;
     await client.rename(probe, renamed); current = renamed;
     if (await remoteHash(client, renamed) !== digest(content)) throw new Error('FTP rename/read-back failed');
+    if (!recovery && digest(await httpBytes(renamed.slice(1))) !== digest(content)) throw new Error('FTP /public_html does not serve the public domain. Refusing upload.');
   } finally { if (current && !client.closed) await client.remove(current); }
-  console.log('Verified FTPS certificate, FTP / to public_html mapping, upload, rename, and read-back.');
+  console.log('Verified FTPS certificate, FTP /public_html destination, upload, rename, and domain read-back.');
 }
 export async function backupRemote(client, root) {
   await fs.mkdir(root, { recursive: true, mode: 0o700 });
@@ -77,7 +89,7 @@ export async function backupRemote(client, root) {
   await visit();
   const former = path.join(root, 'release-manifest.json');
   try { await fs.rename(former, path.join(root, 'previous-release-manifest.json')); } catch (error) { if (error.code !== 'ENOENT') throw error; }
-  await makeManifest(root, { releaseId: `backup-${Date.now()}`, createdAt: new Date().toISOString(), backup: true });
+  await makeManifest(root, { releaseId: `backup-${Date.now()}`, createdAt: new Date().toISOString(), backup: true, ftpRoot: '/public_html' });
   await validateManifest(root);
   console.log(`Complete backup: ${count} files at ${root}`);
 }
@@ -132,15 +144,17 @@ async function main() {
   for (const key of ['HOSTINGER_FTP_HOST', 'HOSTINGER_FTP_USER', 'HOSTINGER_FTP_PASSWORD']) if (!process.env[key]) throw new Error(`Missing ${key}`);
   if (!/^[a-zA-Z0-9.-]+$/.test(process.env.HOSTINGER_FTP_HOST)) throw new Error('Invalid TLS hostname');
   const options = { host: process.env.HOSTINGER_FTP_CONNECT_IP || process.env.HOSTINGER_FTP_HOST, port: 21, user: process.env.HOSTINGER_FTP_USER, password: process.env.HOSTINGER_FTP_PASSWORD, secure: true, secureOptions: { servername: process.env.HOSTINGER_FTP_HOST, rejectUnauthorized: true, minVersion: 'TLSv1.2' } };
-  const client = new Client(30000);
+  const client = webrootClient(new Client(30000));
   const backup = path.resolve(process.env.HSST_BACKUP_DIR || path.join(await fs.mkdtemp(path.join(os.tmpdir(), 'hsst-release-')), 'backup'));
   let backupComplete = false, publishing = false, outgoing;
   try {
     await client.access(options); await preflight(client, { recovery: mode === '--rollback' });
     if (mode === '--preflight') return;
     if (mode !== '--backup') outgoing = await validateManifest(root);
+    if (outgoing?.backup && outgoing.ftpRoot !== '/public_html') throw new Error('Snapshot belongs to a different FTP destination');
     if (process.env.HSST_PREPARED_BACKUP === 'true') {
-      if (!(await validateManifest(backup)).backup) throw new Error('Prepared backup is not a complete snapshot');
+      const prepared = await validateManifest(backup);
+      if (!prepared.backup || prepared.ftpRoot !== '/public_html') throw new Error('Prepared backup is not a complete public_html snapshot');
       console.log(`Using previously persisted complete backup: ${backup}`);
     } else await backupRemote(client, backup);
     backupComplete = true;

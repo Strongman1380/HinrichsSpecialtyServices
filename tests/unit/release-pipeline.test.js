@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { Writable } from 'node:stream';
 import { makeManifest, safePath, validateManifest } from '../../scripts/release-artifact.mjs';
-import { publishFiles, backupRemote } from '../../scripts/hostinger-release.mjs';
+import { publishFiles, backupRemote, webrootClient } from '../../scripts/hostinger-release.mjs';
 
 const temporary = [];
 async function artifact(version) {
@@ -32,6 +32,15 @@ class MemoryFTP {
 }
 afterEach(async () => { for (const root of temporary.splice(0)) await fs.rm(root, { recursive: true, force: true }); });
 describe('recoverable Hostinger releases', () => {
+  it('scopes every uploaded file and rename to the actual public_html destination', async () => {
+    const raw = new MemoryFTP(), root = await artifact('scoped');
+    raw.files.set('/index.html', Buffer.from('unrelated older copy'));
+    await publishFiles(webrootClient(raw), root, { verify: false });
+    expect(raw.files.get('/index.html').toString()).toBe('unrelated older copy');
+    expect(raw.files.get('/public_html/index.html').toString()).toBe('scoped:index.html');
+    expect(raw.renames.every(name => name.startsWith('/public_html/'))).toBe(true);
+    expect(() => webrootClient(raw).cd('/../outside')).toThrow();
+  });
   it('rejects traversal and any altered artifact before transfer', async () => {
     for (const name of ['../secret', '/index.html', 'a/../b', 'a\\b', 'a\nb']) expect(() => safePath(name)).toThrow();
     const root = await artifact('new'); await fs.writeFile(path.join(root, 'index.html'), 'corrupted');
