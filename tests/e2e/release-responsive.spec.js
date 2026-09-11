@@ -84,7 +84,7 @@ for (const width of [320, 390, 768, 1024, 1440]) {
       expect(clipped, file).toEqual([]);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), file).toBe(true);
       // Safari uses Option-Tab to include links when full keyboard access is off.
-      await page.keyboard.press(/webkit|Safari/.test(test.info().project.name) ? 'Alt+Tab' : 'Tab');
+      await page.keyboard.press(process.platform === 'darwin' && /webkit|Safari/.test(test.info().project.name) ? 'Alt+Tab' : 'Tab');
       await expect(page.locator('.skip-link')).toBeFocused();
       await page.keyboard.press('Enter');
       await expect(page.locator('#main-content')).toBeFocused();

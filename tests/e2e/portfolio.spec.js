@@ -51,7 +51,7 @@ for (const width of [390, 820, 1440]) {
     const logo = await page.locator('.nav-brand-image').boundingBox();
     expect(logo.y).toBeGreaterThanOrEqual(header.y);
     expect(logo.y + logo.height).toBeLessThanOrEqual(header.y + header.height + 1);
-    await page.keyboard.press(/webkit|Safari/.test(test.info().project.name) ? 'Alt+Tab' : 'Tab');
+    await page.keyboard.press(process.platform === 'darwin' && /webkit|Safari/.test(test.info().project.name) ? 'Alt+Tab' : 'Tab');
     await expect(page.locator('.skip-link')).toBeFocused();
     await page.keyboard.press('Enter');
     await expect(page.locator('#main-content')).toBeFocused();
