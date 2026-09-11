@@ -39,6 +39,11 @@ describe('recoverable Hostinger releases', () => {
     expect(await equivalentImage(original, compressed)).toBe(true);
     expect(await equivalentImage(original, await image('#ff0000'))).toBe(false);
     expect(await equivalentImage(original, await sharp(original).resize(90).png().toBuffer())).toBe(false);
+    const pixels = Buffer.alloc(256 * 256 * 3);
+    for (let y = 0; y < 256; y++) for (let x = 0; x < 256; x++) pixels.fill((x + y) % 2 ? 255 : 0, (y * 256 + x) * 3, (y * 256 + x + 1) * 3);
+    const checkerboard = await sharp(pixels, { raw: { width: 256, height: 256, channels: 3 } }).png().toBuffer();
+    const gray = await sharp({ create: { width: 256, height: 256, channels: 3, background: '#808080' } }).png().toBuffer();
+    expect(await equivalentImage(checkerboard, gray)).toBe(false);
   });
   it('scopes every uploaded file and rename to the actual public_html destination', async () => {
     const raw = new MemoryFTP(), root = await artifact('scoped');

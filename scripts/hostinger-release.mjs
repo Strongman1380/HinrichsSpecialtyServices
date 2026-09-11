@@ -41,11 +41,9 @@ export async function httpBytes(name, releaseId = '', directOrigin = false) {
 export async function equivalentImage(original, delivered) {
   const a = await sharp(original).metadata(), b = await sharp(delivered).metadata();
   if (a.width !== b.width || a.height !== b.height || (a.pages || 1) !== (b.pages || 1)) return false;
-  const pixels = bytes => sharp(bytes).rotate().resize(64, 64, { fit: 'fill' }).toColourspace('srgb').ensureAlpha().raw().toBuffer();
+  const pixels = bytes => sharp(bytes).rotate().toColourspace('srgb').ensureAlpha().raw().toBuffer();
   const [x, y] = await Promise.all([pixels(original), pixels(delivered)]);
-  if (x.length !== y.length) return false;
-  let error = 0; for (let i = 0; i < x.length; i++) error += Math.abs(x[i] - y[i]);
-  return error / x.length <= 3;
+  return x.equals(y);
 }
 export async function remoteHash(client, remote) {
   const hash = createHash('sha256');
